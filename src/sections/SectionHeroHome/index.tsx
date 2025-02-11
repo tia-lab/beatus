@@ -11,12 +11,14 @@ export interface SectionHeroProps {
   }
 }
 
+export type SectionHeroData = Lib.FragmentOf<typeof SectionHeroFragment> & {
+  _modelApiKey: 'section_hero'
+  __typename: 'SectionHeroRecord'
+  id: string
+}
+
 const SectionHero = ({ data, params }: SectionHeroProps) => {
-  return (
-    <Section>
-      <div>hero</div>
-    </Section>
-  )
+  return <Section>Section Hero</Section>
 }
 
 export default memo(SectionHero)

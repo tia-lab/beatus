@@ -1,4 +1,5 @@
-import { colorsVars } from '@/styles/config/colors'
+import { colorsVarsBeatus, colorsVarsHermitage } from '@/styles/config/colors'
+import { Env } from '@/types'
 import { LenisOptions } from '@studio-freight/lenis'
 
 const config = {
@@ -8,6 +9,9 @@ const config = {
     lenis: false,
     cursor: false
   },
+
+  project: process.env.NEXT_PUBLIC_PROJECT as Env.ProjectEnv,
+
   url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:9852',
   forms: {
     projectId:
@@ -40,7 +44,10 @@ const config = {
       lerp: 0.25
     } as LenisOptions
   },
-  colors: colorsVars
+  colors:
+    (process.env.NEXT_PUBLIC_PROJECT as Env.ProjectEnv) === 'beatus'
+      ? colorsVarsBeatus
+      : colorsVarsHermitage
 }
 
 export const CONFIG = config
@@ -51,4 +58,5 @@ export const I18N = config.i18n
 export const COLORS = config.colors
 export const URL = config.url
 export const FORMS = config.forms
+export const PROJECT = config.project
 export type Locale = (typeof I18N.locales)[number]

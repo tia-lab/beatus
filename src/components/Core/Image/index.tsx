@@ -78,9 +78,6 @@ const Image = ({
   return wrap || caption ? (
     <div {...wrap}>
       <ImageComponent />
-      {caption && unmaskedData.caption && (
-        <div {...caption}>{unmaskedData.caption}</div>
-      )}
       {wrapChildren}
     </div>
   ) : (

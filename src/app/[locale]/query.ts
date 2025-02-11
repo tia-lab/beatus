@@ -26,9 +26,6 @@ export const LayoutFragment = graphql(
         ...LinkFragment
       }
 
-      navigationQuicklinks {
-        ...LinkFragment
-      }
       navigation {
         ...MenuDropdownFragment
       }

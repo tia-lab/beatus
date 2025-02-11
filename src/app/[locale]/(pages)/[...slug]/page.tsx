@@ -1,6 +1,5 @@
 import { Redirect, SectionBuilder, UpdateLangSwitch } from '@/components/Core'
 import { TransitionIn } from '@/components/Layout'
-import { Sections } from '@/components/types'
 import { routing } from '@/i18n/routing'
 import { getMetadata } from '@/lib/next'
 import { executeQuery } from '@/lib/query'
@@ -79,7 +78,7 @@ export default async function Page({ params }: PageProps) {
         localizedPrefix={localizedPrefixes}
       />
       <SectionBuilder
-        sections={page.sections as Sections.SectionType[]}
+        sections={page.sectionBuilder.sectionBuilder}
         params={params}
       />
       <TransitionIn />

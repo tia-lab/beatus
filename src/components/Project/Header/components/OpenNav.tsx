@@ -22,7 +22,7 @@ const OpenNav = ({ className, ...props }: OpenNavProps) => {
       onClick={() => !navOpen && setNavOpen(true)}
       {...props}
     >
-      {t('menu_open')}
+      {'open'}
     </div>
   )
 }

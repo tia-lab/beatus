@@ -4,3 +4,11 @@
   --space-section-md: 4rem;
   --space-section-lg: 8rem;
 }
+
+@media (max-width: 1023px) {
+  :root {
+    --space-section-sm: 1.5rem;
+    --space-section-md: 3rem;
+    --space-section-lg: 6rem;
+  }
+}

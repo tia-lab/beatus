@@ -15,9 +15,7 @@ const LangSwitch = () => {
 
   return (
     <div className={$.switch}>
-      <p className="text-large text-neutral-400 font-weight-700">
-        {t('lang_switch')}
-      </p>
+      <p className="text-large text-neutral-400 font-weight-700">language</p>
       <p className="text-large text-primary-300 text-style-uppercase font-weight-700">
         {locale}
       </p>

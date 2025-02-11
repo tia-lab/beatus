@@ -20,25 +20,22 @@ const globalUtilityFileName = '_utilities.scss' // File for global utility class
 // Helper function to convert camelCase or PascalCase to kebab-case
 function toKebabCase(str) {
   return str
-    .replace(/([a-z])([A-Z])/g, '$1-$2') // Handle camelCase
+    .replace(/([a-z])([A-Z])/g, '$1-$2') // Convert camelCase
     .replace(/([A-Z])([A-Z][a-z])/g, '$1-$2') // Handle PascalCase
     .replace(/(\d+)/g, '-$1') // Add hyphen before numbers
-    .replace(/[\s_]+/g, '-') // Replace spaces and underscores with hyphens
+    .replace(/[\s_()]+/g, '-') // Remove spaces, underscores, parentheses
+    .replace(/-+/, '-') // Ensure no double hyphens
     .toLowerCase()
 }
 
 // Function to process double hyphens and ensure hyphen after `var(`
 function processHyphens(content) {
-  // Step 1: Remove all double hyphens
   let processedContent = content.replace(/--+/g, '-')
-
-  // Step 2: Add a hyphen after `var(`
   processedContent = processedContent.replace(/var\(/g, 'var(-')
-
   return processedContent
 }
 
-// Function to generate utility classes based on the second array element
+// Function to generate SCSS utility classes
 async function generateUtilityClasses(variables, mappings, parentKey = '') {
   let utilityClasses = ''
 
@@ -47,29 +44,50 @@ async function generateUtilityClasses(variables, mappings, parentKey = '') {
     const variableKey = parentKey ? `${parentKey}-${kebabKey}` : kebabKey
 
     if (typeof value === 'object' && value !== null) {
-      // Nested object, recurse into it
-      const nestedResult = await generateUtilityClasses(
-        value,
-        mappings,
-        variableKey
-      )
-      utilityClasses += nestedResult
+      if ('default' in value) {
+        // Only generate for the "default" key
+        utilityClasses += generateUtilityForValue(
+          variableKey,
+          value.default,
+          mappings
+        )
+      } else {
+        // Nested object, recurse
+        const nestedResult = await generateUtilityClasses(
+          value,
+          mappings,
+          variableKey
+        )
+        utilityClasses += nestedResult
+      }
     } else {
-      // Generate utility classes based on the mappings provided
-      mappings.forEach((mapping) => {
-        for (const [classPrefix, cssProperty] of Object.entries(mapping)) {
-          utilityClasses += `
-          .${classPrefix}-${variableKey} {
-            ${cssProperty}: var(--${variableKey});
-          }
-
-          `
-        }
-      })
+      // Direct value case
+      utilityClasses += generateUtilityForValue(variableKey, value, mappings)
     }
   }
 
   return processHyphens(utilityClasses)
+}
+
+// Helper function to create SCSS classes for a value
+function generateUtilityForValue(variableKey, value, mappings) {
+  let utility = ''
+  mappings.forEach((mapping) => {
+    for (const [classPrefix, cssProperty] of Object.entries(mapping)) {
+      // Check if `!!` is in the property name
+      const isImportant = cssProperty.endsWith('!!')
+      const cleanProperty = isImportant
+        ? cssProperty.replace('!!', '')
+        : cssProperty
+
+      utility += `
+      .${classPrefix}-${variableKey} {
+        ${cleanProperty}: var(--${variableKey})${isImportant ? ' !important' : ''};
+      }
+      `
+    }
+  })
+  return utility
 }
 
 // Function to write utility SCSS files for each export in settings and create a global file

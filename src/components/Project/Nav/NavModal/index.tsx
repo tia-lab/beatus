@@ -2,7 +2,7 @@
 
 import { animateModal } from '@/animations/components'
 import { LayoutFragment } from '@/app/[locale]/query'
-import { Button, LangSwitch } from '@/components/Ui'
+import { LangSwitch } from '@/components/Ui'
 import { useGSAPContext, useKeyPress } from '@/hooks'
 import { useStoreNavigation } from '@/store'
 import { Lib } from '@/types'
@@ -62,7 +62,7 @@ const NavModal = ({ data, ...props }: NavModalProps) => {
             className={clsx('text-btn-large', 'text-primary-300', $.close)}
             onClick={closeModal}
           >
-            {t('menu_close')}
+            close
           </div>
           <div className={$.modal_content} data-lenis-prevent>
             <NavDropdown>
@@ -71,18 +71,7 @@ const NavModal = ({ data, ...props }: NavModalProps) => {
               ))}
             </NavDropdown>
             <div className={$.sidebar} data-lenis-prevent>
-              <div className={$.quick_links}>
-                {data?.navigationQuicklinks.map((link, i) => (
-                  <Button
-                    variant="text"
-                    key={i}
-                    data={link}
-                    onClick={() => setNavOpen(false)}
-                    transitionType={link.isExternal ? undefined : 'fade'}
-                    preventSameUrlClass="pointer-events-none"
-                  />
-                ))}
-              </div>
+              <div className={$.quick_links}></div>
             </div>
             <div className={$.lang_switch}>
               <LangSwitch />

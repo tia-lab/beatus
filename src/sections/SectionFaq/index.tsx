@@ -1,10 +1,9 @@
 import { Container, Section } from '@/components/Core'
-import { AccordionItem, Button } from '@/components/Ui'
+import { AccordionItem } from '@/components/Ui'
 import { FaqFragment } from '@/lib/fragments'
 import { executeQuery, graphql } from '@/lib/query'
 import { Lib } from '@/types'
 import { Locale } from '@config'
-import clsx from 'clsx'
 import { readFragment } from 'gql.tada'
 import { getLocale } from 'next-intl/server'
 import dynamic from 'next/dynamic'
@@ -37,7 +36,7 @@ const SectionFaq = async ({ data }: SectionFaqProps) => {
         allFaqs(
           fallbackLocales: de
           locale: $locale
-          filter: { categories: { anyIn: $anyIn } }
+          filter: { category: { anyIn: $anyIn } }
         ) {
           ...FaqFragment
         }
@@ -75,7 +74,6 @@ const SectionFaq = async ({ data }: SectionFaqProps) => {
     <Section
       padding={d.sectionPadding}
       className={$.section}
-      id={d.sectionId || undefined}
       anim="section-fade-in"
     >
       <Container>
@@ -97,32 +95,10 @@ const SectionFaq = async ({ data }: SectionFaqProps) => {
                       __html: faq.description as string
                     }}
                   ></p>
-                  {faq.button && (
-                    <Button
-                      variant="outline"
-                      data={faq.button}
-                      transitionType={
-                        faq.button.isExternal ? undefined : 'slide'
-                      }
-                    />
-                  )}
                 </>
               </AccordionItem>
             ))}
           </Accordion>
-          {d.bottomText && (
-            <div className={$.bottom}>
-              <p className={clsx('title-h4', $.bottomText)}>{d.bottomText}</p>
-              {d.bottomButton && (
-                <Button
-                  data={d.bottomButton}
-                  transitionType={
-                    d.bottomButton.isExternal ? undefined : 'slide'
-                  }
-                />
-              )}
-            </div>
-          )}
         </div>
       </Container>
     </Section>

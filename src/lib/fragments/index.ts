@@ -18,7 +18,7 @@ import PartnerBlockFragment from './partner-block'
 import RedirectLinkFragment from './redirect-link'
 import ResponsiveImageFragment from './responsive-image'
 import SectionPaddingFragment from './section-padding'
-import SectionTextSideBlockFragment from './section-text-side-block'
+
 import TagFragment from './tag'
 import TeamMemberFragment from './team-member'
 import VideoPlayerFragment from './video-player'
@@ -40,7 +40,6 @@ export {
   RedirectLinkFragment,
   ResponsiveImageFragment,
   SectionPaddingFragment,
-  SectionTextSideBlockFragment,
   TagFragment,
   TeamMemberFragment,
   VideoPlayerFragment

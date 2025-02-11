@@ -10,35 +10,32 @@ export const spacingVars = {
     md: '1rem',
     lg: '1.5rem',
     xl: '2rem',
-    '2xl': '3rem',
-    '3xl': '4rem',
-    '4xl': '6rem',
-    '5xl': '8rem'
-  }
-}
-
-export const sectionSpacingVars = {
-  space: {
-    section: {
-      none: '0',
-      sm: '2rem',
-      md: '4rem',
-      lg: '8rem'
-    }
+    '2xl': { default: '3rem', [MEDIA.tablet]: '2.5rem' },
+    '3xl': { default: '4rem', [MEDIA.tablet]: '3rem' },
+    '4xl': { default: '6rem', [MEDIA.tablet]: '4.5rem' },
+    '5xl': { default: '8rem', [MEDIA.tablet]: '6rem' }
   }
 }
 
 export const layoutSpacingVars = {
   base: '16',
-
   containerGutter: { default: '1.5rem', [MEDIA.tablet]: '1rem' },
   pageWidth: '2200px',
   padding: {
     global: { default: '1.5rem', [MEDIA.tablet]: '1rem' },
     vertical: {
-      small: { default: '2rem', [MEDIA.tablet]: '1.5rem' },
-      main: '4rem',
-      large: '8rem'
+      none: '0',
+      sm: { default: '2rem', [MEDIA.tablet]: '1.5rem' },
+      md: { default: '4rem', [MEDIA.tablet]: '3rem' },
+      lg: { default: '8rem', [MEDIA.tablet]: '6rem' }
+    }
+  }
+}
+
+export const sectionPaddingsVars = {
+  space: {
+    section: {
+      ...layoutSpacingVars.padding.vertical
     }
   }
 }
@@ -46,6 +43,6 @@ export const layoutSpacingVars = {
 export const spacings: SCSSVars = [spacingVars, [{ mb: 'margin-bottom' }]]
 export const layoutSpacings: SCSSVars = [layoutSpacingVars, []]
 export const sectionSpacings: SCSSVars = [
-  sectionSpacingVars,
-  [{ pt: 'padding-top' }, { pb: 'padding-bottom' }]
+  sectionPaddingsVars,
+  [{ pb: 'padding-bottom!!' }, { pt: 'padding-top!!' }]
 ]

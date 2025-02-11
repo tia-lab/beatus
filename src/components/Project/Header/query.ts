@@ -11,9 +11,7 @@ const queryHeader = graphql(
         notification
         notificationIsActive
         notificationTitle
-        navigationQuicklinks {
-          ...LinkFragment
-        }
+
         notificationLink {
           ...LinkFragment
         }

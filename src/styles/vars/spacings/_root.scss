@@ -11,3 +11,12 @@
   --space-4xl: 6rem;
   --space-5xl: 8rem;
 }
+
+@media (max-width: 1023px) {
+  :root {
+    --space-2xl: 2.5rem;
+    --space-3xl: 3rem;
+    --space-4xl: 4.5rem;
+    --space-5xl: 6rem;
+  }
+}

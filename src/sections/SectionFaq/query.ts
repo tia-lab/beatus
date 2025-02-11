@@ -7,7 +7,6 @@ const SectionFaqFragment = graphql(
   /* GraphQL */ `
     fragment SectionFaqFragment on SectionFaqRecord {
       id
-      sectionId
       _modelApiKey
       sectionPadding {
         ...SectionPaddingFragment
@@ -22,10 +21,6 @@ const SectionFaqFragment = graphql(
       faqs {
         ...FaqFragment
       }
-      bottomButton {
-        ...LinkFragment
-      }
-      bottomText
     }
   `,
   [FaqFragment, LinkFragment, SectionPaddingFragment]

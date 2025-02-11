@@ -1,31 +1,31 @@
-.pt-space-section-none {
-  padding-top: var(--space-section-none);
-}
-
 .pb-space-section-none {
-  padding-bottom: var(--space-section-none);
+  padding-bottom: var(--space-section-none) !important;
 }
 
-.pt-space-section-sm {
-  padding-top: var(--space-section-sm);
+.pt-space-section-none {
+  padding-top: var(--space-section-none) !important;
 }
 
 .pb-space-section-sm {
-  padding-bottom: var(--space-section-sm);
+  padding-bottom: var(--space-section-sm) !important;
 }
 
-.pt-space-section-md {
-  padding-top: var(--space-section-md);
+.pt-space-section-sm {
+  padding-top: var(--space-section-sm) !important;
 }
 
 .pb-space-section-md {
-  padding-bottom: var(--space-section-md);
+  padding-bottom: var(--space-section-md) !important;
 }
 
-.pt-space-section-lg {
-  padding-top: var(--space-section-lg);
+.pt-space-section-md {
+  padding-top: var(--space-section-md) !important;
 }
 
 .pb-space-section-lg {
-  padding-bottom: var(--space-section-lg);
+  padding-bottom: var(--space-section-lg) !important;
+}
+
+.pt-space-section-lg {
+  padding-top: var(--space-section-lg) !important;
 }

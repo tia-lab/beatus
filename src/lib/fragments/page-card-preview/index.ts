@@ -7,7 +7,6 @@ const PageCardPreviewFragment = graphql(
     fragment PageCardPreviewFragment on PageRecord @_unmask {
       pageTitle
       excerpt
-      subtitle
       slug
       _modelApiKey
       image {

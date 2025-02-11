@@ -1,5 +1,4 @@
 import SectionPaddingFragment from '@/lib/fragments/section-padding'
-import SectionTextSideBlockFragment from '@/lib/fragments/section-text-side-block'
 
 import { graphql } from '@/lib/query'
 
@@ -7,21 +6,13 @@ const SectionTextFragment = graphql(
   /* GraphQL */ `
     fragment SectionTextFragment on SectionTextRecord {
       id
-      sectionId
       _modelApiKey
       sectionPadding {
         ...SectionPaddingFragment
       }
-      leadText
-      text
-      isSidebar
-      stickySidebar
-      sidebar {
-        ...SectionTextSideBlockFragment
-      }
     }
   `,
-  [SectionPaddingFragment, SectionTextSideBlockFragment]
+  [SectionPaddingFragment]
 )
 
 export default SectionTextFragment

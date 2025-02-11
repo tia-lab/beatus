@@ -105,9 +105,6 @@ const CardListItem = ({
       <div className={$.content} ref={content}>
         <div className={$.title_wrap} data-title-wrap>
           <p className="title-h2">{data.pageTitle}</p>
-          {data.subtitle && variant === 'default' && (
-            <p className="title-h3 text-neutral-400">{data.subtitle}</p>
-          )}
         </div>
         <p className={clsx('title-h4', $.text_desktop)}>{data.excerpt}</p>
         <div className={$.icon_wrap}>
