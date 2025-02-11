@@ -1,7 +1,6 @@
 import SectionBuilderFragment from '@/components/Core/SectionBuilder/query'
 import { graphql } from '@/lib/query'
 import ImageFragment from '../image'
-import LinkFragment from '../link'
 import ParentTreeFragmentAllLocales from '../parent-tree/all-locales'
 import RedirectLinkFragment from '../redirect-link'
 import TagFragment from '../tag'
@@ -32,7 +31,6 @@ const PageFragment = graphql(
     }
   `,
   [
-    LinkFragment,
     ParentTreeFragmentAllLocales,
     RedirectLinkFragment,
     TagFragment,

@@ -8,10 +8,7 @@ const FaqFragment = graphql(
       title
       description
       position
-      button {
-        ...LinkFragment
-      }
-      categories {
+      category {
         ...FaqCategoryFragment
       }
     }
