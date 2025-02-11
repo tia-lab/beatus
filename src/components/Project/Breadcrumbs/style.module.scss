@@ -1,0 +1,28 @@
+.breadcrumbs {
+  display: grid;
+  grid-template-columns: auto;
+  grid-auto-flow: column;
+  column-gap: $space-sm;
+  grid-column: span 12;
+  justify-self: start;
+
+  .desktop {
+    @include tablet {
+      display: none;
+    }
+  }
+
+  .mobile {
+    @include desktop {
+      display: none;
+    }
+    @include tablet {
+      display: flex;
+    }
+  }
+
+  .current {
+    pointer-events: none;
+    color: $neutral-400 !important;
+  }
+}

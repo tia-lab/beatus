@@ -1,0 +1,63 @@
+@import '../mixin/mixin';
+
+body,
+p {
+  @include text-main;
+}
+
+.title-display {
+  @include title-display;
+}
+
+h1,
+.title-h1 {
+  @include h1;
+}
+
+h2,
+.title-h2 {
+  @include h2;
+}
+
+h3,
+.title-h3 {
+  @include h3;
+}
+
+h4,
+.title-h4 {
+  @include h4;
+}
+
+h5,
+.title-h5 {
+  @include h5;
+}
+
+.text-btn {
+  @include text-btn;
+}
+
+.text-btn-small {
+  @include text-btn-small;
+}
+
+.text-btn-large {
+  @include text-btn-large;
+}
+
+.text-small {
+  @include text-small;
+}
+
+.text-main {
+  @include text-main;
+}
+
+.text-large {
+  @include text-large;
+}
+
+.rich-text {
+  @include rich-text;
+}

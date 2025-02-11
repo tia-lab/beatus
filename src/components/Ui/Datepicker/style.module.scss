@@ -1,0 +1,55 @@
+.date_picker {
+  .input_wrap {
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+
+    .input {
+      display: flex;
+      flex-direction: row;
+      border: 1px solid black;
+      align-items: center;
+      padding: 0 $space-sm;
+      column-gap: $space-sm;
+      border-radius: $radius-small;
+      padding-right: 0;
+      overflow: hidden;
+
+      .input_date {
+        display: flex;
+        @include text-main;
+        opacity: 0.5;
+
+        &.input_date_active {
+          opacity: 1;
+        }
+      }
+
+      .icon_button {
+        border-radius: 0;
+      }
+    }
+  }
+}
+
+.popover {
+  &[data-entering] {
+    animation: popover-slide calc($duration-base / 2) $out-cubic;
+  }
+
+  &[data-exiting] {
+    animation: popover-slide calc($duration-base / 2) reverse $out-cubic;
+  }
+}
+
+@keyframes popover-slide {
+  from {
+    transform: var(--origin);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

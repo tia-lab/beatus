@@ -1,0 +1,12 @@
+.object-fit-wrap {
+  @include object-fit-wrap;
+}
+
+.object-fit {
+  @include object-fit;
+}
+
+.image-fit-wrap,
+.picture-fit-wrap {
+  @include image-fit-wrap;
+}

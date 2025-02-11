@@ -1,0 +1,37 @@
+.wrap {
+  @include grid-span-cols(12);
+  width: 100%;
+  overflow-x: scroll;
+}
+
+.table {
+  &.table_fullwidth {
+    width: 100%;
+  }
+}
+
+.row {
+  display: grid;
+  grid-template-columns: auto;
+  grid-auto-flow: column;
+  padding: $space-md 0;
+  column-gap: $space-md;
+  border-bottom: 1px solid $neutral-300;
+
+  &.row_fullwidth {
+    width: 100%;
+  }
+}
+
+.cell {
+  width: 10rem;
+
+  &.cell_header,
+  &.cell_left_header {
+    font-weight: bold;
+  }
+
+  &.cell_first {
+    width: 20rem;
+  }
+}

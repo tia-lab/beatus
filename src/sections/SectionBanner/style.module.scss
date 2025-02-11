@@ -1,0 +1,41 @@
+.section {
+  padding: $space-sm 0;
+
+  .banner {
+    background-color: $neutral-300;
+    border-radius: $radius-small;
+    display: flex;
+    flex-direction: column;
+    place-items: center center;
+    padding: 5.5rem 0;
+    row-gap: 1.5rem;
+    @include tablet {
+      padding: $space-lg $space-md;
+    }
+    @include mobile {
+      padding: $space-lg $padding-global;
+    }
+
+    .logo {
+      grid-column: span 12;
+      width: 42.625rem;
+      @include tablet {
+        width: 13.4rem;
+      }
+    }
+
+    .text {
+      grid-column: span 12;
+      text-align: center;
+      @include text-large;
+      font-weight: 400;
+      @include tablet {
+        @include text-main;
+      }
+    }
+
+    .button {
+      grid-column: span 12;
+    }
+  }
+}

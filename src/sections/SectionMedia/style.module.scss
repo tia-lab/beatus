@@ -1,0 +1,18 @@
+.section {
+  padding: $space-section-sm 0;
+
+  .media {
+    grid-column: span 12;
+    height: 25rem;
+    border-radius: $radius-small;
+    position: relative;
+    overflow: hidden;
+    background-color: $neutral-300;
+    @include tablet {
+      height: 15rem;
+    }
+    @include mobile {
+      height: 10rem;
+    }
+  }
+}

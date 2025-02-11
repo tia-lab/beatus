@@ -1,0 +1,87 @@
+.calendar {
+  max-width: 22rem;
+  border-radius: $radius-large;
+  box-shadow: 0 8px 16px 0 rgb(10 10 10 / 12%);
+  background-color: $neutral-100;
+
+  .calendar_head {
+    display: flex;
+    justify-content: space-between;
+    padding: $space-md $space-md $space-sm $space-md;
+    min-height: 4.5rem;
+    align-items: center;
+
+    .title {
+      font-weight: 700;
+      text-transform: capitalize;
+    }
+
+    .calendar_buttons {
+      display: flex;
+      column-gap: $space-sm;
+    }
+  }
+
+  .calendar_grid_wrap {
+    padding: $space-md;
+
+    //width: 100%;
+    display: flex;
+
+    .calendar_grid {
+      //width: 100%;
+
+      .cell_head {
+        padding-bottom: $space-md;
+        text-align: center;
+      }
+
+      .cell {
+        width: 2.75rem;
+        height: 2.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: $radius-small;
+        transition:
+          color calc($duration-base / 2) $out-cubic,
+          background-color calc($duration-base / 2) $out-cubic;
+
+        &[data-selected] {
+          background-color: $primary-300;
+          cursor: pointer;
+          color: $neutral-100;
+
+          &[data-focus-visible] {
+            outline-color: var(--highlight-foreground);
+            outline-offset: -3px;
+          }
+        }
+
+        &[data-selection-start] {
+          border-start-start-radius: $radius-small;
+          border-end-start-radius: $radius-small;
+        }
+
+        &[data-selection-end] {
+          border-start-end-radius: $radius-small;
+          border-end-end-radius: $radius-small;
+        }
+
+        &[data-outside-month] {
+          display: none;
+        }
+
+        &[data-disabled] {
+          opacity: 0.5;
+          pointer-events: none;
+        }
+      }
+    }
+
+    .calendar_grid_head,
+    .calendar_grid_body {
+      width: 100%;
+    }
+  }
+}

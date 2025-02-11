@@ -1,0 +1,236 @@
+.card {
+  position: relative;
+
+  &.variant_image {
+    display: grid;
+    column-gap: $container-gutter;
+
+    &:nth-child(even) {
+      grid-template-columns: 2fr 1fr;
+
+      .content {
+        grid-column: 2 / span 1;
+        grid-row: 1 / span 1;
+      }
+
+      .image {
+        grid-row: 1 / span 1;
+        grid-column: 1 / span 1;
+      }
+    }
+
+    &:nth-child(odd) {
+      grid-template-columns: 1fr 1fr;
+
+      .content {
+        grid-column: 1 / span 1;
+        grid-row: 1 / span 1;
+      }
+
+      .image {
+        grid-column: 2 / span 1;
+        grid-row: 1 / span 1;
+      }
+    }
+
+    .content {
+      padding-top: 1rem;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      cursor: pointer;
+
+      .title_wrap {
+        padding-right: 3rem;
+      }
+
+      .icon_wrap {
+        position: absolute;
+        top: 1rem;
+        right: 0;
+        width: 3rem;
+        height: 3rem;
+        overflow: hidden;
+        @include tablet {
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+
+        .icon {
+          width: 3rem;
+          height: 3rem;
+          border: $stroke-icon solid $neutral-600;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: $radius-round;
+          overflow: hidden;
+
+          @include tablet {
+            width: 1.5rem;
+            height: 1.5rem;
+          }
+
+          .icon_inner {
+            display: grid;
+            grid-template-columns: 1.5rem 1.5rem;
+            column-gap: 1.5rem;
+            @include tablet {
+              width: 0.75rem;
+              height: 0.75rem;
+              display: flex;
+
+              svg {
+                &:nth-child(2) {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .image {
+      position: relative;
+      overflow: hidden;
+      border-radius: $radius-small;
+      height: 22.5rem;
+      width: 100%;
+    }
+
+    .divider {
+      margin: $space-lg 0;
+      height: 2px;
+      background-color: $neutral-600;
+      width: 100%;
+      grid-column: span 2;
+    }
+
+    @include tablet {
+      display: flex;
+      flex-direction: column;
+
+      .image {
+        min-height: 16.1875rem;
+        order: 2;
+        margin-bottom: $space-section-sm;
+      }
+
+      .content {
+        order: 1;
+        height: 5rem;
+      }
+
+      .text_mobile {
+        order: 3;
+      }
+
+      .divider {
+        order: 4;
+      }
+    }
+  }
+
+  &.variant_default {
+    padding: $space-section-sm 0 0;
+    background-color: $neutral-200;
+    @include tablet {
+      padding: 0 0 $space-section-sm;
+    }
+
+    .text_mobile {
+      display: none;
+      @include tablet {
+        display: block;
+        margin-top: $space-section-sm;
+      }
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: 37rem 1.5fr auto;
+      align-items: start;
+      position: relative;
+      column-gap: 1.5rem;
+      cursor: pointer;
+      @include tablet {
+        grid-template-columns: 1fr;
+      }
+
+      .icon_wrap {
+        position: relative;
+        right: 1rem;
+        width: 3rem;
+        height: 3rem;
+        overflow: hidden;
+
+        @include tablet {
+          position: absolute;
+          top: 0;
+          right: 0;
+
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+
+        .icon {
+          width: 3rem;
+          height: 3rem;
+          border: $stroke-icon solid $neutral-600;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: $radius-round;
+          overflow: hidden;
+
+          @include tablet {
+            width: 1.5rem;
+            height: 1.5rem;
+          }
+
+          .icon_inner {
+            display: grid;
+            grid-template-columns: 1.5rem 1.5rem;
+            column-gap: 1.5rem;
+
+            @include tablet {
+              width: 0.75rem;
+              height: 0.75rem;
+              display: flex;
+
+              svg {
+                &:nth-child(2) {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .divider {
+      margin: $space-section-sm 0 0;
+      height: 2px;
+      background-color: $neutral-600;
+      width: 100%;
+      grid-column: span 2;
+    }
+  }
+}
+
+.text_desktop {
+  @include tablet {
+    display: none;
+  }
+}
+
+.text_mobile {
+  display: none;
+  @include tablet {
+    display: block;
+  }
+}

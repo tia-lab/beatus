@@ -1,0 +1,77 @@
+.notification {
+  padding: $space-md 0 0;
+  position: relative;
+  pointer-events: all;
+
+  .wrap {
+    width: 100%;
+    height: auto;
+    padding: $space-sm $space-md;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; // Ensures vertical centering
+    background-color: $black;
+    border-radius: $radius-small;
+    color: $white;
+
+    .head {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      column-gap: $space-md;
+      align-items: center; // Vertically aligns grid items
+
+      .title {
+        display: flex;
+        align-items: center; // Vertically aligns icon and text
+        gap: $space-sm;
+
+        .icon {
+          width: 1.25rem;
+          height: 1.25rem;
+        }
+      }
+
+      .open {
+        position: relative;
+        z-index: 5;
+        cursor: pointer;
+
+        .open_icon {
+          pointer-events: all;
+
+          &:hover {
+            background-color: $neutral-600;
+          }
+        }
+      }
+    }
+
+    .body {
+      padding-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .buttons {
+      display: flex;
+    }
+
+    .button {
+      display: flex;
+      align-items: center; // Vertically centers the button
+      pointer-events: all;
+    }
+
+    .close_icon {
+      pointer-events: all;
+
+      &:hover {
+        background-color: $neutral-600;
+      }
+    }
+  }
+}

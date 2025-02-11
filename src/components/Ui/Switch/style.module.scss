@@ -1,0 +1,48 @@
+.switch_wrap {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+
+  .switch {
+    width: 2.5rem;
+    height: 1.5rem;
+    border-radius: $radius-full;
+    background-color: $neutral-400;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition:
+      background-color $duration-base $out-cubic,
+      transform $duration-base $out-cubic;
+
+    .dot {
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: $radius-round;
+      background-color: $neutral-100;
+      position: absolute;
+      transform: translateX(0.125rem);
+      transition:
+        background-color $duration-base $out-cubic,
+        transform $duration-base $out-cubic;
+    }
+
+    &:hover {
+      background-color: $neutral-500;
+
+      .dot {
+        transform: translateX(0.375rem);
+      }
+    }
+
+    &.active {
+      background-color: $primary-300;
+
+      .dot {
+        transform: translateX(1.125rem);
+      }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit",
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit"
+  },
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "stylelint.enable": true,
+
+  "files.associations": {
+    "*.mts": "typescript",
+    "*.mjs": "javascript"
+  },
+  //eslint
+  "eslint.options": {
+    "ignorePath": "./config/.eslintignore"
+  },
+  // Prettier
+  "prettier.configPath": "./config/.prettierrc.json",
+  "prettier.ignorePath": "./config/.prettierignore",
+  // Stylelint
+  "stylelint.configFile": "./config/.stylelintrc.json",
+  "stylelint.validate": ["css", "scss"],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
+}

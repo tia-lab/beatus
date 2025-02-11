@@ -1,0 +1,143 @@
+.button {
+  border-radius: $radius-full;
+  display: inline-flex;
+  padding: $space-sm $space-md;
+  justify-content: center;
+  align-items: center;
+  gap: $space-sm;
+  cursor: pointer;
+  @include text-btn;
+  border: 2px solid;
+  position: relative;
+  overflow: hidden;
+  transition:
+    background-color $duration-base $out-cubic,
+    border-color $duration-base $out-cubic,
+    color $duration-base $out-cubic;
+
+  .line {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    transform: translateX(-100%);
+    background-color: $neutral-600;
+    transition: transform $duration-base $out-cubic;
+  }
+
+  &.variant_fill {
+    background-color: $primary-300;
+    color: $white;
+    border-color: $primary-300;
+
+    &:hover,
+    &.active {
+      background-color: $primary-400;
+      border-color: $primary-400;
+    }
+  }
+
+  &.variant_outline {
+    border-color: $neutral-600;
+
+    &:hover,
+    &.active {
+      background-color: $neutral-200;
+      border-color: $neutral-600;
+    }
+  }
+
+  &.variant_ghost {
+    border: 1px solid transparent;
+
+    &:hover,
+    &.active {
+      background-color: $neutral-200;
+    }
+  }
+
+  &.variant_text {
+    border: 1px solid transparent;
+    padding: $space-none;
+    border-radius: $space-none;
+    padding-bottom: 0.05rem;
+
+    .line {
+      display: block;
+    }
+
+    &:hover,
+    &.active {
+      .line {
+        transform: translateX(0);
+      }
+    }
+  }
+
+  &.size_small {
+    @include text-btn-small;
+  }
+
+  &.size_large {
+    @include text-btn-large;
+  }
+
+  &.disabled {
+    pointer-events: none !important;
+    opacity: 0.5 !important;
+  }
+
+  .icon {
+    width: 1rem;
+    height: 1rem;
+    order: 0;
+
+    svg {
+      width: 100%;
+    }
+
+    &.right {
+      order: 2;
+    }
+  }
+
+  &.icon_animation_rotate {
+    .icon {
+      transition: transform $duration-base $out-cubic;
+    }
+
+    &:hover,
+    &.active {
+      .icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &.icon_animation_move_left {
+    .icon {
+      transition: transform $duration-base $out-cubic;
+    }
+
+    &:hover,
+    &.active {
+      .icon {
+        transform: translateX(-0.25rem);
+      }
+    }
+  }
+
+  &.icon_animation_move_right {
+    .icon {
+      transition: transform $duration-base $out-cubic;
+    }
+
+    &:hover,
+    &.active {
+      .icon {
+        transform: translateX(0.25rem);
+      }
+    }
+  }
+}

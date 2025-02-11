@@ -1,0 +1,44 @@
+{
+  "heroVariants": [
+    {
+      "name": "Default",
+      "value": "default",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/146175/1731328410-herosection2.png"
+    },
+    {
+      "name": "Homepage",
+      "value": "homepage",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/146175/1731328410-herosection.png"
+    }
+  ],
+  "sectionTextSideBlockVariants": [
+    {
+      "name": "Default",
+      "value": "default",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/146175/1731329019-section_text_side_block_default.png"
+    },
+    {
+      "name": "Contact",
+      "value": "contact",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/146175/1731329019-section_text_side_block_contact.png"
+    }
+  ],
+  "sectionListVariants": [
+    {
+      "name": "Default",
+      "value": "default",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/146175/1731342308-listsection.png"
+    },
+    {
+      "name": "Images",
+      "value": "images",
+      "type": "image",
+      "display": "https://www.datocms-assets.com/146175/1731342308-listsectionimages.png"
+    }
+  ]
+}

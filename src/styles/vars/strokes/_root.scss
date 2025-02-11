@@ -1,0 +1,9 @@
+:root {
+  --stroke-icon: 4px;
+}
+
+@media (max-width: 1023px) {
+  :root {
+    --stroke-icon: 3px;
+  }
+}

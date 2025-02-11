@@ -1,0 +1,23 @@
+.buttons {
+  position: absolute;
+  bottom: 0;
+  @include grid-template-cols(1fr 1fr);
+  column-gap: 0;
+  border-top: 1px solid $neutral-300;
+  width: 100%;
+  justify-items: end;
+
+  .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: $space-sm;
+    min-height: 3.5rem;
+    cursor: pointer;
+
+    &.fill {
+      color: $neutral-100;
+      background-color: $primary-300;
+    }
+  }
+}

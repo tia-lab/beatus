@@ -1,0 +1,49 @@
+.embla_viewport {
+  overflow: hidden;
+
+  &.is_buttons {
+    padding-top: 4.5rem;
+  }
+}
+
+.embla_container {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 80%; /* Each slide covers 80% of the viewport */
+}
+
+.controls {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: $padding-global;
+
+  .embla_button {
+    display: flex;
+    width: 3rem;
+    height: 3rem;
+    border: 3px solid $neutral-600;
+    border-radius: 100%;
+    padding: 0.5rem;
+    position: relative;
+    transition: background-color $duration-base $out-cubic;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $neutral-300;
+
+      svg {
+        transform: scale(1.2);
+      }
+    }
+
+    path {
+      stroke-width: 3;
+    }
+  }
+}

@@ -1,0 +1,100 @@
+.select_field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  .label {
+    @include text-small;
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+
+  .description {
+    display: flex;
+    flex-direction: row;
+    padding: $space-xs $space-sm;
+    max-width: 100%;
+    word-break: break-all;
+    @include text-small;
+    font-weight: bold;
+  }
+
+  .icon_state {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform $duration-base $out-cubic;
+
+    &.is_open {
+      transform: rotate(180deg);
+    }
+  }
+
+  .select_trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    border: 1px solid $neutral-400;
+    border-radius: $radius-small;
+    cursor: pointer;
+
+    &:hover {
+      border-color: $neutral-600;
+    }
+
+    &.focused {
+      border-color: $primary-300;
+    }
+  }
+
+  .placeholder {
+    color: $neutral-400;
+    font-style: italic;
+  }
+
+  .error {
+    color: $primary-300;
+    font-weight: bold;
+    margin-top: 0.5rem;
+  }
+}
+
+.popover {
+  position: absolute;
+  z-index: 10;
+  background: $neutral-200;
+  border: 1px solid $neutral-400;
+  box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
+  border-radius: $radius-small;
+  max-height: 12rem;
+  overflow-y: auto;
+}
+
+.listbox {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  .option {
+    cursor: pointer;
+    padding: $space-sm $space-md;
+    transition:
+      background-color $duration-base $out-cubic,
+      color $duration-base $out-cubic;
+
+    &:hover {
+      background: $neutral-400;
+      color: white;
+    }
+
+    &.selected {
+      background: $primary-300;
+      color: white;
+    }
+  }
+}

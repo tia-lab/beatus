@@ -1,0 +1,56 @@
+.section {
+  padding: $space-section-md 0;
+
+  .title {
+    grid-column: span 12;
+    margin-bottom: $space-md;
+  }
+
+  .map {
+    height: 100%;
+    grid-column: span 8;
+    background-color: $neutral-300;
+    overflow: hidden;
+    border-radius: $radius-small;
+    min-height: 22.5rem;
+
+    @include tablet {
+      grid-column: span 12;
+      margin-bottom: $space-lg;
+      min-height: 25rem;
+    }
+  }
+
+  .offices {
+    display: grid;
+    grid-column: span 4;
+    row-gap: $space-sm;
+    align-self: start;
+
+    @include tablet {
+      grid-column: span 12;
+    }
+
+    .card {
+      transform: translate3d(0, 0, 0);
+      flex: 0 0 33%;
+      min-height: 0;
+      padding-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: opacity $duration-base $out-cubic;
+
+      &.inactive {
+        opacity: 0.5;
+      }
+
+      .divider {
+        height: 2px;
+        background-color: $neutral-600;
+        width: 100%;
+        margin-top: 1rem;
+      }
+    }
+  }
+}

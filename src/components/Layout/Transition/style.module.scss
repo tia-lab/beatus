@@ -1,0 +1,31 @@
+.transition_slide_out,
+.transition_slide_in {
+  background-color: $primary-300;
+  position: fixed;
+  width: 0%;
+  height: 100%;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+}
+
+.transition_slide_in {
+  left: 0;
+  width: 100%;
+}
+
+.transition_fade_out,
+.transition_fade_in {
+  background-color: $neutral-200;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 450;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.transition_fade_in {
+  opacity: 1;
+}

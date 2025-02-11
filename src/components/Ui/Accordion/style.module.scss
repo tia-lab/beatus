@@ -1,0 +1,133 @@
+.accordion {
+  @include grid-template-cols(1fr);
+}
+
+.accordion_item {
+  display: flex;
+  flex-direction: column;
+  padding: $space-md $space-sm;
+
+  border-bottom: 2px solid $neutral-600;
+
+  .head {
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: $space-sm;
+    align-items: center;
+    width: 100%;
+
+    .icon {
+      width: 2rem;
+      height: 2rem;
+      align-items: center;
+      order: 2;
+    }
+  }
+
+  .body {
+    display: flex;
+    flex-direction: column;
+    transition:
+      max-height $duration-base $out-cubic,
+      opacity $duration-base $out-cubic;
+    overflow: hidden;
+    opacity: 0;
+
+    &[data-expanded='true'] {
+      opacity: 1;
+    }
+
+    .body_inner {
+      padding: $space-sm 0;
+    }
+  }
+
+  &.variant_default {
+    .icon {
+      width: 2rem;
+      height: 2rem;
+      align-items: center;
+      transition: transform $duration-base $out-cubic;
+      transform: rotate(0);
+
+      &[data-expanded='true'] {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &.variant_faq {
+    padding-bottom: $space-2xl;
+    border-bottom: 2px solid $neutral-600;
+    border-radius: 0;
+    @include tablet {
+      padding-bottom: $space-lg;
+    }
+
+    .head {
+      padding-top: $space-lg;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      @include tablet {
+        padding-top: $space-xs;
+      }
+
+      .icon {
+        width: 3rem;
+        height: 3rem;
+        order: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: $stroke-icon solid $neutral-600;
+        border-radius: 100%;
+        @include tablet {
+          width: 1.75rem;
+          height: 1.75rem;
+        }
+
+        .plus {
+          position: absolute;
+          width: 1.5rem;
+          height: $stroke-icon;
+          background-color: $neutral-600;
+          @include tablet {
+            width: 0.75rem;
+            height: 3px;
+          }
+
+          &.is_2 {
+            transition: transform $duration-base $out-cubic;
+            transform: rotate(90deg);
+          }
+        }
+
+        &[data-expanded='true'] {
+          .plus {
+            &.is_2 {
+              transform: rotate(180deg);
+            }
+          }
+        }
+      }
+    }
+
+    .body {
+      max-width: 58rem;
+
+      .body_inner {
+        padding: 0;
+        padding-top: $space-2xl;
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+        align-items: flex-start;
+        padding-bottom: 0.125rem;
+        @include tablet {
+          padding-top: $space-lg;
+        }
+      }
+    }
+  }
+}

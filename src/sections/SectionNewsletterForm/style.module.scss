@@ -1,0 +1,11 @@
+.section {
+  padding: $space-section-sm 0;
+
+  .wrap {
+    grid-column: span 12;
+    overflow: hidden;
+    border-radius: $radius-small;
+    border: $stroke-icon solid $neutral-300;
+    background-color: $neutral-100;
+  }
+}

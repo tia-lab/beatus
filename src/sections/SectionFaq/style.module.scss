@@ -1,0 +1,19 @@
+.section {
+  padding: $space-section-md 0;
+
+  .wrap {
+    grid-column: span 12;
+    padding: $space-xl $padding-global;
+    background-color: $neutral-300;
+    border-radius: 0.5rem;
+
+    .bottom {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      width: 100%;
+      margin-top: $space-2xl;
+      column-gap: $padding-global;
+      align-items: center;
+    }
+  }
+}

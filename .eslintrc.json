@@ -1,0 +1,78 @@
+{
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "quotes": ["error", "single", { "avoidEscape": true }],
+        "semi": ["error", "never"]
+      }
+    }
+  ],
+  "plugins": ["prettier"],
+  "extends": [
+    "next",
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "prettier"
+  ],
+  "env": {
+    "es6": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2021
+  },
+  "globals": {
+    "React": "readonly",
+    "GSAPDraggableVars": "readonly",
+    "GSAPAnimation": "readonly",
+    "GSAPCallback": "readonly",
+    "GSAPDistributeConfig": "readonly",
+    "GSAPPlugin": "readonly",
+    "GSAPPluginScope": "readonly",
+    "GSAPPluginStatic": "readonly",
+    "GSAPStaggerVars": "readonly",
+    "GSAPTickerCallback": "readonly",
+    "GSAPTimeline": "readonly",
+    "GSAPTimelineVars": "readonly",
+    "GSAPTween": "readonly",
+    "GSAPTweenTarget": "readonly",
+    "GSAPTweenVars": "readonly",
+    "GSAP": "readonly",
+    "gsap": "readonly",
+    "ScrollTrigger": "readonly",
+    "RequestInit": "readonly"
+  },
+  "rules": {
+    "jsx-a11y/alt-text": "off",
+    "import/no-unresolved": ["error", { "caseSensitive": true }],
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "trailingComma": "none",
+        "semi": false
+      }
+    ],
+    "quotes": ["error", "single", { "avoidEscape": true }],
+    "semi": ["error", "never"],
+    "no-unused-vars": [
+      "warn",
+      {
+        "args": "after-used",
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ],
+    "sort-imports": [
+      "error",
+      {
+        "ignoreCase": false,
+        "ignoreDeclarationSort": true,
+        "ignoreMemberSort": false,
+        "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
+      }
+    ]
+  }
+}

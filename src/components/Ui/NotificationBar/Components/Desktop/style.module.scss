@@ -1,0 +1,81 @@
+.notification {
+  padding: $space-md 0 0;
+  position: relative;
+
+  .wrap {
+    width: 100%;
+    height: 3.75rem;
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center; // Ensures vertical centering
+    background-color: $black;
+    border-radius: $radius-small;
+    color: $white;
+
+    .container {
+      width: 100%;
+      max-width: 83.5rem;
+      display: grid;
+      grid-template-columns: auto 1fr auto auto;
+      column-gap: $space-md;
+      align-items: center; // Vertically aligns grid items
+
+      .title {
+        display: flex;
+        align-items: center; // Vertically aligns icon and text
+        gap: $space-sm;
+
+        .icon {
+          width: 1.25rem;
+          height: 1.25rem;
+        }
+      }
+
+      .message {
+        overflow: hidden; // Ensure content is clipped
+        position: relative; // Required for absolutely positioned carousel
+        display: flex;
+        align-items: center; // Vertically center the carousel
+        height: 100%; // Ensures it spans the full height of the container
+
+        .carousel {
+          display: inline-flex; // Ensures horizontal alignment
+          align-items: center; // Keeps the carousel content vertically centered
+          white-space: nowrap; // Prevent line wrapping
+          position: absolute; // Absolute positioning for smooth scrolling
+          animation: scroll 25s linear infinite; // Smooth scrolling animation
+
+          & > * {
+            margin-right: 0.5rem; // Space between items
+          }
+        }
+
+        /* Keyframes for infinite scrolling */
+        @keyframes scroll {
+          0% {
+            transform: translateX(0); // Start at the beginning
+          }
+
+          100% {
+            transform: translateX(-50%); // Move by half the width
+          }
+        }
+      }
+
+      .button {
+        display: flex;
+        align-items: center; // Vertically centers the button
+        pointer-events: all;
+      }
+
+      .close_icon {
+        pointer-events: all;
+
+        &:hover {
+          background-color: $neutral-600;
+        }
+      }
+    }
+  }
+}

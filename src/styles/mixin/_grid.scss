@@ -1,0 +1,32 @@
+@mixin grid-span-cols($cols) {
+  grid-column: span $cols;
+}
+
+@mixin grid-span-rows($rows) {
+  grid-row: span $rows;
+}
+
+@mixin grid-span($cols, $rows) {
+  @include grid-span-cols($cols);
+  @include grid-span-rows($rows);
+}
+
+@mixin grid-cols($start, $end) {
+  grid-column: $start / $end;
+}
+
+@mixin grid-template-cols($columns) {
+  display: grid;
+  grid-template-columns: $columns;
+}
+
+@mixin grid-template-rows($rows) {
+  display: grid;
+  grid-template-rows: $rows;
+}
+
+@mixin grid-template($columns, $rows) {
+  display: grid;
+  @include grid-template-cols($columns);
+  @include grid-template-rows($rows);
+}

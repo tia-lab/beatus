@@ -1,0 +1,31 @@
+import { getMetadata } from '@/lib/next'
+import { GetMetadataOptions } from '@/lib/types'
+import {
+  type GeneratePageComponentOptions,
+  generatePageComponent
+} from './generatePageComponent'
+
+/**
+ * A simple wrapper that reduces the code to be written for each route. It takes
+ * care of generating both the page component and the `generateMetadata()`
+ * function from a common set of options.
+ */
+export function generatePageComponentAndMetadataFn<
+  PageProps,
+  Result,
+  Variables
+>(
+  options: GeneratePageComponentOptions<PageProps, Result, Variables> &
+    Partial<GetMetadataOptions<PageProps, Result, Variables>>
+) {
+  const Page = generatePageComponent(options)
+
+  const metadataFn = options.pickSeoMetaTags
+    ? getMetadata({
+        ...options,
+        pickSeoMetaTags: options.pickSeoMetaTags
+      })
+    : undefined
+
+  return { Page, generateMetadataFn: metadataFn }
+}

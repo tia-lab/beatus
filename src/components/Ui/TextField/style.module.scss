@@ -1,0 +1,119 @@
+@mixin transition-border {
+  transition: border-color $duration-base $out-cubic;
+}
+
+@mixin transition-bg {
+  transition: background-color $duration-base $out-cubic;
+}
+
+.text_field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  .label {
+    @include text-small;
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+
+  .input_wrap {
+    border-radius: $radius-small;
+    border: 1px solid $neutral-400;
+    padding: $space-sm $space-md;
+    display: flex;
+    align-items: center;
+    column-gap: $space-sm;
+    min-width: 14rem;
+    width: 100%;
+    position: relative;
+    @include transition-border;
+    @include transition-bg;
+
+    .required {
+      position: relative;
+      left: -0.5rem;
+      top: -0.5rem;
+      color: $primary-300;
+      background-color: $neutral-200;
+      border: 1px solid $neutral-400;
+      border-radius: $radius-round;
+      width: 1.5rem;
+      height: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.1rem;
+      @include transition-border;
+    }
+
+    .icon {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    .input_container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      .input {
+        @include text-main;
+        font-size: $text-main !important;
+        width: 100%;
+
+        &::placeholder {
+          color: $neutral-400;
+        }
+      }
+    }
+
+    &.input_wrap_textarea {
+      align-items: flex-start;
+    }
+  }
+
+  &[data-disabled],
+  [data-readonly] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &[data-invalid] {
+    .input_wrap,
+    .required,
+    .has_value {
+      border-color: $primary-300 !important;
+    }
+  }
+
+  .error,
+  .description {
+    display: flex;
+    flex-direction: row;
+    padding: $space-xs $space-sm;
+    max-width: 100%;
+    word-break: break-all;
+    @include text-small;
+    font-weight: bold;
+  }
+
+  &:hover:not(.focused) {
+    .input_wrap {
+      background: $neutral-200;
+    }
+  }
+
+  &.focused,
+  &.has_value {
+    .input_wrap,
+    .required {
+      border-color: $neutral-600;
+    }
+  }
+
+  .error {
+    color: $primary-300;
+  }
+}

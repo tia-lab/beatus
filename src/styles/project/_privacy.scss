@@ -1,0 +1,138 @@
+@use 'sass:map';
+@use '../exports.scss' as *;
+
+@mixin button {
+  .button {
+    cursor: pointer;
+    background-color: $neutral-100 !important;
+    border: 2px solid $neutral-500 !important;
+    transition:
+      background-color $duration-base $out-cubic,
+      color $duration-base $out-cubic,
+      border-color $duration-base $out-cubic !important;
+    color: $neutral-600 !important;
+    border-radius: $radius-full !important;
+
+    &:hover {
+      background-color: $neutral-200 !important;
+      color: $neutral-600 !important;
+    }
+
+    &.button--deny {
+      background-color: $primary-300 !important;
+      border-color: $primary-300 !important;
+      color: $neutral-100 !important;
+
+      &:hover {
+        background-color: $primary-400 !important;
+        border-color: $primary-400 !important;
+      }
+    }
+  }
+}
+
+#kekschecker {
+  background-color: transparent;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex !important;
+  justify-content: center;
+  z-index: 800 !important;
+
+  .small-12 {
+    width: 100% !important;
+  }
+
+  &.hidden {
+    @include auto-alpha;
+    display: none !important;
+  }
+
+  .cookies-overlay {
+    width: 100% !important;
+    max-width: 2200px !important;
+  }
+
+  @include button;
+
+  .cookies-overlay__content {
+    width: 100%;
+    background-color: $neutral-200 !important;
+    padding: 0 !important;
+    color: $neutral-600;
+
+    a {
+      color: $neutral-400 !important;
+    }
+
+    .grid-container {
+      padding: var(--padding-global) !important;
+
+      .grid-x {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        columns: $space-md;
+
+        @include tablet {
+          grid-template-columns: 1fr;
+          row-gap: $space-md;
+          justify-items: start;
+        }
+      }
+    }
+
+    &.cookies-overlay__content--eu {
+      background-color: $neutral-100 !important;
+      padding: $space-md !important;
+      border-radius: $radius-small !important;
+      border: 2px solid $neutral-500 !important;
+      max-width: 50rem !important;
+      display: grid;
+      grid-template-columns: 1fr;
+      row-gap: $space-md;
+
+      h2 {
+        @include h3;
+      }
+
+      @include button;
+      @include tablet {
+        width: 90% !important;
+      }
+    }
+  }
+}
+
+#infotext {
+  background-color: $neutral-100 !important;
+
+  div {
+    background-color: $neutral-100 !important;
+  }
+
+  #closer {
+    position: fixed;
+    top: $space-md !important;
+    right: $space-md !important;
+    width: 3rem !important;
+    height: 3rem !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    border: none !important;
+    background-color: var(--neutral-100) !important;
+    transition: transform $duration-base $out-cubic !important;
+
+    &:hover {
+      transform: rotate(90deg) !important;
+    }
+
+    &::before,
+    &::after {
+      background-color: $neutral-600 !important;
+      inset: auto !important;
+      margin: 0 !important;
+    }
+  }
+}

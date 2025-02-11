@@ -1,0 +1,7 @@
+.section {
+  padding: $space-section-sm 0;
+
+  .text {
+    grid-column: span 12;
+  }
+}

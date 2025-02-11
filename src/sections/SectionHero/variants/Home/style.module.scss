@@ -1,0 +1,101 @@
+.section {
+  padding: 14.75rem 0 4rem;
+  display: flex;
+  align-items: center;
+
+  @include tablet {
+    padding: 9.5rem 0 3rem;
+    align-items: flex-start;
+    min-height: auto;
+  }
+
+  @include mobile {
+    padding: 6rem 0 4rem;
+    align-items: flex-start;
+  }
+
+  .left_col {
+    @include grid-span-cols(8);
+
+    .left_col_bottom {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      margin-top: $space-sm;
+      column-gap: $container-gutter;
+
+      .hero_small_media {
+        grid-column: span 3;
+        height: 15.46rem;
+        position: relative;
+        overflow: hidden;
+        border-radius: $radius-small;
+      }
+
+      .text {
+        grid-column: span 5;
+        font-weight: 700;
+      }
+    }
+
+    @include tablet {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      grid-column: span 7;
+
+      .left_col_bottom {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 3rem;
+        margin-top: 3rem;
+
+        .hero_small_media {
+          width: 17.9375rem;
+          height: 13.46738rem;
+          position: relative;
+          overflow: hidden;
+          border-radius: $radius-small;
+          order: 2;
+          background-color: $neutral-300;
+        }
+      }
+    }
+
+    @include mobile {
+      grid-column: span 12;
+      order: 2;
+      margin-top: $space-section-sm;
+
+      .hero_small_media {
+        width: 15.8125rem;
+        height: 11.84631rem;
+        position: relative;
+        overflow: hidden;
+        border-radius: $radius-small;
+        order: 2;
+        align-self: flex-end;
+      }
+    }
+  }
+
+  .hero_media {
+    grid-column: span 4;
+    grid-row: span 2;
+    position: relative;
+    overflow: hidden;
+    background-color: $neutral-300;
+    border-radius: $radius-small;
+    height: 37.37rem;
+    @include tablet {
+      grid-column: span 5;
+      height: 24.17rem;
+      align-self: end;
+    }
+    @include mobile {
+      grid-column: span 8;
+      height: 21.8125rem;
+      order: 1;
+    }
+  }
+}

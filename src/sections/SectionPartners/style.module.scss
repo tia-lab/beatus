@@ -1,0 +1,53 @@
+.section {
+  padding: $space-section-sm 0;
+
+  .title {
+    grid-column: span 12;
+    margin-bottom: $space-md;
+  }
+
+  .partners {
+    padding: $space-lg $padding-global;
+    background-color: $neutral-300;
+    border-radius: $radius-small;
+    position: relative;
+    overflow: hidden;
+    grid-column: span 12;
+    align-self: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-xl;
+
+    place-items: center center;
+
+    .partner_logo {
+      max-width: 10rem; /* Set a maximum width */
+      max-height: 5rem; /* Set a maximum height */
+      width: auto;
+      height: auto;
+      object-fit: contain; /* Maintain aspect ratio */
+      display: block;
+      margin: 0 auto; /* Center align logos */
+      @include tablet {
+        max-width: 6rem;
+        max-height: 2.25rem;
+      }
+      @include mobile {
+        max-width: 8rem; /* Set a maximum width */
+        max-height: 3rem; /* Set a maximum height */
+      }
+    }
+
+    .partner {
+      display: inline-block; /* Ensure logos are aligned horizontally */
+      text-align: center; /* Center content */
+      &.partner_link {
+        transition: transform $duration-base $out-cubic;
+
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+}

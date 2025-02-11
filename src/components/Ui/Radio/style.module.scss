@@ -1,0 +1,50 @@
+.radio {
+  display: flex;
+  justify-self: start;
+  align-items: center;
+  column-gap: $space-sm;
+  cursor: pointer;
+
+  .dot {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: $radius-round;
+    border: 1px solid $neutral-400;
+    transition: border-color $duration-base $out-cubic;
+
+    .dot_inner {
+      width: 0.75rem;
+      height: 0.75rem;
+      border-radius: $radius-round;
+      background-color: $primary-300;
+      opacity: 0;
+      transition: opacity $duration-base $out-cubic;
+    }
+  }
+
+  &[data-selected='true'] {
+    .dot {
+      border-color: $primary-300;
+      border-width: 2px;
+
+      .dot_inner {
+        opacity: 1;
+      }
+    }
+  }
+
+  &:hover {
+    .dot {
+      border-color: $primary-300;
+    }
+  }
+
+  &[data-disabled='true'] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}

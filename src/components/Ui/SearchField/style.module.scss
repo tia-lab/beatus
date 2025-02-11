@@ -1,0 +1,124 @@
+@mixin transition-border {
+  transition: border-color $duration-base $out-cubic;
+}
+
+@mixin transition-bg {
+  transition: background-color $duration-base $out-cubic;
+}
+
+@mixin transition-opacity {
+  transition: opacity $duration-base $out-cubic;
+}
+
+.search_field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  .label {
+    @include text-small;
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+
+  .input_wrap {
+    border-radius: $radius-medium;
+    border: 1px solid $neutral-300;
+    padding: $space-sm $space-md;
+    display: flex;
+    align-items: center;
+    column-gap: $space-sm;
+    min-width: 14rem;
+    position: relative;
+    @include transition-border;
+    @include transition-bg;
+
+    .button_cancel {
+      position: absolute;
+      right: -0.75rem;
+      top: -0.75rem;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.1rem;
+      @include transition-border;
+      @include transition-opacity;
+    }
+
+    .icon {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    .input_container {
+      display: flex;
+      flex-direction: column;
+
+      .input {
+        @include text-main;
+        font-size: $text-main !important;
+
+        &::placeholder {
+          color: $neutral-400;
+        }
+
+        &::-webkit-search-cancel-button,
+        &::-webkit-search-decoration {
+          appearance: none;
+        }
+      }
+    }
+  }
+
+  &[data-empty] {
+    .button_cancel {
+      opacity: 0;
+    }
+  }
+
+  &[data-disabled],
+  [data-readonly] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &[data-invalid] {
+    .input_wrap,
+    .button_cancel,
+    .has_value {
+      border-color: $primary-300 !important;
+    }
+  }
+
+  .error,
+  .description {
+    display: flex;
+    flex-direction: column;
+    padding: $space-xs $space-sm;
+    max-width: 100%;
+    word-break: break-all;
+    @include text-small;
+    font-weight: bold;
+  }
+
+  &:hover:not(.focused) {
+    .input_wrap {
+      background: $neutral-200;
+    }
+  }
+
+  &.focused,
+  &.has_value {
+    .input_wrap,
+    .button_cancel,
+    .button_icon {
+      border-color: $neutral-600;
+    }
+  }
+
+  .error {
+    color: $primary-300;
+  }
+}

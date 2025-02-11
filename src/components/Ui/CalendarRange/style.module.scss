@@ -1,0 +1,15 @@
+@import '../Calendar/style.module';
+
+.cell {
+  border-radius: 0 !important;
+
+  &[data-selection-start] {
+    border-start-start-radius: $radius-small !important;
+    border-end-start-radius: $radius-small !important;
+  }
+
+  &[data-selection-end] {
+    border-start-end-radius: $radius-small !important;
+    border-end-end-radius: $radius-small !important;
+  }
+}

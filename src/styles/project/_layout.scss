@@ -1,0 +1,42 @@
+@use '../exports.scss' as *;
+
+@include fluid-responsive(14.5, 22, 1440, 2200, false, true);
+@include fluid-responsive(16, 24.5, 640, 1023, false, false);
+@include fluid-responsive(14, 24, 375, 639, false, false);
+
+body {
+  color: $neutral-600;
+  background-color: $neutral-200;
+}
+
+.pt-space-section-none {
+  padding-top: var(--space-section-none) !important;
+}
+
+.pb-space-section-none {
+  padding-bottom: var(--space-section-none) !important;
+}
+
+.pt-space-section-sm {
+  padding-top: var(--space-section-sm) !important;
+}
+
+.pb-space-section-sm {
+  padding-bottom: var(--space-section-sm) !important;
+}
+
+.pt-space-section-md {
+  padding-top: var(--space-section-md) !important;
+}
+
+.pb-space-section-md {
+  padding-bottom: var(--space-section-md) !important;
+}
+
+.pt-space-section-lg {
+  padding-top: var(--space-section-lg) !important;
+}
+
+.pb-space-section-lg {
+  padding-bottom: var(--space-section-lg) !important;
+}

@@ -1,0 +1,130 @@
+.modal {
+  width: 100dvw;
+  height: 100dvh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(5px);
+  @include auto-alpha;
+  display: none;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: hidden;
+  z-index: 600;
+
+  .bg {
+    background-color: $neutral-600;
+    opacity: 0.25;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  .wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    position: relative;
+    z-index: 1;
+    padding-top: $padding-vertical-small;
+    padding-bottom: 0;
+    height: 100dvh;
+  }
+
+  .modal_inner {
+    width: 66.8125rem;
+    height: 100%;
+    border-radius: $radius-large;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    overflow: hidden;
+    position: relative;
+    background-color: $neutral-100;
+    padding: $space-lg;
+
+    @include tablet {
+      width: 100%;
+    }
+
+    .close {
+      position: absolute;
+      right: $space-md;
+      z-index: 10;
+      cursor: pointer;
+      @include tablet {
+        @include text-btn;
+      }
+    }
+
+    .modal_top {
+      padding: $space-md;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 5rem;
+      border-bottom: 1px solid $neutral-300;
+    }
+
+    .modal_content {
+      display: grid;
+      grid-template-columns: 47.5rem 1fr;
+      height: 100%;
+      overflow-y: scroll;
+      @include tablet {
+        grid-template-columns: 1fr;
+      }
+
+      .dropdowns {
+        height: 100%;
+        overflow-y: scroll;
+        padding-right: 1.5rem;
+      }
+
+      .sidebar {
+        height: 100%;
+        overflow: scroll;
+        border-left: 2px solid $neutral-600;
+        padding-left: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        @include tablet {
+          border: 0 solid $neutral-600;
+          justify-content: flex-end;
+          padding-left: 0;
+          align-items: flex-start;
+        }
+
+        @include mobile {
+          padding-bottom: 2rem;
+        }
+
+        .quick_links {
+          display: flex;
+          flex-direction: column;
+          gap: $space-lg;
+          align-items: flex-end;
+          @include tablet {
+            align-items: flex-start;
+            gap: $space-sm;
+          }
+        }
+      }
+    }
+  }
+
+  .lang_switch {
+    position: absolute;
+    bottom: $space-lg;
+    right: $space-lg;
+  }
+
+  &[data-active='true'] {
+    opacity: 1;
+    visibility: visible;
+    display: flex;
+  }
+}
