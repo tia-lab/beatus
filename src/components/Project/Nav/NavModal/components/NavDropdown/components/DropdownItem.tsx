@@ -64,7 +64,6 @@ const NavDropdownItem = ({
           <Button
             data={data.dropdownItems[0]}
             variant="text"
-            size="large"
             className={$.dropdown_link}
             onClick={() => setNavOpen(false)}
             preventSameUrlClass="pointer-events-none"
@@ -79,7 +78,6 @@ const NavDropdownItem = ({
             <Button
               data={item}
               key={i}
-              size="large"
               variant="text"
               preventSameUrlClass="pointer-events-none"
               className={clsx($.dropdown_link)}
