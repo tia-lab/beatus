@@ -5,6 +5,7 @@ import Div from './Div'
 import Image from './Image'
 import Link from './Link'
 import MediaQuery from './MediaQuery'
+import Parse from './Parse'
 import Redirect from './Redirect'
 import ResponsiveImage from './ResponsiveImage'
 import RichText from './RichText'
@@ -16,6 +17,7 @@ import Title from './Title'
 import UpdateLangSwitch from './UpdateLangSwitch'
 import VideoPlayer from './VideoPlayer'
 import VideoPlayerExternal from './VideoPlayerExternal'
+
 export {
   Base,
   BaseLink,
@@ -24,6 +26,7 @@ export {
   Image,
   Link,
   MediaQuery,
+  Parse,
   Redirect,
   ResponsiveImage,
   RichText,

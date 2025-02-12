@@ -1,9 +1,11 @@
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
+import createSelectors from '../utils/createSelectors'
 
 interface State {
   navOpen: boolean
   headerHidden: boolean
+  headerColor: 'dark' | 'light'
   notificationActive: boolean | null
 }
 
@@ -14,19 +16,22 @@ interface Action {
   setNotificationActive: (
     notificationActive: State['notificationActive']
   ) => void
+  setHeaderColor: (headerColor: State['headerColor']) => void
 }
 /* eslint-enable no-unused-vars */
 
-const useStoreNavigation = create<State & Action>()(
+const _useStoreNavigation = create<State & Action>()(
   persist(
     (set) => ({
       navOpen: false,
       headerHidden: false,
       notificationActive: null,
+      headerColor: 'dark',
       setNavOpen: (navOpen) => set({ navOpen }),
       setNotificationActive: (notificationActive) =>
         set({ notificationActive }),
-      setHeaderHidden: (headerHidden) => set({ headerHidden })
+      setHeaderHidden: (headerHidden) => set({ headerHidden }),
+      setHeaderColor: (headerColor) => set({ headerColor })
     }),
     {
       name: 'navigation',
@@ -37,5 +42,7 @@ const useStoreNavigation = create<State & Action>()(
     }
   )
 )
+
+const useStoreNavigation = createSelectors(_useStoreNavigation)
 
 export default useStoreNavigation

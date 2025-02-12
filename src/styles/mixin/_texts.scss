@@ -56,6 +56,7 @@
 }
 
 @mixin h4 {
+  font-size: vars.$text-heading-h-4;
   @include font-secondary;
   font-style: normal;
   font-weight: 400;

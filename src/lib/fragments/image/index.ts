@@ -34,11 +34,6 @@ const ImageFragment = graphql(
         ) {
           ...ResponsiveImageFragment
         }
-        responsiveImage13x4: responsiveImage(
-          imgixParams: { fit: crop, crop: focalpoint, ar: "13:4", auto: format }
-        ) {
-          ...ResponsiveImageFragment
-        }
       }
 
       asset {
@@ -66,11 +61,6 @@ const ImageFragment = graphql(
         }
         responsiveImage3x4: responsiveImage(
           imgixParams: { fit: crop, crop: focalpoint, ar: "3:4", auto: format }
-        ) {
-          ...ResponsiveImageFragment
-        }
-        responsiveImage13x4: responsiveImage(
-          imgixParams: { fit: crop, crop: focalpoint, ar: "13:4", auto: format }
         ) {
           ...ResponsiveImageFragment
         }

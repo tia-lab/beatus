@@ -1,5 +1,5 @@
 import { routing } from '@/i18n/routing'
-import { SectionHero } from '@/sections'
+import { SectionAbout, SectionCta, SectionHero } from '@/sections'
 import SectionHeroHome from '@/sections/SectionHeroHome'
 import { Lib } from '@/types'
 import { memo, useMemo } from 'react'
@@ -22,6 +22,10 @@ const SectionBuilder = ({ sections, params }: SectionBuilderProps) => {
           return <SectionHero key={k} data={section} params={params} />
         case 'SectionHeroHomeRecord':
           return <SectionHeroHome key={k} data={section} params={params} />
+        case 'SectionAboutRecord':
+          return <SectionAbout key={k} data={section} params={params} />
+        case 'SectionCtaRecord':
+          return <SectionCta key={k} data={section} params={params} />
       }
     })
   }, [sections, params])

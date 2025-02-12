@@ -32,6 +32,7 @@ export interface ButtonProps extends BaseLinkProps {
   ariaWrapper?: boolean
   preventSameUrlClass?: string
   data?: Lib.FragmentOf<typeof LinkFragment> | null
+  onImage?: boolean
 }
 
 export const buttonVariants = ['fill', 'outline', 'ghost', 'text']
@@ -49,6 +50,7 @@ const Button = forwardRef<HTMLAnchorElement, ButtonProps>(
       activeState,
       ariaWrapper,
       data,
+      onImage,
       preventSameUrlClass,
       ...props
     },
@@ -91,6 +93,7 @@ const Button = forwardRef<HTMLAnchorElement, ButtonProps>(
         [$.icon_animation_rotate]: iconAnimation === 'rotate',
         [$.icon_animation_move_left]: iconAnimation === 'move-left',
         [$.icon_animation_move_right]: iconAnimation === 'move-right',
+        [$.on_image]: onImage,
         [$.active]: activeState
       },
       className,

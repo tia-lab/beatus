@@ -1,8 +1,10 @@
-import { Section } from '@/components/Core'
+import Arrow from '$/public/icons/arrow/arrow.svg'
+import { Container, Image, Parse, Section } from '@/components/Core'
 import { routing } from '@/i18n/routing'
 import { Lib } from '@/types'
 import { memo } from 'react'
 import SectionHeroFragment from './query'
+import $ from './style.module.scss'
 export interface SectionHeroProps {
   data: Lib.FragmentOf<typeof SectionHeroFragment>
   params?: {
@@ -17,8 +19,28 @@ export type SectionHeroData = Lib.FragmentOf<typeof SectionHeroFragment> & {
   id: string
 }
 
-const SectionHero = ({ data, params }: SectionHeroProps) => {
-  return <Section>Section Hero</Section>
+const SectionHero = ({ data }: SectionHeroProps) => {
+  return (
+    <Section mainWrapper={false} className={$.section}>
+      <Image
+        data={data.image}
+        wrap={{ className: $.image }}
+        fitWrap
+        ar="16x9"
+      />
+      <div className={$.overlay} />
+      <Container className={$.container}>
+        {data.title && (
+          <h1 className={$.title}>
+            <Parse html={data.title} excludeTags={['p']} />
+          </h1>
+        )}
+      </Container>
+      <div className={$.arrow}>
+        <Arrow />
+      </div>
+    </Section>
+  )
 }
 
 export default memo(SectionHero)

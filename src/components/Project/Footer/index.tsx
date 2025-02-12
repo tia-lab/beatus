@@ -13,7 +13,7 @@ const Footer = async ({ data, ...props }: FooterProps) => {
   const t = await getTranslations()
   return (
     <Section as="footer" className={$.footer} {...props} mainWrapper={false}>
-      <div className={clsx('main-wrapper', $.footer_wrapper)}>
+      <div className={clsx('main-wrapper')}>
         <Container>footer</Container>
       </div>
     </Section>

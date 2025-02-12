@@ -1,3 +1,3 @@
 import { DatoAddress } from './address'
-
-export { DatoAddress }
+import { Season } from './season'
+export { DatoAddress, Season }

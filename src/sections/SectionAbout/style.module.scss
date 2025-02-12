@@ -1,0 +1,38 @@
+.section {
+  padding: 5rem 0 6rem;
+  color: $primary-300;
+  background-color: $primary-100;
+
+  .container {
+    row-gap: $padding-vertical-sm;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    @include grid-span-cols(12);
+    padding: 1rem 0;
+
+    .title {
+      text-align: end;
+      align-self: end;
+    }
+
+    .image {
+      width: 28rem;
+      height: 28rem;
+      @include object-fit-wrap;
+      justify-self: center;
+      bottom: 2rem;
+
+      &.is_bottom {
+        bottom: 0;
+        top: 3rem;
+      }
+    }
+
+    .text {
+      width: 28.2rem;
+    }
+  }
+}

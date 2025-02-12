@@ -1,16 +1,29 @@
 .header {
   width: 100vw;
   z-index: 500;
-  position: fixed;
+  position: fixed !important;
   top: 0;
   left: 0;
   pointer-events: none;
-  transition: transform $duration-base $out-cubic;
-  background-color: $neutral-200;
+  transition:
+    transform $duration-base $out-cubic,
+    color $duration-base $out-cubic;
+
+  &[data-color='light'] {
+    color: $neutral-100;
+  }
+
+  .bg {
+    background-color: $neutral-600;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+    position: absolute;
+  }
 
   .container {
-    padding: 1.5rem 0;
-    align-items: center;
+    padding: $padding-global 0;
+    align-items: start;
     @include tablet {
       padding: 1rem 0;
     }

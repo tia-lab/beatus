@@ -31,9 +31,12 @@ const Header = ({ data }: HeaderProps) => {
   //refs
   const comp = useRef<any>(null)
   const pathname = usePathname()
+
   //Stores
-  const { notificationActive, headerHidden, setHeaderHidden } =
-    useStoreNavigation()
+  const notificationActive = useStoreNavigation.use.notificationActive()
+  const headerHidden = useStoreNavigation.use.headerHidden()
+  const setHeaderHidden = useStoreNavigation.use.setHeaderHidden()
+  const headerColor = useStoreNavigation.use.headerColor()
 
   useGSAPMedia({
     media: MEDIA,
@@ -69,20 +72,25 @@ const Header = ({ data }: HeaderProps) => {
       data-notifaction={notificationActive}
       data-hidden={headerHidden}
       ref={comp}
+      mainWrapper={false}
+      data-color={headerColor}
     >
-      <NotificationBar data={notification} />
-      <Container className={$.container}>
-        <OpenNav className={$.open} />
-        <BaseLink
-          className={clsx($.logo, pathname === `/${locale}` && $.disabled)}
-          href="/"
-          aria-label="home"
-          transitionType="fade"
-        >
-          {PROJECT === 'beatus' && <LogoBeatus />}
-        </BaseLink>
-        <div className={$.buttons}>buttons</div>
-      </Container>
+      <div className={$.bg} />
+      <div className="main-wrapper">
+        <NotificationBar data={notification} />
+        <Container className={$.container}>
+          <OpenNav className={$.open} />
+          <BaseLink
+            className={clsx($.logo, pathname === `/${locale}` && $.disabled)}
+            href="/"
+            aria-label="home"
+            transitionType="fade"
+          >
+            {PROJECT === 'beatus' && <LogoBeatus />}
+          </BaseLink>
+          <div className={$.buttons}>buttons</div>
+        </Container>
+      </div>
     </Section>
   )
 }

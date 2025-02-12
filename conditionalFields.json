@@ -1,0 +1,30 @@
+{
+  "single-image": [
+    "section_padding",
+    "overline",
+    "title",
+    "text",
+    "subtitile",
+    "button",
+    "image"
+  ],
+  "multi-images": [
+    "section_padding",
+    "overline",
+    "title",
+    "text",
+    "subtitile",
+    "button",
+    "image_gallery"
+  ],
+  "fifty": [
+    "section_padding",
+    "overline",
+    "title",
+    "text",
+    "subtitile",
+    "text",
+    "button",
+    "image"
+  ]
+}

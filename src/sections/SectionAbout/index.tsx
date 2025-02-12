@@ -1,0 +1,65 @@
+import { Container, Image, Parse, Section } from '@/components/Core'
+import { Button } from '@/components/Ui'
+import { routing } from '@/i18n/routing'
+import { Lib } from '@/types'
+import clsx from 'clsx'
+import { memo } from 'react'
+import SectionAboutFragment from './query'
+import $ from './style.module.scss'
+export interface SectionAboutProps {
+  data: Lib.FragmentOf<typeof SectionAboutFragment>
+  params?: {
+    locale: (typeof routing.locales)[number]
+    slug: string[]
+  }
+}
+
+const SectionAbout = ({ data }: SectionAboutProps) => {
+  return (
+    <Section
+      mainWrapper={false}
+      className={$.section}
+      padding={data.sectionPadding}
+    >
+      <div className="main-wrapper">
+        <Container className={$.container} anim="section-fade-in">
+          <div className={$.row}>
+            <div className={$.title}>
+              <h2 className="title-h2 text-style-uppercase">
+                <Parse html={data.title} excludeTags={['p']} />
+              </h2>
+              <p className="title-h4 text-style-uppercase">{data?.subtitle}</p>
+            </div>
+            <Image
+              data={data.imageTop}
+              wrap={{ className: $.image }}
+              fitWrap
+              ar="1x1"
+            />
+          </div>
+          <div className={$.row}>
+            <Image
+              data={data.imageBottom}
+              wrap={{ className: clsx($.image, $.is_bottom) }}
+              fitWrap
+              ar="1x1"
+            />
+            <div className={$.text}>
+              <div className="rich-text">
+                <Parse html={data.text} />
+              </div>
+              <div className="mb-space-lg" />
+              <Button
+                data={data.button}
+                variant="text"
+                className="text-neutral-600"
+              />
+            </div>
+          </div>
+        </Container>
+      </div>
+    </Section>
+  )
+}
+
+export default memo(SectionAbout)

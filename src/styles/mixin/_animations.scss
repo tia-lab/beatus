@@ -1,4 +1,43 @@
+@use 'sass:math';
+
 @mixin auto-alpha {
   opacity: 0;
   visibility: hidden;
+}
+
+// Mixin for up-down animation with customizable easing
+@mixin move-up-down($size: 20px, $duration: 2s, $ease: ease-in-out) {
+  @keyframes moveUpDown-#{$size}-#{$ease} {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-$size);
+    }
+  }
+
+  animation: moveUpDown-#{$size}-#{$ease} $duration infinite $ease;
+}
+
+// Mixin for customizable up-down animation with CSS variables
+@mixin move-up-down-vars($size: 1rem, $duration: 2s, $ease: ease-in-out) {
+  // Ensure proper keyframe name (avoid CSS var issues)
+  $animation-name: moveUpDownVars-#{$size}-#{$ease};
+
+  // Define keyframes
+  @keyframes #{$animation-name} {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-#{$size});
+    }
+  }
+
+  // Apply animation using CSS variables
+  animation: #{$animation-name} var(#{$duration}) infinite var(#{$ease});
 }

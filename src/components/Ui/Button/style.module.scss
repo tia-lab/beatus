@@ -1,7 +1,7 @@
 .button {
-  border-radius: $radius-full;
+  border-radius: $radius-small;
   display: inline-flex;
-  padding: $space-sm $space-md;
+  padding: 0.88rem 1.5rem;
   justify-content: center;
   align-items: center;
   gap: $space-sm;
@@ -13,7 +13,8 @@
   transition:
     background-color $duration-base $out-cubic,
     border-color $duration-base $out-cubic,
-    color $duration-base $out-cubic;
+    color $duration-base $out-cubic,
+    opacity $duration-base $out-cubic;
 
   .line {
     display: none;
@@ -35,6 +36,17 @@
     &.active {
       background-color: $primary-400;
       border-color: $primary-400;
+    }
+
+    &.on_image {
+      background-color: $white;
+      color: $black;
+      border-color: $white;
+
+      &:hover,
+      &.active {
+        opacity: 0.8;
+      }
     }
   }
 

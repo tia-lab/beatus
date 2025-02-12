@@ -1,3 +1,4 @@
+import { DataContextProvider } from '@/components/Context'
 import { StoreRoutes } from '@/components/Core'
 import { Lenis, Preload, TransitionOut } from '@/components/Layout'
 import Cursor from '@/components/Layout/Cursor'
@@ -72,19 +73,21 @@ export default async function RootLayout({ children, params }: LayoutProps) {
         )}
       >
         <NextIntlClientProvider messages={messages}>
-          <Lenis>
-            <Preload data={layout}>
-              <div className="page-wrapper" data-main>
+          <DataContextProvider>
+            <Lenis>
+              <Preload data={layout}>
                 <Header data={layout} />
-                <main>{children}</main>
-                <Footer data={layout} />
-              </div>
-            </Preload>
-          </Lenis>
-          <Cursor />
-          <StoreRoutes />
-          <Nav data={layout} />
-          <TransitionOut />
+                <div className="page-wrapper" data-main>
+                  <main>{children}</main>
+                  <Footer data={layout} />
+                </div>
+              </Preload>
+            </Lenis>
+            <Cursor />
+            <StoreRoutes />
+            <Nav data={layout} />
+            <TransitionOut />
+          </DataContextProvider>
         </NextIntlClientProvider>
         {USE.privacy && <Privacy />}
       </body>

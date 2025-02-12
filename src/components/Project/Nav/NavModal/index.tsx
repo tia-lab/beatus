@@ -4,6 +4,7 @@ import { animateNav } from '@/animations/components'
 import { LayoutFragment } from '@/app/[locale]/query'
 import { IconButton, LangSwitch } from '@/components/Ui'
 import { useGSAPContext, useKeyPress } from '@/hooks'
+import { Link } from '@/i18n/routing'
 import { useStoreNavigation } from '@/store'
 import { Lib } from '@/types'
 import { useLenis } from '@studio-freight/react-lenis'
@@ -28,7 +29,8 @@ const NavModal = ({ data, ...props }: NavModalProps) => {
   const lenis = useLenis()
 
   //stores
-  const { navOpen, setNavOpen } = useStoreNavigation()
+  const navOpen = useStoreNavigation.use.navOpen()
+  const setNavOpen = useStoreNavigation.use.setNavOpen()
 
   //hooks
   const t = useTranslations()
@@ -42,7 +44,7 @@ const NavModal = ({ data, ...props }: NavModalProps) => {
 
   useEffect(() => {
     if (!tl.current || !lenis) return
-    navOpen ? tl.current.play() : tl.current.reverse()
+    navOpen ? tl.current.timeScale(1).play() : tl.current.timeScale(1).reverse()
     navOpen ? lenis.stop() : lenis.start()
   }, [navOpen, lenis])
 
@@ -58,23 +60,35 @@ const NavModal = ({ data, ...props }: NavModalProps) => {
       <div className={clsx('main-wrapper', $.wrapper)}>
         <div className={$.modal_inner} data-inner ref={modalRef}>
           <div className={$.head}>
-            <p className="title-h2 font-secondary text-style-uppercase">
-              {t('menu')}
+            <p
+              className="title-h2 font-secondary text-style-uppercase"
+              data-item
+            >
+              <Link href="/" onClick={closeModal}>
+                {t('menu')}
+              </Link>
             </p>
             <IconButton
               icon={<X width="100%" height="100%" strokeWidth={1} />}
               iconAnimation="rotate"
               onClick={closeModal}
               size="large"
+              data-item
             />
           </div>
           <div className={$.line} data-line />
           <div className={$.modal_content} data-lenis-prevent>
             <div className={$.menu}>
               {Array.from({ length: 4 }).map((_, index) => (
-                <div key={index} className={$.menu_item}>
+                <Link
+                  key={index}
+                  className={$.menu_item}
+                  data-item
+                  href={'/test'}
+                  onClick={closeModal}
+                >
                   Nav Item {index + 1}
-                </div>
+                </Link>
               ))}
               <NavDropdown>
                 {data?.navigation.map((item, i) => (
