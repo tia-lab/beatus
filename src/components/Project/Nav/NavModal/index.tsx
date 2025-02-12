@@ -1,19 +1,19 @@
 'use client'
 
-import { animateModal } from '@/animations/components'
+import { animateNav } from '@/animations/components'
 import { LayoutFragment } from '@/app/[locale]/query'
-import { LangSwitch } from '@/components/Ui'
+import { IconButton, LangSwitch } from '@/components/Ui'
 import { useGSAPContext, useKeyPress } from '@/hooks'
 import { useStoreNavigation } from '@/store'
 import { Lib } from '@/types'
 import { useLenis } from '@studio-freight/react-lenis'
 import clsx from 'clsx'
+import { X } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { memo, useEffect, useRef } from 'react'
 import { useOnClickOutside } from 'usehooks-ts'
 import { NavDropdown, NavDropdownItem } from './components/NavDropdown'
 import $ from './style.module.scss'
-
 export interface NavModalProps extends React.HTMLAttributes<HTMLDivElement> {
   data: Lib.FragmentOf<typeof LayoutFragment> | null
 }
@@ -36,7 +36,7 @@ const NavModal = ({ data, ...props }: NavModalProps) => {
   useGSAPContext({
     scope: comp,
     callback: () => {
-      animateModal(comp, tl)
+      animateNav(comp, tl)
     }
   })
 
@@ -55,23 +55,32 @@ const NavModal = ({ data, ...props }: NavModalProps) => {
 
   return (
     <nav ref={comp} className={clsx($.modal)} data-active={navOpen} {...props}>
-      <div className={$.bg} onClick={() => setNavOpen(false)} />
       <div className={clsx('main-wrapper', $.wrapper)}>
         <div className={$.modal_inner} data-inner ref={modalRef}>
-          <div
-            className={clsx('text-btn-large', 'text-primary-300', $.close)}
-            onClick={closeModal}
-          >
-            close
+          <div className={$.head}>
+            <p className="title-h2 font-secondary text-style-uppercase">
+              {t('menu')}
+            </p>
+            <IconButton
+              icon={<X width="100%" height="100%" strokeWidth={1} />}
+              iconAnimation="rotate"
+              onClick={closeModal}
+              size="large"
+            />
           </div>
+          <div className={$.line} data-line />
           <div className={$.modal_content} data-lenis-prevent>
-            <NavDropdown>
-              {data?.navigation.map((item, i) => (
-                <NavDropdownItem key={i} id={item.id} data={item} />
+            <div className={$.menu}>
+              {Array.from({ length: 4 }).map((_, index) => (
+                <div key={index} className={$.menu_item}>
+                  Nav Item {index + 1}
+                </div>
               ))}
-            </NavDropdown>
-            <div className={$.sidebar} data-lenis-prevent>
-              <div className={$.quick_links}></div>
+              <NavDropdown>
+                {data?.navigation.map((item, i) => (
+                  <NavDropdownItem key={i} id={item.id} data={item} />
+                ))}
+              </NavDropdown>
             </div>
             <div className={$.lang_switch}>
               <LangSwitch />

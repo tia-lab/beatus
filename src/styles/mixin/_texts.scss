@@ -9,6 +9,10 @@
   font-family: vars.$font-secondary;
 }
 
+@mixin font-third {
+  font-family: vars.$font-third;
+}
+
 @mixin text-lines($lines) {
   display: -webkit-box;
   -webkit-line-clamp: $lines;
@@ -21,147 +25,93 @@
   @include font-secondary;
   font-size: vars.$text-heading-display;
   font-style: normal;
-  font-weight: 700;
-  line-height: 82%; /* 10.25rem */
-  letter-spacing: -0.0625rem;
-  text-transform: uppercase;
+  font-weight: 400;
+  line-height: 100%; /* 6rem */
+  letter-spacing: -0.15rem;
 }
 
 @mixin h1 {
   @include font-secondary;
   font-size: vars.$text-heading-h-1;
-  font-size: 8.75rem;
   font-style: normal;
-  font-weight: 700;
-  line-height: 7.5rem; /* 85.714% */
-  letter-spacing: -0.175rem;
-  text-transform: uppercase;
-
-  @include br.tablet {
-    font-size: vars.$text-heading-h-1;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 3.375rem; /* 103.846% */
-    letter-spacing: -0.065rem;
-    text-transform: uppercase;
-  }
+  font-weight: 400;
+  line-height: 120%; /* 4.8rem */
+  letter-spacing: -0.06rem;
 }
 
 @mixin h2 {
-  @include font-primary;
+  @include font-secondary;
   font-size: vars.$text-heading-h-2;
   font-style: normal;
-  font-weight: 700;
-  line-height: 2.75rem; /* 110% */
-  letter-spacing: -0.05rem;
-
-  @include br.tablet {
-    font-size: vars.$text-heading-h-2;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 1.75rem; /* 116.667% */
-    letter-spacing: -0.03rem;
-  }
+  font-weight: 400;
+  line-height: 120%; /* 3.6rem */
 }
 
 @mixin h3 {
   @include font-secondary;
   font-size: vars.$text-heading-h-3;
   font-style: normal;
-  font-weight: 700;
-  line-height: 2.25rem; /* 112.5% */
-  letter-spacing: -0.04rem;
-  text-transform: uppercase;
-
-  @include br.tablet {
-    font-size: vars.$text-heading-h-3;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 1.5rem; /* 100% */
-    letter-spacing: -0.03rem;
-    text-transform: uppercase;
-  }
+  font-weight: 400;
+  line-height: 120%; /* 2.7rem */
 }
 
 @mixin h4 {
-  @include font-primary;
-  font-size: vars.$text-heading-h-4;
+  @include font-secondary;
   font-style: normal;
   font-weight: 400;
-  line-height: 2rem; /* 114.286% */
-  letter-spacing: -0.035rem;
-  @include br.tablet {
-    font-size: vars.$text-heading-h-4;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 1.5rem; /* 120% */
-    letter-spacing: -0.025rem;
-  }
+  line-height: 120%; /* 1.8rem */
 }
 
 @mixin h5 {
-  @include font-primary;
+  @include font-secondary;
   font-size: vars.$text-heading-h-5;
   font-style: normal;
-  font-weight: 700;
-  line-height: 120%;
-
-  @include br.tablet {
-    font-size: vars.$text-heading-h-5;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 120%;
-  }
+  font-weight: 400;
+  line-height: 120%; /* 1.65rem */
 }
 
 @mixin text-large {
   @include font-primary;
   font-size: vars.$text-large;
   font-style: normal;
-
-  line-height: 120%; /* 1.8rem */
-  letter-spacing: -0.0075rem;
+  font-weight: 400;
+  line-height: 135%; /* 2.025rem */
 }
 
 @mixin text-main {
   @include font-primary;
   font-size: vars.$text-main;
   font-style: normal;
-  line-height: 1.25rem; /* 125% */
+  font-weight: 400;
+  line-height: 150%; /* 1.5rem */
+  letter-spacing: 0.005rem;
 }
 
 @mixin text-small {
   @include font-primary;
   font-size: vars.$text-small;
-  font-size: 0.875rem;
   font-style: normal;
-  line-height: 1rem; /* 114.286% */
-}
-
-@mixin text-btn-large {
-  @include font-primary;
-  font-size: 2rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 150%;
+  font-weight: 400;
+  line-height: 150%; /* 1.3125rem */
+  letter-spacing: 0.00438rem;
 }
 
 @mixin text-btn {
   @include font-primary;
   font-size: vars.$text-main;
-  font-size: 1rem;
   font-style: normal;
-  font-weight: 700;
-  line-height: 1.125rem; /* 128.571% */
+  font-weight: 500;
+  line-height: 125%; /* 1.25rem */
+  letter-spacing: 0.005rem;
 }
 
 @mixin text-btn-small {
   @include font-primary;
   font-size: vars.$text-small;
-  font-size: 0.75rem;
   font-style: normal;
-  font-weight: 700;
-  line-height: 1rem; /* 133.333% */
+  font-weight: 500;
+  line-height: 125%; /* 1.09375rem */
+  letter-spacing: 0.00438rem;
 }
 
 @mixin rich-text {

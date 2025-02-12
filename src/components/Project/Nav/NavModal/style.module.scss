@@ -5,13 +5,13 @@
   top: 0;
   left: 0;
   backdrop-filter: blur(5px);
-  @include auto-alpha;
   display: none;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   overflow: hidden;
   z-index: 600;
+  background-color: $primary-100;
 
   .bg {
     background-color: $neutral-600;
@@ -28,44 +28,32 @@
     align-items: flex-start;
     position: relative;
     z-index: 1;
-    padding-top: $padding-vertical-sm;
-    padding-bottom: 0;
     height: 100dvh;
   }
 
   .modal_inner {
-    width: 66.8125rem;
+    width: 100%;
     height: 100%;
-    border-radius: $radius-large;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
     overflow: hidden;
     position: relative;
-    background-color: $neutral-100;
+    background-color: $primary-100;
     padding: $space-lg;
-
+    color: $primary-300;
     @include tablet {
       width: 100%;
     }
 
-    .close {
-      position: absolute;
-      right: $space-md;
-      z-index: 10;
-      cursor: pointer;
-      @include tablet {
-        @include text-btn;
-      }
+    .head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 4rem;
     }
 
-    .modal_top {
-      padding: $space-md;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 5rem;
-      border-bottom: 1px solid $neutral-300;
+    .line {
+      width: 100%;
+      height: 1px;
+      background-color: $primary-300;
     }
 
     .modal_content {
@@ -73,45 +61,28 @@
       grid-template-columns: 47.5rem 1fr;
       height: 100%;
       overflow-y: scroll;
+      padding: $space-md 0;
       @include tablet {
         grid-template-columns: 1fr;
+      }
+
+      .menu {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0;
+        align-self: start;
+
+        .menu_item {
+          @include h3;
+          text-transform: uppercase;
+          padding: $space-sm 0;
+        }
       }
 
       .dropdowns {
         height: 100%;
         overflow-y: scroll;
         padding-right: 1.5rem;
-      }
-
-      .sidebar {
-        height: 100%;
-        overflow: scroll;
-        border-left: 2px solid $neutral-600;
-        padding-left: 1.5rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        @include tablet {
-          border: 0 solid $neutral-600;
-          justify-content: flex-end;
-          padding-left: 0;
-          align-items: flex-start;
-        }
-
-        @include mobile {
-          padding-bottom: 2rem;
-        }
-
-        .quick_links {
-          display: flex;
-          flex-direction: column;
-          gap: $space-lg;
-          align-items: flex-end;
-          @include tablet {
-            align-items: flex-start;
-            gap: $space-sm;
-          }
-        }
       }
     }
   }

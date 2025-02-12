@@ -64,11 +64,17 @@ export default async function RootLayout({ children, params }: LayoutProps) {
 
   return (
     <html lang={params.locale}>
-      <body className={clsx(fonts.primary.variable, fonts.secondary.variable)}>
+      <body
+        className={clsx(
+          fonts.primary.variable,
+          fonts.secondary.variable,
+          fonts.third.variable
+        )}
+      >
         <NextIntlClientProvider messages={messages}>
           <Lenis>
             <Preload data={layout}>
-              <div className="page-wrapper">
+              <div className="page-wrapper" data-main>
                 <Header data={layout} />
                 <main>{children}</main>
                 <Footer data={layout} />

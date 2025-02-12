@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
+import createSelectors from '../utils/createSelectors'
 
 export interface StorePreloadState {
   isPreloaded: boolean
@@ -16,7 +17,7 @@ export interface StorePreloadAction {
 /* eslint-enable no-unused-vars */
 
 // Create the Zustand store with a hook
-const useStorePreload = create<StorePreloadState & StorePreloadAction>()(
+const _useStorePreload = create<StorePreloadState & StorePreloadAction>()(
   persist(
     (set) => ({
       isPreloaded: false,
@@ -34,5 +35,7 @@ const useStorePreload = create<StorePreloadState & StorePreloadAction>()(
     }
   )
 )
+
+const useStorePreload = createSelectors(_useStorePreload)
 
 export default useStorePreload

@@ -1,6 +1,6 @@
 'use client'
 
-import Logo from '$/public/images/logo/LogoHeader.svg'
+import LogoBeatus from '$/public/beatus/logo/logo.svg'
 import { LayoutFragment } from '@/app/[locale]/query'
 import { BaseLink, Container, Section } from '@/components/Core'
 import { NotificationBar } from '@/components/Ui'
@@ -8,7 +8,7 @@ import { NotificationBarProps } from '@/components/Ui/NotificationBar'
 import { useGSAPMedia } from '@/hooks'
 import { useStoreNavigation } from '@/store'
 import { Lib } from '@/types'
-import { MEDIA } from '@config'
+import { MEDIA, PROJECT } from '@config'
 import { ScrollTrigger, gsap } from '@gsap'
 import clsx from 'clsx'
 import { useLocale } from 'next-intl'
@@ -72,15 +72,16 @@ const Header = ({ data }: HeaderProps) => {
     >
       <NotificationBar data={notification} />
       <Container className={$.container}>
+        <OpenNav className={$.open} />
         <BaseLink
           className={clsx($.logo, pathname === `/${locale}` && $.disabled)}
           href="/"
           aria-label="home"
           transitionType="fade"
         >
-          <Logo />
+          {PROJECT === 'beatus' && <LogoBeatus />}
         </BaseLink>
-        <OpenNav className={$.open} />
+        <div className={$.buttons}>buttons</div>
       </Container>
     </Section>
   )

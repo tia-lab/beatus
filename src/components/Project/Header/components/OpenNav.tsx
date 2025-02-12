@@ -16,13 +16,13 @@ const OpenNav = ({ className, ...props }: OpenNavProps) => {
   const t = useTranslations()
   return (
     <div
-      className={clsx('text-btn-large', className)}
+      className={clsx('text-style-uppercase', 'font-weight-700', className)}
       onMouseEnter={() => setHoverDefault(true)}
       onMouseLeave={() => setHoverDefault(false)}
       onClick={() => !navOpen && setNavOpen(true)}
       {...props}
     >
-      {'open'}
+      {t('menu')}
     </div>
   )
 }

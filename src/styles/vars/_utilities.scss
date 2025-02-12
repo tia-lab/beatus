@@ -96,6 +96,20 @@
   color: var(--primary-400);
 }
 
+/* Utility classes for fonts */
+
+.-font-primary {
+  font-family: var(--font-primary);
+}
+
+.-font-secondary {
+  font-family: var(--font-secondary);
+}
+
+.-font-third {
+  font-family: var(--font-third);
+}
+
 /* Utility classes for sectionSpacings */
 
 .pb-space-section-none {

@@ -79,10 +79,6 @@
     @include text-btn-small;
   }
 
-  &.size_large {
-    @include text-btn-large;
-  }
-
   &.disabled {
     pointer-events: none !important;
     opacity: 0.5 !important;

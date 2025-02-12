@@ -42,10 +42,6 @@ h5,
   @include text-btn-small;
 }
 
-.text-btn-large {
-  @include text-btn-large;
-}
-
 .text-small {
   @include text-small;
 }
@@ -60,4 +56,16 @@ h5,
 
 .rich-text {
   @include rich-text;
+}
+
+.font-primary {
+  @include font-primary;
+}
+
+.font-secondary {
+  @include font-secondary;
+}
+
+.font-third {
+  @include font-third;
 }

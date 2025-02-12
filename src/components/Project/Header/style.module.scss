@@ -15,10 +15,21 @@
       padding: 1rem 0;
     }
 
-    .logo {
-      grid-column: span 6;
-      width: 16.75rem;
+    .open {
       pointer-events: all;
+      grid-column: span 4;
+      justify-self: start;
+      cursor: pointer;
+      @include tablet {
+        @include text-btn;
+      }
+    }
+
+    .logo {
+      grid-column: span 4;
+      width: 8.3125rem;
+      pointer-events: all;
+      justify-self: center;
 
       &.disabled {
         pointer-events: none;
@@ -28,13 +39,12 @@
       }
     }
 
-    .open {
-      pointer-events: all;
-      grid-column: span 6;
+    .buttons {
+      grid-column: span 4;
       justify-self: end;
-      cursor: pointer;
+      pointer-events: all;
       @include tablet {
-        @include text-btn;
+        display: none;
       }
     }
   }

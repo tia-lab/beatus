@@ -20,7 +20,9 @@ const Preload = ({ children, data }: PreloadProps) => {
   const tl = useRef<GSAPTimeline | null>(null)
 
   //stores
-  const { isPreloaded, setIsPreloaded, setStartAnimations } = useStorePreload()
+  const isPreloaded = useStorePreload.use.isPreloaded()
+  const setIsPreloaded = useStorePreload.use.setIsPreloaded()
+  const setStartAnimations = useStorePreload.use.setStartAnimations()
 
   useGSAPContext({
     scope: comp,
@@ -40,12 +42,7 @@ const Preload = ({ children, data }: PreloadProps) => {
       {!isPreloaded && (
         <div ref={comp} className={$.preload}>
           <div data-logo>
-            <Image
-              data={data?.preloadLogo}
-              wrap={{ className: $.image }}
-              fitWrap
-              isClient
-            />
+            <Image data={data?.preloadLogo} isClient />
           </div>
         </div>
       )}

@@ -23,7 +23,7 @@ import $ from './style.module.scss'
 export interface ButtonProps extends BaseLinkProps {
   children?: React.ReactNode
   variant?: 'fill' | 'outline' | 'ghost' | 'text'
-  size?: 'base' | 'small' | 'large'
+  size?: 'base' | 'small'
   disabled?: boolean
   icon?: string
   iconPosition?: 'left' | 'right'
@@ -87,7 +87,6 @@ const Button = forwardRef<HTMLAnchorElement, ButtonProps>(
         [$.variant_text]: variant === 'text',
         [$.size_base]: size === 'base',
         [$.size_small]: size === 'small',
-        [$.size_large]: size === 'large',
         [$.disabled]: props.disabled,
         [$.icon_animation_rotate]: iconAnimation === 'rotate',
         [$.icon_animation_move_left]: iconAnimation === 'move-left',
