@@ -5078,8 +5078,9 @@ type SectionCtaRecord implements RecordInterface {
   _updatedAt: DateTime!
   button: LinkRecord
   id: ItemId!
-  image: ImageBlockRecord!
+  image: ImageBlockRecord
   imageGallery: [ImageBlockRecord!]!
+  layoutFifty: String
   overline: String
   sectionPadding: SectionPaddingRecord
   subtitle: String
@@ -5091,7 +5092,7 @@ type SectionCtaRecord implements RecordInterface {
     """Process content as markdown"""
     markdown: Boolean
   ): String
-  variant: String!
+  variant: String
 }
 
 """Block of type ❓ Section faq (section_faq)"""

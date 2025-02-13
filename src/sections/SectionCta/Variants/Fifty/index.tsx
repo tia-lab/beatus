@@ -1,5 +1,6 @@
 import { Container, Image, Parse, Section } from '@/components/Core'
 import { Button } from '@/components/Ui'
+import clsx from 'clsx'
 import { memo } from 'react'
 import { SectionCtaProps } from '../..'
 import $ from './style.module.scss'
@@ -9,7 +10,13 @@ const Fifty = ({ ...props }: Props) => {
   const { data } = props
 
   return (
-    <Section className={$.section} padding={data.sectionPadding}>
+    <Section
+      className={clsx(
+        $.section,
+        data.layoutFifty === 'image-right' && $.image_right
+      )}
+      padding={data.sectionPadding}
+    >
       <Container anim="fade-in">
         <Image
           data={data.image}
@@ -28,7 +35,7 @@ const Fifty = ({ ...props }: Props) => {
             <Parse html={data.text} />
           </div>
 
-          <Button data={data.button} variant="outline" />
+          <Button data={data.button} variant="outline" transitionType="slide" />
         </div>
       </Container>
     </Section>

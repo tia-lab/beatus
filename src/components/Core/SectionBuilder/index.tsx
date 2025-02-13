@@ -1,5 +1,12 @@
 import { routing } from '@/i18n/routing'
-import { SectionAbout, SectionCta, SectionHero } from '@/sections'
+import {
+  SectionAbout,
+  SectionCta,
+  SectionHero,
+  SectionSliderGallery,
+  SectionTextDisplay,
+  SectionTextImage
+} from '@/sections'
 import SectionHeroHome from '@/sections/SectionHeroHome'
 import { Lib } from '@/types'
 import { memo, useMemo } from 'react'
@@ -16,6 +23,7 @@ export type SectionBuilderProps = {
 const SectionBuilder = ({ sections, params }: SectionBuilderProps) => {
   const renderedSections = useMemo(() => {
     if (!sections.length) return null
+    console.log(sections)
     return sections.map((section, k) => {
       switch (section.__typename) {
         case 'SectionHeroRecord':
@@ -26,6 +34,12 @@ const SectionBuilder = ({ sections, params }: SectionBuilderProps) => {
           return <SectionAbout key={k} data={section} params={params} />
         case 'SectionCtaRecord':
           return <SectionCta key={k} data={section} params={params} />
+        case 'SectionTextImageRecord':
+          return <SectionTextImage key={k} data={section} params={params} />
+        case 'SectionTextDisplayRecord':
+          return <SectionTextDisplay key={k} data={section} params={params} />
+        case 'SectionSliderGalleryRecord':
+          return <SectionSliderGallery key={k} data={section} params={params} />
       }
     })
   }, [sections, params])

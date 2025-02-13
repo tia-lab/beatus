@@ -29,7 +29,7 @@ const SingleImage = ({ ...props }: Props) => {
             )}
             <h2 className={$.title}>{data.title}</h2>
             <p className={$.sub_title}>{data.subtitle}</p>
-            <Button data={data.button} onImage />
+            <Button data={data.button} onImage transitionType="slide" />
           </div>
         </Container>
       </div>

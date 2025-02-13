@@ -3,6 +3,7 @@ import { Lib } from '@/types'
 import { memo } from 'react'
 import SectionCtaFragment from './query'
 import Fifty from './Variants/Fifty'
+import MultiImage from './Variants/MultiImage'
 import SingleImage from './Variants/SingleImage'
 
 export interface SectionCtaProps {
@@ -20,6 +21,9 @@ const SectionAbout = ({ data }: SectionCtaProps) => {
     }
     case 'fifty': {
       return <Fifty data={data} />
+    }
+    case 'multi-image': {
+      return <MultiImage data={data} />
     }
   }
 }

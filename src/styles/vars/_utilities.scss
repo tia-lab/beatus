@@ -96,6 +96,14 @@
   color: var(--primary-400);
 }
 
+.background-color-slider-frame {
+  background-color: var(--slider-frame);
+}
+
+.text-slider-frame {
+  color: var(--slider-frame);
+}
+
 /* Utility classes for fonts */
 
 .-font-primary {

@@ -13,7 +13,8 @@ export const colorsVarsBeatus = {
   primary100: '#CCE1E8',
   primary200: '#A8CBD7',
   primary300: '#36606E',
-  primary400: '#284853'
+  primary400: '#284853',
+  sliderFrame: 'rgb(246 240 236 / 70%)'
 }
 
 export const colorsVarsHermitage = {
@@ -28,7 +29,8 @@ export const colorsVarsHermitage = {
   primary100: '#E2D4D4',
   primary200: '#CDB7B7',
   primary300: '#6C2A2A',
-  primary400: '#562222'
+  primary400: '#562222',
+  sliderFrame: 'rgb(246 240 236 / 10%)'
 }
 
 const getColors = () => {

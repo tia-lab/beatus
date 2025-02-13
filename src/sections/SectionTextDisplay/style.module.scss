@@ -1,0 +1,23 @@
+.section {
+  padding: $space-section-lg 0;
+
+  .content {
+    grid-column: 3 / span 8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: $space-lg;
+
+    .col {
+      width: 30rem;
+    }
+
+    .cols {
+      display: grid;
+      grid-template-columns: repeat(2, 25rem);
+      gap: $container-gutter;
+    }
+  }
+}

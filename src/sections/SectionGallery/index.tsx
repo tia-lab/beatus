@@ -11,14 +11,6 @@ export interface SectionGalleryProps {
   data: Lib.FragmentOf<typeof SectionGalleryFragment>
 }
 
-export type SectionGalleryData = Lib.FragmentOf<
-  typeof SectionGalleryFragment
-> & {
-  _modelApiKey: 'section_gallery'
-  __typename: 'SectionGalleryRecord'
-  id: string
-}
-
 const SectionGallery = ({ data }: SectionGalleryProps) => {
   const d = readFragment(SectionGalleryFragment, data)
 

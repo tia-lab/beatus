@@ -1,0 +1,41 @@
+.section {
+  padding: $padding-vertical-md 0;
+
+  .image {
+    grid-column: 2 / span 4;
+    grid-row: 1;
+    @include object-fit-wrap;
+    min-height: 28rem;
+    height: 100%;
+  }
+
+  .content {
+    grid-column: 6 / span 6;
+    display: flex;
+    grid-row: 1;
+    flex-direction: column;
+    justify-content: center;
+    text-align: end;
+    align-items: flex-end;
+    gap: $space-lg;
+
+    .text {
+      @include rich-text;
+      max-width: 28rem;
+    }
+  }
+
+  &.image_right {
+    .image {
+      grid-column: 8 / span 4;
+      grid-row: 1;
+    }
+
+    .content {
+      align-items: flex-start;
+      text-align: start;
+      grid-column: 2 / span 6;
+      grid-row: 1;
+    }
+  }
+}

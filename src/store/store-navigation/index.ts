@@ -7,6 +7,7 @@ interface State {
   headerHidden: boolean
   headerColor: 'dark' | 'light'
   notificationActive: boolean | null
+  //tlNav: GSAPTimeline | null
 }
 
 /* eslint-disable no-unused-vars */
@@ -17,6 +18,7 @@ interface Action {
     notificationActive: State['notificationActive']
   ) => void
   setHeaderColor: (headerColor: State['headerColor']) => void
+  //setTlNav: (tlNav: State['tlNav']) => void
 }
 /* eslint-enable no-unused-vars */
 
@@ -24,6 +26,7 @@ const _useStoreNavigation = create<State & Action>()(
   persist(
     (set) => ({
       navOpen: false,
+      //tlNav: null,
       headerHidden: false,
       notificationActive: null,
       headerColor: 'dark',
@@ -32,6 +35,7 @@ const _useStoreNavigation = create<State & Action>()(
         set({ notificationActive }),
       setHeaderHidden: (headerHidden) => set({ headerHidden }),
       setHeaderColor: (headerColor) => set({ headerColor })
+      //setTlNav: (tlNav) => set({ tlNav })
     }),
     {
       name: 'navigation',

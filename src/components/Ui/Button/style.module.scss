@@ -51,12 +51,13 @@
   }
 
   &.variant_outline {
-    border-color: $neutral-600;
+    border-color: $neutral-300;
 
     &:hover,
     &.active {
       background-color: $neutral-200;
       border-color: $neutral-600;
+      color: $neutral-600;
     }
   }
 

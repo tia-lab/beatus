@@ -5,7 +5,10 @@ import type { SectionGalleryProps } from './SectionGallery'
 import type { SectionHeroProps } from './SectionHero'
 import type { SectionPartnersProps } from './SectionPartners'
 import { SectionPrivacyProps } from './SectionPrivacy'
+import type { SectionSliderGalleryProps } from './SectionSliderGallery'
 import type { SectionTextProps } from './SectionText'
+import type { SectionTextDisplayProps } from './SectionTextDisplay'
+import type { SectionTextImageProps } from './SectionTextImage'
 
 export type {
   SectionAboutProps,
@@ -15,5 +18,8 @@ export type {
   SectionHeroProps,
   SectionPartnersProps,
   SectionPrivacyProps,
+  SectionSliderGalleryProps,
+  SectionTextDisplayProps,
+  SectionTextImageProps,
   SectionTextProps
 }
