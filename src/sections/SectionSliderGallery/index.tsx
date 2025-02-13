@@ -1,4 +1,5 @@
 import { Container, Parse, Section } from '@/components/Core'
+import { SectionBuilderProps } from '@/components/Core/types'
 import { Button } from '@/components/Ui'
 import { Lib } from '@/types'
 import { readFragment } from 'gql.tada'
@@ -9,6 +10,7 @@ import $ from './style.module.scss'
 
 export interface SectionSliderGalleryProps {
   data: Lib.FragmentOf<typeof SectionSliderGalleryFragment>
+  params: SectionBuilderProps['params']
 }
 
 const SectionSliderGallery = ({ data }: SectionSliderGalleryProps) => {

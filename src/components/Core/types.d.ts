@@ -12,7 +12,6 @@ import type { TextProps } from './Text'
 import type { TitleProps } from './Title'
 import type { VideoPlayerProps } from './VideoPlayer'
 import type { VideoPlayerExternalProps } from './VideoPlayerExternal'
-
 export type {
   BaseLinkProps,
   BaseProps,
@@ -22,6 +21,7 @@ export type {
   LinkProps,
   MediaQueryProps,
   ResponsiveImageProps,
+  SectionBuilderProps,
   SectionBuilderProps,
   SectionProps,
   TextProps,

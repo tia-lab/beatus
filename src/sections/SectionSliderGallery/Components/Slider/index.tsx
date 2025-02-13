@@ -12,7 +12,7 @@ import { SectionSliderGalleryProps } from '../..'
 import SectionSliderGalleryFragment from '../../query'
 import $ from './style.module.scss'
 
-const Slider = ({ data }: SectionSliderGalleryProps) => {
+const Slider = ({ data }: Omit<SectionSliderGalleryProps, 'params'>) => {
   const d = readFragment(SectionSliderGalleryFragment, data)
   const [emblaRef, emblaApi] = useEmblaCarousel({ align: 'start', loop: true })
 
