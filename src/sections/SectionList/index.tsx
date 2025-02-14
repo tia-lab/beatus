@@ -1,5 +1,5 @@
-import { LayoutProps } from '$/.next/types/app/[locale]/layout'
 import { Container, Section } from '@/components/Core'
+import { SectionBuilderProps } from '@/components/Core/SectionBuilder'
 import PackageCardFragment from '@/lib/fragments/packages/card'
 import RoomCardFragment from '@/lib/fragments/rooms/cards'
 import {
@@ -29,7 +29,7 @@ export const queryCategoryRooms = graphql(`
 
 export interface SectionListProps {
   data: Lib.FragmentOf<typeof SectionListFragment>
-  params?: LayoutProps['params']
+  params?: SectionBuilderProps['params']
 }
 
 export type CardTypes =

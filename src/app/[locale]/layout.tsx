@@ -17,7 +17,7 @@ import { notFound } from 'next/navigation'
 import { toNextMetadata } from 'react-datocms'
 import queryLayout from './query'
 
-interface LayoutProps {
+export interface LayoutProps {
   children: React.ReactNode
   params: {
     locale: Locale
