@@ -25,7 +25,7 @@ const SectionAbout = ({ data }: SectionAboutProps) => {
         <Container className={$.container} anim="section-fade-in">
           <div className={$.row}>
             <div className={$.title}>
-              <h2 className="title-h2 text-style-uppercase">
+              <h2 className="title-h2 text-style-uppercase mb-space-md">
                 <Parse html={data.title} excludeTags={['p']} />
               </h2>
               <p className="title-h4 text-style-uppercase">{data?.subtitle}</p>

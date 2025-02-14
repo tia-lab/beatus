@@ -26,6 +26,7 @@
     top: 0;
     right: calc(-1 * $padding-global);
     background-color: $slider-frame;
+    pointer-events: none;
 
     .frame_border {
       width: $container-gutter;
@@ -37,6 +38,7 @@
     }
 
     .buttons {
+      pointer-events: visible;
       position: absolute;
       right: $padding-global;
       bottom: $padding-global;

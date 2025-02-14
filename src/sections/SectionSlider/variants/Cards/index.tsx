@@ -1,20 +1,13 @@
 import { Container, Parse, Section } from '@/components/Core'
-import { SectionBuilderProps } from '@/components/Core/types'
-import { Button } from '@/components/Ui'
-import { Lib } from '@/types'
 import { readFragment } from 'gql.tada'
 import { memo } from 'react'
-import Slider from './Components/Slider'
-import SectionSliderGalleryFragment from './query'
+import { SectionSliderProps } from '../..'
+import SliderCards from '../../Components/SliderCards'
+import SectionSliderFragment from '../../query'
 import $ from './style.module.scss'
 
-export interface SectionSliderGalleryProps {
-  data: Lib.FragmentOf<typeof SectionSliderGalleryFragment>
-  params: SectionBuilderProps['params']
-}
-
-const SectionSliderGallery = ({ data }: SectionSliderGalleryProps) => {
-  const d = readFragment(SectionSliderGalleryFragment, data)
+const VariantCards = ({ data }: SectionSliderProps) => {
+  const d = readFragment(SectionSliderFragment, data)
 
   return (
     <Section padding={d.sectionPadding} className={$.section}>
@@ -24,7 +17,7 @@ const SectionSliderGallery = ({ data }: SectionSliderGalleryProps) => {
             {d.overline && (
               <div className="text-small text-neutral-400">{d.overline}</div>
             )}
-            <h2 className="text-style-uppercase text-primary-300">
+            <h2 className="text-style-uppercase title-h3 text-primary-300">
               <Parse html={d.title} excludeTags={['p']} />
             </h2>
           </div>
@@ -32,15 +25,15 @@ const SectionSliderGallery = ({ data }: SectionSliderGalleryProps) => {
             <div className="rich-text">
               <Parse html={d.text} />
             </div>
-            {d.button && (
-              <Button data={d.button} variant="text" transitionType="slide" />
-            )}
           </div>
         </div>
       </Container>
-      <Slider data={data} />
+      <SliderCards
+        //@ts-expect-error
+        data={data}
+      />
     </Section>
   )
 }
 
-export default memo(SectionSliderGallery)
+export default memo(VariantCards)

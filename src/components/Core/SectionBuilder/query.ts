@@ -3,9 +3,11 @@ import SectionAboutFragment from '@/sections/SectionAbout/query'
 import SectionCtaFragment from '@/sections/SectionCta/query'
 import SectionHeroFragment from '@/sections/SectionHero/query'
 import SectionHeroHomeFragment from '@/sections/SectionHeroHome/query'
-import SectionSliderGalleryFragment from '@/sections/SectionSliderGallery/query'
+import SectionListFragment from '@/sections/SectionList/query'
+import SectionSliderFragment from '@/sections/SectionSlider/query'
 import SectionTextDisplayFragment from '@/sections/SectionTextDisplay/query'
 import SectionTextImageFragment from '@/sections/SectionTextImage/query'
+
 const SectionBuilderFragment = graphql(
   /* GraphQL */ `
     fragment SectionBuilderFragment on SectionBuilderRecord @_unmask {
@@ -16,7 +18,8 @@ const SectionBuilderFragment = graphql(
         ...SectionCtaFragment
         ...SectionTextImageFragment
         ...SectionTextDisplayFragment
-        ...SectionSliderGalleryFragment
+        ...SectionSliderFragment
+        ...SectionListFragment
       }
     }
   `,
@@ -27,7 +30,8 @@ const SectionBuilderFragment = graphql(
     SectionCtaFragment,
     SectionTextImageFragment,
     SectionTextDisplayFragment,
-    SectionSliderGalleryFragment
+    SectionSliderFragment,
+    SectionListFragment
   ]
 )
 

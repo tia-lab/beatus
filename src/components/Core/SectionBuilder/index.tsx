@@ -3,7 +3,8 @@ import {
   SectionAbout,
   SectionCta,
   SectionHero,
-  SectionSliderGallery,
+  SectionList,
+  SectionSlider,
   SectionTextDisplay,
   SectionTextImage
 } from '@/sections'
@@ -23,7 +24,6 @@ export type SectionBuilderProps = {
 const SectionBuilder = ({ sections, params }: SectionBuilderProps) => {
   const renderedSections = useMemo(() => {
     if (!sections.length) return null
-    console.log(sections)
     return sections.map((section, k) => {
       switch (section.__typename) {
         case 'SectionHeroRecord':
@@ -38,8 +38,12 @@ const SectionBuilder = ({ sections, params }: SectionBuilderProps) => {
           return <SectionTextImage key={k} data={section} params={params} />
         case 'SectionTextDisplayRecord':
           return <SectionTextDisplay key={k} data={section} params={params} />
-        case 'SectionSliderGalleryRecord':
-          return <SectionSliderGallery key={k} data={section} params={params} />
+        case 'SectionSliderRecord':
+          return <SectionSlider key={k} data={section} params={params} />
+        case 'SectionListRecord':
+          return <SectionList key={k} data={section} params={params} />
+        default:
+          return null
       }
     })
   }, [sections, params])

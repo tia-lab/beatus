@@ -1,0 +1,24 @@
+.section {
+  padding: $space-section-lg 0;
+
+  .content {
+    grid-column: 3 / span 9;
+    @include flex(column, flex-start, center);
+    text-align: center;
+    gap: $space-md;
+
+    .content_title {
+      display: flex;
+      flex-direction: column;
+      gap: $space-md;
+    }
+
+    .content_text {
+      display: flex;
+      flex-direction: column;
+      gap: $space-lg;
+      align-items: flex-start;
+      max-width: 35rem;
+    }
+  }
+}

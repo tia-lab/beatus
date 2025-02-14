@@ -8,12 +8,12 @@ import clsx from 'clsx'
 import useEmblaCarousel from 'embla-carousel-react'
 import { readFragment } from 'gql.tada'
 import { memo } from 'react'
-import { SectionSliderGalleryProps } from '../..'
-import SectionSliderGalleryFragment from '../../query'
+import { SectionSliderProps } from '../..'
+import SectionSliderFragment from '../../query'
 import $ from './style.module.scss'
 
-const Slider = ({ data }: Omit<SectionSliderGalleryProps, 'params'>) => {
-  const d = readFragment(SectionSliderGalleryFragment, data)
+const SliderGallery = ({ data }: Omit<SectionSliderProps, 'params'>) => {
+  const d = readFragment(SectionSliderFragment, data)
   const [emblaRef, emblaApi] = useEmblaCarousel({ align: 'start', loop: true })
 
   const {
@@ -32,7 +32,7 @@ const Slider = ({ data }: Omit<SectionSliderGalleryProps, 'params'>) => {
           customEmblaRef={emblaRef}
           emblaClassName={$.embla}
           containerClassName={$.embla_container}
-          slides={d.galery.map((slide, k) => (
+          slides={d.gallery.map((slide, k) => (
             <Image
               key={k}
               fitWrap
@@ -70,4 +70,4 @@ const Slider = ({ data }: Omit<SectionSliderGalleryProps, 'params'>) => {
   )
 }
 
-export default memo(Slider)
+export default memo(SliderGallery)

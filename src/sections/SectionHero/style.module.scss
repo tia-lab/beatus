@@ -1,0 +1,24 @@
+.section {
+  padding: $padding-vertical-lg 0 $padding-vertical-sm;
+
+  .container {
+    padding-top: $space-5xl;
+
+    .overline {
+      grid-column: 2 / span 8;
+      margin-bottom: $space-md;
+      color: $neutral-400;
+    }
+
+    .title {
+      grid-column: 2 / span 8;
+      text-transform: uppercase;
+    }
+
+    .text {
+      @include rich-text;
+      margin: $space-md;
+      grid-column: 2 / span 5;
+    }
+  }
+}

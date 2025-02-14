@@ -1,37 +1,34 @@
 import { create } from 'zustand'
 import createSelectors from '../utils/createSelectors'
 
+export type cursorTypes = 'none' | 'default' | 'card-package'
+
 interface State {
+  type: cursorTypes
   hasMoved: boolean
   hoverDefault: boolean
-  hoverTheme: boolean
-  hoverCardWork: boolean
-  hoverHomeServices: boolean
+  hoverCardPackage: boolean
 }
 interface Action {
   /* eslint-disable no-unused-vars */
+  setType: (type: State['type']) => void
   setHasMoved: (hasMoved: State['hasMoved']) => void
   setHoverDefault: (hoverDefault: State['hoverDefault']) => void
-  setHoverTheme: (hoverTheme: State['hoverTheme']) => void
-  setHoverCardWork: (hoverCardWork: State['hoverCardWork']) => void
-  setHoverHomeServices: (hoverHomeServices: State['hoverHomeServices']) => void
+  setHoverCardPackage: (hoverCardPackage: State['hoverCardPackage']) => void
 }
 /* eslint-enable */
 
 const baseStoreCursor = create<State & Action>((set) => ({
+  type: 'default',
   hasMoved: false,
   hoverDefault: false,
-  hoverTheme: false,
-  hoverCardWork: false,
-  hoverHomeServices: false,
+  hoverCardPackage: false,
+  setType: (type) => set(() => ({ type: type })),
   setHasMoved: (hasMoved) => set(() => ({ hasMoved: hasMoved })),
   setHoverDefault: (hoverDefault) =>
     set(() => ({ hoverDefault: hoverDefault })),
-  setHoverTheme: (hoverTheme) => set(() => ({ hoverTheme: hoverTheme })),
-  setHoverCardWork: (hoverCardWork) =>
-    set(() => ({ hoverCardWork: hoverCardWork })),
-  setHoverHomeServices: (hoverHomeServices) =>
-    set(() => ({ hoverHomeServices: hoverHomeServices }))
+  setHoverCardPackage: (hoverCardPackage) =>
+    set(() => ({ hoverCardPackage: hoverCardPackage }))
 }))
 
 const useStoreCursor = createSelectors(baseStoreCursor)

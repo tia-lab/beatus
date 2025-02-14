@@ -1,30 +1,58 @@
-{
-  "single-image": [
-    "section_padding",
-    "overline",
-    "title",
-    "text",
-    "subtitile",
-    "button",
-    "image"
-  ],
-  "multi-images": [
-    "section_padding",
-    "overline",
-    "title",
-    "text",
-    "subtitile",
-    "button",
-    "image_gallery"
-  ],
-  "fifty": [
-    "section_padding",
-    "overline",
-    "title",
-    "text",
-    "subtitile",
-    "text",
-    "button",
-    "image"
-  ]
-}
+[
+  {
+    "single-image": [
+      "section_padding",
+      "overline",
+      "title",
+      "text",
+      "subtitile",
+      "button",
+      "image"
+    ],
+    "multi-images": [
+      "section_padding",
+      "overline",
+      "title",
+      "text",
+      "subtitile",
+      "button",
+      "image_gallery"
+    ],
+    "fifty": [
+      "section_padding",
+      "overline",
+      "title",
+      "text",
+      "subtitile",
+      "text",
+      "button",
+      "image"
+    ]
+  },
+
+  {
+    "gallery": [
+      "section_padding",
+      "overline",
+      "title",
+      "text",
+      "button",
+      "gallery"
+    ],
+    "fifty": [
+      "section_padding",
+      "overline",
+      "title",
+      "text",
+      "button",
+      "gallery"
+    ],
+    "packages": ["section_padding", "title", "text", "packages", "all_records"],
+    "rooms": ["section_padding", "title", "text", "rooms", "all_records"],
+    "images": ["section_padding", "gallery"]
+  },
+  {
+    "packages": ["section_padding", "packages", "all_packages"],
+    "rooms": ["section_padding", "rooms", "all_rooms"]
+  }
+]

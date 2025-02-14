@@ -1,0 +1,30 @@
+.card {
+  @include flex(column, flex-start, flex-start);
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+
+  .image {
+    @include object-fit-wrap;
+    width: 100%;
+    padding-top: 52%;
+  }
+
+  .content {
+    background-color: $white;
+    @include flex(column, flex-start, flex-start);
+    gap: $space-lg;
+    padding: $space-xl $padding-global $space-2xl;
+    width: 100%;
+    flex-grow: 1;
+
+    .title {
+      @include h4;
+      text-transform: uppercase;
+      @include text-lines(2);
+      @include flex(column, flex-start, flex-start);
+      gap: $space-sm;
+    }
+  }
+}

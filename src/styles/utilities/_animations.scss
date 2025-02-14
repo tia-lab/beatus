@@ -3,3 +3,7 @@
 .auto-alpha {
   @include auto-alpha;
 }
+
+.fade-in {
+  animation: fade-in $duration-base $out-cubic;
+}

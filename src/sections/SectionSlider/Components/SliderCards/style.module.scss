@@ -1,0 +1,86 @@
+.slider {
+  .slider_container {
+    position: relative;
+  }
+
+  .embla {
+    @include fluid;
+    margin-top: $space-3xl;
+    align-items: stretch;
+
+    .embla_container {
+      grid-auto-columns: 40%;
+      column-gap: $container-gutter;
+      padding-left: $padding-global;
+
+      .slide {
+        &:last-child {
+          margin-right: $padding-global;
+        }
+      }
+    }
+  }
+
+  .fade {
+    position: absolute;
+    height: 100%;
+    right: calc(-1 * $padding-global);
+    top: 0;
+    width: 8.9375rem;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      rgb(246 240 236 / 0%) 0%,
+      var(--neutral-100) 79.72%
+    );
+  }
+
+  .navigation {
+    display: flex;
+    justify-content: center;
+    margin-top: $space-2xl;
+    gap: $space-2xl;
+    background-color: $neutral-100;
+
+    @mixin transition-dot {
+      transition:
+        background-color $duration-base $in-out-cubic,
+        border-color $duration-base $in-out-cubic;
+    }
+
+    .dot {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: $radius-full;
+      border: 1px solid $neutral-100;
+      @include transition-dot;
+      cursor: pointer;
+
+      .dot_inner {
+        width: 0.5rem;
+        height: 0.5rem;
+        background-color: $neutral-300;
+        @include transition-dot;
+        border-radius: $radius-full;
+      }
+
+      &[data-active='true'] {
+        border-color: $primary-300;
+
+        .dot_inner {
+          background-color: $primary-300;
+        }
+      }
+
+      &:hover {
+        .dot_inner {
+          background-color: $primary-300;
+        }
+      }
+    }
+  }
+}

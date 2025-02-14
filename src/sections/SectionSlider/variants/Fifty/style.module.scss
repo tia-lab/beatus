@@ -1,0 +1,33 @@
+.section {
+  padding: $space-section-lg 0;
+
+  .content {
+    padding: $space-2xl 0;
+    grid-column: span 5;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-2xl;
+
+    .line {
+      width: 5.875rem;
+      height: 0.0625rem;
+      background-color: $primary-300;
+    }
+
+    .content_title {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: $space-md;
+    }
+
+    .content_text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: $space-lg;
+      width: 21rem;
+      justify-self: center;
+    }
+  }
+}

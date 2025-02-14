@@ -6,6 +6,7 @@ import { useStoreCursor } from '@/store'
 import { USE } from '@config'
 import { gsap } from '@gsap'
 import clsx from 'clsx'
+import { MoveHorizontal } from 'lucide-react'
 import { forwardRef, memo, useEffect, useImperativeHandle, useRef } from 'react'
 import $ from './style.module.scss'
 
@@ -19,7 +20,11 @@ const CursorRef = forwardRef((props, ref) => {
 
   const hasMOved = useStoreCursor.use.hasMoved()
   const hoverDefault = useStoreCursor.use.hoverDefault()
-  const hoverTheme = useStoreCursor.use.hoverTheme()
+  const type = useStoreCursor.use.type()
+  const setHoverDefault = useStoreCursor.use.setHoverDefault()
+  const setHoverCardPackage = useStoreCursor.use.setHoverCardPackage()
+  const hoverCardPackage = useStoreCursor.use.hoverCardPackage()
+
   //const theme = useStore(useStoreTheme, (state) => state.theme)
 
   /* --------------------------- //API - move cursor -------------------------- */
@@ -51,18 +56,28 @@ const CursorRef = forwardRef((props, ref) => {
   //Cursor
   useHoverCursor(cursorAnimRef)
   /* -------------------------------- Composers ------------------------------- */
-  const dataHover = clsx(hoverDefault && 'default', hoverTheme && 'theme')
+  const dataHover = clsx(
+    hoverDefault && 'default',
+    hoverCardPackage && 'card-package'
+  )
 
   return (
     USE.cursor && (
       <div
         className={clsx($.cursor, hasMOved && $.active)}
         ref={el}
+        data-type={type}
         {...props}
         //data-theme={theme}
       >
         <div ref={cursorAnimRef} data-hover={dataHover}>
           <div className={$.default} data-cursor-default />
+          <div className={$.cursor_slider_cards}>
+            <div className={$.cursor_slider_cards_inner} />
+            <div className={$.cursor_slider_cards_icon}>
+              <MoveHorizontal width="100%" height="100%" strokeWidth={0.5} />
+            </div>
+          </div>
           {/* <div className={$.theme} data-cursor-theme>
             <Sun size={'100%'} fill="currentColor" data-sun />
             <Moon size={'100%'} fill="currentColor" data-moon />

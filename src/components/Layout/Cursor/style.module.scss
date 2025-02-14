@@ -1,3 +1,7 @@
+@mixin opacity-transition {
+  transition: opacity $duration-fast $out-cubic;
+}
+
 .cursor {
   position: fixed;
   transform: translate(-50%, -50%);
@@ -6,7 +10,7 @@
   pointer-events: none;
   opacity: 0;
   z-index: 750;
-  transition: opacity 0.2s $out-cubic;
+  @include opacity-transition;
 
   @include mobile {
     display: none;
@@ -21,63 +25,50 @@
     height: 0.5rem;
     background-color: $primary-200;
     border-radius: 100%;
+    @include opacity-transition;
   }
 
-  .theme {
-    width: 1rem;
-    height: 1rem;
-    color: $neutral-600;
-    position: relative;
+  .cursor_slider_cards {
+    width: 6.5rem;
+    height: 6.5rem;
+    @include flex(column, center, center);
+    border: 1px solid $white;
+    backdrop-filter: blur(8px);
+    border-radius: $radius-full;
+    @include opacity-transition;
 
-    @include auto-alpha;
+    .cursor_slider_cards_inner {
+      width: 5.5rem;
+      height: 5.5rem;
+      @include flex(column, center, center);
+      background-color: $white;
+      border-radius: $radius-full;
+      opacity: 0.6;
+    }
 
-    svg {
+    .cursor_slider_cards_icon {
       position: absolute;
-      top: var(--xxs);
-      left: var(--xxs);
-      transition: opacity $duration-base $out-cubic;
+      width: 4rem;
+      height: 4rem;
     }
   }
 
-  &[data-theme='light'] {
-    [data-sun] {
-      opacity: 0;
-    }
-
-    [data-moon] {
-      opacity: 1;
-    }
-  }
-
-  &[data-theme='dark'] {
-    [data-sun] {
-      opacity: 1;
-    }
-
-    [data-moon] {
+  &[data-type='none'] {
+    .cursor_slider_cards,
+    .default {
       opacity: 0;
     }
   }
 
-  &[data-theme='auto'] {
-    @media (prefers-color-scheme: dark) {
-      [data-sun] {
-        opacity: 1;
-      }
-
-      [data-moon] {
-        opacity: 0;
-      }
+  &[data-type='default'] {
+    .cursor_slider_cards {
+      opacity: 0;
     }
+  }
 
-    @media (prefers-color-scheme: light) {
-      [data-sun] {
-        opacity: 0;
-      }
-
-      [data-moon] {
-        opacity: 1;
-      }
+  &[data-type='card-package'] {
+    .default {
+      opacity: 0;
     }
   }
 }

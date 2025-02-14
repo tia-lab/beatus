@@ -20,7 +20,7 @@ const config = {
   },
   use: {
     lenis: true,
-    cursor: false,
+    cursor: true,
     privacy: true
   },
   breakpoints: {

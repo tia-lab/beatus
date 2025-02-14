@@ -7,22 +7,19 @@ import { animateCursorDefault } from '@/animations'
 import { useStoreCursor } from '@/store'
 import { DEBUG, MEDIA, USE } from '@config'
 import { gsap } from '@gsap'
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 
 const useHoverCursor = (cursorRef: any) => {
   /* eslint-disable no-undef */
   const tl_default = useRef<gsap.core.Timeline | null>(null)
-  const tl_theme = useRef<gsap.core.Timeline | null>(null)
-  const tl_cardWork = useRef<gsap.core.Timeline | null>(null)
-  const tl_homeServices = useRef<gsap.core.Timeline | null>(null)
+  const tl_cardPackage = useRef<gsap.core.Timeline | null>(null)
 
   /* eslint-enable no-undef */
 
   //Access Stores
   const hoverDefault = useStoreCursor.use.hoverDefault()
-  const hoverTheme = useStoreCursor.use.hoverTheme()
-  const hoverCardWork = useStoreCursor.use.hoverCardWork()
-  const hoverHomeServices = useStoreCursor.use.hoverHomeServices()
+  const hoverCardPackage = useStoreCursor.use.hoverCardPackage()
+  const type = useStoreCursor.use.type()
   //const theme = useStoreTheme.use.theme()
 
   // Declare context
@@ -59,16 +56,19 @@ const useHoverCursor = (cursorRef: any) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cursorRef])
 
-  const playOrReverseAnimation = (
-    debugMessage: string,
-    // eslint-disable-next-line
-    timeline: React.RefObject<gsap.core.Timeline>,
-    shouldPlay: boolean
-  ) => {
-    DEBUG.cursor && console.log(debugMessage, timeline.current)
-    if (!timeline.current) return
-    shouldPlay ? timeline.current.play() : timeline.current.reverse()
-  }
+  const playOrReverseAnimation = useCallback(
+    (
+      debugMessage: string,
+      // eslint-disable-next-line
+      timeline: React.RefObject<gsap.core.Timeline>,
+      shouldPlay: boolean
+    ) => {
+      DEBUG.cursor && console.log(debugMessage, timeline.current)
+      if (!timeline.current || type === 'none') return
+      shouldPlay ? timeline.current.play() : timeline.current.reverse()
+    },
+    [type]
+  )
 
   useEffect(() => {
     playOrReverseAnimation(
@@ -76,31 +76,15 @@ const useHoverCursor = (cursorRef: any) => {
       tl_default,
       hoverDefault
     )
-  }, [hoverDefault])
+  }, [hoverDefault, playOrReverseAnimation])
 
   useEffect(() => {
     playOrReverseAnimation(
-      'Cursor Store Hover Timeline Theme',
-      tl_theme,
-      hoverTheme
+      'Cursor Store Hover Timeline CardPackage',
+      tl_cardPackage,
+      hoverCardPackage
     )
-  }, [hoverTheme])
-
-  useEffect(() => {
-    playOrReverseAnimation(
-      'Cursor Store Hover CardWork',
-      tl_cardWork,
-      hoverCardWork
-    )
-  }, [hoverCardWork])
-
-  useEffect(() => {
-    playOrReverseAnimation(
-      'Cursor Store Hover Home Services',
-      tl_homeServices,
-      hoverHomeServices
-    )
-  }, [hoverHomeServices])
+  }, [hoverCardPackage, playOrReverseAnimation])
 }
 
 export default useHoverCursor
