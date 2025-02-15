@@ -2,8 +2,8 @@
 import { Parse, Section } from '@/components/Core'
 import { EmblaCarousel } from '@/components/Ui'
 import { Lib } from '@/types'
-import { memo } from 'react'
-import { Tab, TabList, TabPanel, Tabs } from 'react-aria-components'
+import { memo, useState } from 'react'
+import { Key, Tab, TabList, TabPanel, Tabs } from 'react-aria-components'
 import { BookingModalProps } from '.'
 import bookingModalQuery from './query'
 import $ from './style.module.scss'
@@ -16,13 +16,19 @@ const Client = ({ ...props }: Props) => {
   const { data } = props
   const d = data?.bookingModal
 
+  const [tabKey, setTabKey] = useState<Key>(d?.tabs[0].id as Key)
+
   return (
     <Section className={$.modal} as="aside" mainWrapper={false}>
       <div className={$.main_wrapper}>
         <h2 className="text-style-uppercase">
           <Parse html={d?.title} excludeTags={['p']} />
         </h2>
-        <Tabs className={$.tabs}>
+        <Tabs
+          className={$.tabs}
+          selectedKey={tabKey}
+          onSelectionChange={setTabKey}
+        >
           <TabList aria-label="History of Ancient Rome">
             {d?.tabs.map((tab) => (
               <Tab id={tab.id} key={tab.id}>
