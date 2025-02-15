@@ -1,5 +1,4 @@
 import { FaqFragment } from '@/lib/fragments'
-import LinkFragment from '@/lib/fragments/link'
 import SectionPaddingFragment from '@/lib/fragments/section-padding'
 import { graphql } from '@/lib/query'
 
@@ -7,6 +6,7 @@ const SectionFaqFragment = graphql(
   /* GraphQL */ `
     fragment SectionFaqFragment on SectionFaqRecord {
       id
+      __typename
       _modelApiKey
       sectionPadding {
         ...SectionPaddingFragment
@@ -18,12 +18,13 @@ const SectionFaqFragment = graphql(
         title
         id
       }
+
       faqs {
         ...FaqFragment
       }
     }
   `,
-  [FaqFragment, LinkFragment, SectionPaddingFragment]
+  [FaqFragment, SectionPaddingFragment]
 )
 
 export default SectionFaqFragment

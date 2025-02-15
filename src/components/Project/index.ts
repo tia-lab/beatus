@@ -1,3 +1,4 @@
+import BookingModal from './BookingModal'
 import Breadcrumb from './Breadcrumbs'
 import CardListItem from './Cards/CardListItem'
 import CardPackage from './Cards/CardPackage'
@@ -8,6 +9,7 @@ import Nav from './Nav'
 import Privacy from './Privacy'
 
 export {
+  BookingModal,
   Breadcrumb,
   CardListItem,
   CardPackage,

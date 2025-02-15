@@ -2,6 +2,7 @@
 
 import { DUR } from '@/animations/vars'
 import { ScrollToParams } from '@studio-freight/react-lenis/types'
+import clsx from 'clsx'
 import React, { ReactNode, createContext, memo, useState } from 'react'
 import $ from '../style.module.scss'
 export interface AccordionContextProps {
@@ -17,6 +18,7 @@ export const AccordionContext = createContext<
 
 export interface AccordionProps {
   allowMultiple?: boolean
+  className?: string
   children: ReactNode
   lenis?: boolean
   lenisOptions?: ScrollToParams
@@ -27,6 +29,7 @@ const Accordion: React.FC<AccordionProps> = ({
   allowMultiple = false,
   children,
   lenis = false,
+  className,
   lenisOptions = { duration: DUR.goldenRatio * 2 },
   defaultOpenIndexes = [] // Default to an empty array
 }) => {
@@ -57,7 +60,7 @@ const Accordion: React.FC<AccordionProps> = ({
     <AccordionContext.Provider
       value={{ openIndexes, toggleItem, lenisScroll, lenisScrollOptions }}
     >
-      <div className={$.accordion}>{children}</div>
+      <div className={clsx($.accordion, className)}>{children}</div>
     </AccordionContext.Provider>
   )
 }

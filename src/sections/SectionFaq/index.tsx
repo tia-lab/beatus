@@ -1,5 +1,6 @@
-import { Container, Section } from '@/components/Core'
-import { AccordionItem } from '@/components/Ui'
+import { Container, Parse, Section } from '@/components/Core'
+import { SectionBuilderProps } from '@/components/Core/SectionBuilder'
+import { AccordionItem, Button } from '@/components/Ui'
 import { FaqFragment } from '@/lib/fragments'
 import { executeQuery, graphql } from '@/lib/query'
 import { Lib } from '@/types'
@@ -18,12 +19,7 @@ const Accordion = dynamic(
 
 export interface SectionFaqProps {
   data: Lib.FragmentOf<typeof SectionFaqFragment>
-}
-
-export type SectionFaqData = Lib.FragmentOf<typeof SectionFaqFragment> & {
-  _modelApiKey: 'section_faq'
-  __typename: 'SectionFaqRecord'
-  id: string
+  params?: SectionBuilderProps['params']
 }
 
 const SectionFaq = async ({ data }: SectionFaqProps) => {
@@ -77,29 +73,30 @@ const SectionFaq = async ({ data }: SectionFaqProps) => {
       anim="section-fade-in"
     >
       <Container>
-        <div className={$.wrap}>
+        <div className={$.title}>
           {getTitle() && (
-            <h1 className="title-display text-neutral-100">{getTitle()}</h1>
+            <div className="title-h3 text-style-uppercase">{getTitle()}</div>
           )}
-          <Accordion defaultOpenIndexes={[0]}>
-            {faqs.map((faq, index) => (
-              <AccordionItem
-                key={index}
-                index={index}
-                title={faq.title}
-                variant="faq"
-              >
-                <>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: faq.description as string
-                    }}
-                  ></p>
-                </>
-              </AccordionItem>
-            ))}
-          </Accordion>
         </div>
+
+        <Accordion defaultOpenIndexes={[0]} className={$.accordion}>
+          {faqs.map((faq, index) => (
+            <AccordionItem
+              key={index}
+              index={index}
+              title={faq.title}
+              variant="faq"
+              titleClassName={$.accordion_title}
+            >
+              <div>
+                <div className="rich-text">
+                  <Parse html={faq.description} />
+                </div>
+                {faq.button && <Button data={faq.button} variant="text" />}
+              </div>
+            </AccordionItem>
+          ))}
+        </Accordion>
       </Container>
     </Section>
   )

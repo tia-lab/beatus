@@ -4,6 +4,7 @@ import SectionFaq from './SectionFaq'
 import SectionGallery from './SectionGallery'
 import SectionHero from './SectionHero'
 import SectionList from './SectionList'
+import SectionListing from './SectionListing'
 import SectionPartners from './SectionPartners'
 import SectionSlider from './SectionSlider'
 import SectionText from './SectionText'
@@ -17,6 +18,7 @@ export {
   SectionGallery,
   SectionHero,
   SectionList,
+  SectionListing,
   SectionPartners,
   SectionSlider,
   SectionText,

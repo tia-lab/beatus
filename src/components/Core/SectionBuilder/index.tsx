@@ -2,8 +2,10 @@ import { routing } from '@/i18n/routing'
 import {
   SectionAbout,
   SectionCta,
+  SectionFaq,
   SectionHero,
   SectionList,
+  SectionListing,
   SectionSlider,
   SectionTextDisplay,
   SectionTextImage
@@ -42,6 +44,10 @@ const SectionBuilder = ({ sections, params }: SectionBuilderProps) => {
           return <SectionSlider key={k} data={section} params={params} />
         case 'SectionListRecord':
           return <SectionList key={k} data={section} params={params} />
+        case 'SectionListingRecord':
+          return <SectionListing key={k} data={section} params={params} />
+        case 'SectionFaqRecord':
+          return <SectionFaq key={k} data={section} params={params} />
         default:
           return null
       }

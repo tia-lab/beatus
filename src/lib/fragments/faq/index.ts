@@ -11,6 +11,9 @@ const FaqFragment = graphql(
       category {
         ...FaqCategoryFragment
       }
+      button {
+        ...LinkFragment
+      }
     }
   `,
   [LinkFragment, FaqCategoryFragment]

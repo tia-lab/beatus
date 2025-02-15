@@ -2,7 +2,13 @@ import { DataContextProvider } from '@/components/Context'
 import { StoreRoutes } from '@/components/Core'
 import { Lenis, Preload, TransitionOut } from '@/components/Layout'
 import Cursor from '@/components/Layout/Cursor'
-import { Footer, Header, Nav, Privacy } from '@/components/Project'
+import {
+  BookingModal,
+  Footer,
+  Header,
+  Nav,
+  Privacy
+} from '@/components/Project'
 import { routing } from '@/i18n/routing'
 import fonts from '@/lib/fonts'
 import { TagFragment } from '@/lib/fragments'
@@ -86,6 +92,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
             <Cursor />
             <StoreRoutes />
             <Nav data={layout} />
+            <BookingModal />
             <TransitionOut />
           </DataContextProvider>
         </NextIntlClientProvider>

@@ -58,30 +58,32 @@
   }
 
   &.variant_faq {
-    padding-bottom: $space-2xl;
-    border-bottom: 2px solid $neutral-600;
+    padding-bottom: $space-sm;
+    border-bottom: 1px solid $neutral-600;
     border-radius: 0;
+
+    &:first-child {
+      border-top: 1px solid $neutral-600;
+    }
     @include tablet {
       padding-bottom: $space-lg;
     }
 
     .head {
-      padding-top: $space-lg;
       display: grid;
       grid-template-columns: 1fr auto;
+      align-items: start;
       @include tablet {
         padding-top: $space-xs;
       }
 
       .icon {
-        width: 3rem;
-        height: 3rem;
+        width: 1.5rem;
+        height: 1.5rem;
         order: 2;
         display: flex;
         align-items: center;
         justify-content: center;
-        border: $stroke-icon solid $neutral-600;
-        border-radius: 100%;
         @include tablet {
           width: 1.75rem;
           height: 1.75rem;
@@ -90,7 +92,7 @@
         .plus {
           position: absolute;
           width: 1.5rem;
-          height: $stroke-icon;
+          height: 1px;
           background-color: $neutral-600;
           @include tablet {
             width: 0.75rem;
@@ -118,12 +120,12 @@
 
       .body_inner {
         padding: 0;
-        padding-top: $space-2xl;
+        padding-top: $space-lg;
         display: flex;
         flex-direction: column;
         row-gap: 1rem;
         align-items: flex-start;
-        padding-bottom: 0.125rem;
+        padding-bottom: $space-2xl;
         @include tablet {
           padding-top: $space-lg;
         }

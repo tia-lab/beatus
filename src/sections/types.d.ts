@@ -4,6 +4,7 @@ import type { SectionFaqProps } from './SectionFaq'
 import type { SectionGalleryProps } from './SectionGallery'
 import type { SectionHeroProps } from './SectionHero'
 import type { SectionListProps } from './SectionList'
+import type { SectionListingProps } from './SectionListing'
 import type { SectionPartnersProps } from './SectionPartners'
 import { SectionPrivacyProps } from './SectionPrivacy'
 import type { SectionSliderProps } from './SectionSlider'
@@ -17,6 +18,7 @@ export type {
   SectionFaqProps,
   SectionGalleryProps,
   SectionHeroProps,
+  SectionListingProps,
   SectionListProps,
   SectionPartnersProps,
   SectionPrivacyProps,
