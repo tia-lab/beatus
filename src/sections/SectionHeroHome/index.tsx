@@ -21,7 +21,12 @@ export type SectionHeroData = Lib.FragmentOf<typeof SectionHeroFragment> & {
 
 const SectionHero = ({ data }: SectionHeroProps) => {
   return (
-    <Section mainWrapper={false} className={$.section}>
+    <Section
+      mainWrapper={false}
+      className={$.section}
+      headerColor="light"
+      headerColorImmediate
+    >
       <Image
         data={data.image}
         wrap={{ className: $.image }}

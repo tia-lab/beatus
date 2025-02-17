@@ -59,6 +59,17 @@
       border-color: $neutral-600;
       color: $neutral-600;
     }
+
+    &.on_image {
+      color: $white;
+      border-color: $white;
+
+      &:hover,
+      &.active {
+        opacity: 0.8;
+        color: $black;
+      }
+    }
   }
 
   &.variant_ghost {

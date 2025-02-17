@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 import createSelectors from '../utils/createSelectors'
 
-interface State {
+export interface State {
   navOpen: boolean
   headerHidden: boolean
   headerColor: 'dark' | 'light'

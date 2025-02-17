@@ -13,6 +13,7 @@ const SingleImage = ({ ...props }: Props) => {
       className={$.section}
       mainWrapper={false}
       padding={data.sectionPadding}
+      headerColor="light"
     >
       <Image
         data={data.image}

@@ -2,8 +2,8 @@
 
 import LogoBeatus from '$/public/beatus/logo/logo.svg'
 import { LayoutFragment } from '@/app/[locale]/query'
-import { BaseLink, Container, Section } from '@/components/Core'
-import { NotificationBar } from '@/components/Ui'
+import { BaseLink, Container } from '@/components/Core'
+import { Button, NotificationBar } from '@/components/Ui'
 import { NotificationBarProps } from '@/components/Ui/NotificationBar'
 import { useGSAPMedia } from '@/hooks'
 import { useStoreNavigation } from '@/store'
@@ -11,7 +11,7 @@ import { Lib } from '@/types'
 import { MEDIA, PROJECT } from '@config'
 import { ScrollTrigger, gsap } from '@gsap'
 import clsx from 'clsx'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 import OpenNav from './components/OpenNav'
@@ -32,12 +32,15 @@ const Header = ({ data }: HeaderProps) => {
   const comp = useRef<any>(null)
   const pathname = usePathname()
 
+  const t = useTranslations()
+
   //Stores
   const notificationActive = useStoreNavigation.use.notificationActive()
   const headerHidden = useStoreNavigation.use.headerHidden()
   const setHeaderHidden = useStoreNavigation.use.setHeaderHidden()
   const headerColor = useStoreNavigation.use.headerColor()
   const setOpenBookingModal = useStoreNavigation.use.setBookingModalOpen()
+  const setBookingKey = useStoreNavigation.use.setBookingKey()
 
   useGSAPMedia({
     media: MEDIA,
@@ -67,16 +70,14 @@ const Header = ({ data }: HeaderProps) => {
 
   if (!data) return null
   return (
-    <Section
-      as="header"
+    <header
       className={$.header}
       data-notifaction={notificationActive}
       data-hidden={headerHidden}
       ref={comp}
-      mainWrapper={false}
       data-color={headerColor}
     >
-      <div className={$.bg} />
+      <div className={$.bg} data-active={headerColor === 'light'} />
       <div className="main-wrapper">
         <NotificationBar data={notification} />
         <Container className={$.container}>
@@ -89,12 +90,42 @@ const Header = ({ data }: HeaderProps) => {
           >
             {PROJECT === 'beatus' && <LogoBeatus />}
           </BaseLink>
-          <div className={$.buttons} onClick={() => setOpenBookingModal(true)}>
-            buttons
+          <div
+            className={$.buttons_wrap}
+            onClick={() => setOpenBookingModal(true)}
+          >
+            <p className="text-style-uppercase font-weight-700">
+              {t('header_booking')}
+            </p>
+            <div className={$.buttons}>
+              <Button
+                isNext={false}
+                className={$.button_1}
+                data-light={headerColor === 'light'}
+                variant="outline"
+                onClick={() => {
+                  setOpenBookingModal(true)
+                  setBookingKey('0')
+                }}
+              >
+                {t('header_btn_dayguest')}
+              </Button>
+              <Button
+                isNext={false}
+                className={$.button_2}
+                data-light={headerColor === 'light'}
+                onClick={() => {
+                  setOpenBookingModal(true)
+                  setBookingKey('1')
+                }}
+              >
+                {t('header_btn_hotel')}
+              </Button>
+            </div>
           </div>
         </Container>
       </div>
-    </Section>
+    </header>
   )
 }
 

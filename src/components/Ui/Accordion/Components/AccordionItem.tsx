@@ -64,12 +64,12 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
     if (contentRef.current) {
       if (isOpen) {
         setHeight(`${contentRef.current.scrollHeight}px`)
+        gsap.delayedCall(1, () => ScrollTrigger.refresh())
       } else {
         setHeight('0px')
+        gsap.delayedCall(1, () => ScrollTrigger.refresh())
       }
     }
-
-    ScrollTrigger.refresh()
   }, [isOpen])
 
   const lenis = useLenis()
@@ -80,6 +80,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
         duration: DUR.goldenRatio * 2,
         ...lenisScrollOptions
       })
+      ScrollTrigger.refresh()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lenisScroll, lenis, isOpen])

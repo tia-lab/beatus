@@ -16,6 +16,7 @@ const MultiImage = ({ ...props }: Props) => {
       className={$.section}
       padding={data.sectionPadding}
       mainWrapper={false}
+      headerColor="light"
     >
       <div className={clsx('main-wrapper', $.mainWrapper)}>
         <div className={$.imageGallery}>

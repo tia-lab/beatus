@@ -86,7 +86,12 @@ const SectionListing = ({ data }: SectionListingProps) => {
   }
 
   return (
-    <Section className={$.section} mainWrapper={false} ref={comp}>
+    <Section
+      className={$.section}
+      mainWrapper={false}
+      ref={comp}
+      headerColor="light"
+    >
       <div className={$.slider} ref={sliderWrapperRef}>
         <div className={$.slider_container} ref={sliderRef}>
           <div className={$.slider_container_overlay} />

@@ -1,7 +1,11 @@
 'use client'
 
+import { useGSAPContext } from '@/hooks'
 import { SectionPaddingFragment } from '@/lib/fragments'
+import { useStoreNavigation } from '@/store'
+import { State } from '@/store/store-navigation'
 import { Lib } from '@/types'
+import { ScrollTrigger, gsap } from '@gsap'
 import clsx from 'clsx'
 import { readFragment } from 'gql.tada'
 import React, { forwardRef, memo, useImperativeHandle, useRef } from 'react'
@@ -13,6 +17,8 @@ export interface SectionProps extends BaseProps {
   ref?: React.RefObject<HTMLElement>
   mainWrapper?: boolean
   padding?: Lib.FragmentOf<typeof SectionPaddingFragment> | null
+  headerColor?: State['headerColor']
+  headerColorImmediate?: boolean
 }
 
 const Section = forwardRef<HTMLElement, SectionProps>(
@@ -23,6 +29,8 @@ const Section = forwardRef<HTMLElement, SectionProps>(
       as = 'section',
       mainWrapper = true,
       padding,
+      headerColor = 'dark',
+      headerColorImmediate = false,
       ...props
     },
     ref
@@ -31,8 +39,29 @@ const Section = forwardRef<HTMLElement, SectionProps>(
     const comp = useRef<any>(null)
     const paddings = readFragment(SectionPaddingFragment, padding)
 
+    //stores
+    const setHeaderColor = useStoreNavigation.use.setHeaderColor()
+
     //API
     useImperativeHandle(ref, () => comp.current as HTMLElement)
+
+    //Set header color
+    useGSAPContext({
+      scope: comp,
+      callback: () => {
+        gsap.registerPlugin(ScrollTrigger)
+        if (headerColorImmediate) {
+          setHeaderColor(headerColor)
+        }
+        ScrollTrigger.create({
+          trigger: comp.current,
+          start: 'top top',
+          end: 'bottom top',
+          onEnter: () => setHeaderColor(headerColor),
+          onEnterBack: () => setHeaderColor(headerColor)
+        })
+      }
+    })
 
     //Compoenets
     const ChildNode = () => {
