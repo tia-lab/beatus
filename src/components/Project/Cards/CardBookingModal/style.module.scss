@@ -1,0 +1,59 @@
+.card {
+  height: 33.5rem;
+  @include flex(column, flex-end, flex-start);
+  position: relative;
+  padding: $padding-global;
+  overflow: hidden;
+  cursor: pointer;
+
+  .overlay {
+    background: linear-gradient(
+      180deg,
+      rgb(0 0 0 / 0%) 0%,
+      rgb(0 0 0 / 60%) 70.28%
+    );
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+  }
+
+  .image {
+    @include object-fit-wrap;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    transition: transform $duration-base $out-cubic;
+  }
+
+  .bottom {
+    @include flex(row, space-between, flex-start);
+    color: $white;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+
+    .icon {
+      width: 3rem;
+      height: 3rem;
+      @include flex(row, center, center);
+      border-radius: $radius-full;
+      border: 1px solid $white;
+      transition: transform $duration-base $out-cubic;
+
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+  }
+
+  &:hover {
+    .image {
+      transform: scale(1.1);
+    }
+
+    .icon {
+      transform: translateX(-1rem);
+    }
+  }
+}

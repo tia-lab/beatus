@@ -73,7 +73,7 @@ const SliderCardsClient = ({ data, elements }: SliderCardsClientProps) => {
         onMouseLeave={() => setCursorType('default')}
       >
         <EmblaCarousel
-          options={{ loop: true, slidesToScroll: 2 }}
+          options={{ loop: true, slidesToScroll: 2, align: 'start' }}
           customEmblaApi={emblaApi}
           customEmblaRef={emblaRef}
           emblaClassName={$.embla}

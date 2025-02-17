@@ -1,5 +1,6 @@
 import BookingModal from './BookingModal'
 import Breadcrumb from './Breadcrumbs'
+import CardBookingModal from './Cards/CardBookingModal'
 import CardListItem from './Cards/CardListItem'
 import CardPackage from './Cards/CardPackage'
 import CardRoom from './Cards/CardRoom'
@@ -11,6 +12,7 @@ import Privacy from './Privacy'
 export {
   BookingModal,
   Breadcrumb,
+  CardBookingModal,
   CardListItem,
   CardPackage,
   CardRoom,

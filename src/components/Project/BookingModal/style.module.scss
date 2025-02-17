@@ -1,9 +1,15 @@
+@mixin tabline {
+  width: 100%;
+  height: 0.25rem;
+}
+
 .modal {
   position: fixed;
   inset: 0;
   z-index: 1000;
   background-color: $primary-300;
   color: $neutral-100;
+  display: none;
 
   .main_wrapper {
     height: 100vh;
@@ -13,6 +19,87 @@
 
     .tabs {
       width: 100%;
+
+      .tab_list {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 1fr;
+        justify-self: start;
+        grid-template-columns: 1fr;
+        gap: $space-lg;
+        @include h5;
+        text-transform: uppercase;
+      }
+
+      .tab {
+        padding: 1rem;
+        position: relative;
+        text-align: center;
+        cursor: pointer;
+
+        .tab_line {
+          @include tabline;
+          position: absolute;
+          bottom: -0.25rem;
+          left: 0;
+          background-color: $neutral-100;
+          opacity: 0;
+          transition: opacity $duration-base $out-cubic;
+        }
+
+        &:hover {
+          .tab_line {
+            opacity: 0.5;
+          }
+        }
+
+        &[data-active='true'] {
+          .tab_line {
+            opacity: 1;
+          }
+        }
+      }
+
+      .tabs_line {
+        @include tabline;
+        background-color: $neutral-100;
+        margin-bottom: $space-lg;
+        opacity: 0.2;
+      }
+    }
+
+    .embla_container {
+      grid-auto-columns: calc(33.3333% - $padding-global);
+      gap: $padding-global;
+    }
+
+    .overlay {
+      width: 22.125rem;
+      height: 100%;
+      z-index: 5;
+      position: absolute;
+      right: 0;
+      top: 0;
+      pointer-events: none;
+      background: linear-gradient(
+        90deg,
+        rgb(58 77 112 / 0%) 0%,
+        var(--color-primary-300, #36606e) 90%
+      );
+    }
+  }
+
+  .close {
+    position: absolute;
+    right: $padding-global;
+    top: $padding-global;
+    background-color: $neutral-100 !important;
+    border-color: $neutral-100 !important;
+    color: $neutral-600 !important;
+
+    &:hover {
+      background-color: $primary-200 !important;
+      border-color: $primary-200 !important;
     }
   }
 }

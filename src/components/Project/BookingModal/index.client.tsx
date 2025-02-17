@@ -1,10 +1,16 @@
 'use client'
-import { Parse, Section } from '@/components/Core'
-import { EmblaCarousel } from '@/components/Ui'
+import { animateBookingModal } from '@/animations/components'
+import { Parse } from '@/components/Core'
+import { EmblaCarousel, IconButton } from '@/components/Ui'
+import { useGSAPContext } from '@/hooks'
+import { getLinkUrl } from '@/lib/slugs'
+import { useStoreNavigation } from '@/store'
 import { Lib } from '@/types'
-import { memo, useState } from 'react'
-import { Key, Tab, TabList, TabPanel, Tabs } from 'react-aria-components'
+import { X } from 'lucide-react'
+import { memo, useEffect, useRef } from 'react'
+import { Tab, TabList, TabPanel, Tabs } from 'react-aria-components'
 import { BookingModalProps } from '.'
+import CardBookingModal from '../Cards/CardBookingModal'
 import bookingModalQuery from './query'
 import $ from './style.module.scss'
 
@@ -16,41 +22,99 @@ const Client = ({ ...props }: Props) => {
   const { data } = props
   const d = data?.bookingModal
 
-  const [tabKey, setTabKey] = useState<Key>(d?.tabs[0].id as Key)
+  const comp = useRef<any>(null)
+  const tlRef = useRef<GSAPTimeline | null>(null)
+
+  //Stores
+  const open = useStoreNavigation.use.bookingModalOpen()
+  const setOpen = useStoreNavigation.use.setBookingModalOpen()
+  const bookinkKey = useStoreNavigation.use.bookingKey()
+  const setBookingKey = useStoreNavigation.use.setBookingKey()
+
+  //hooks
+  useGSAPContext({
+    type: 'isomorphic',
+    scope: comp,
+    callback: () => {
+      animateBookingModal(comp, tlRef)
+    }
+  })
+
+  useEffect(() => {
+    if (open) {
+      tlRef.current?.play()
+    } else {
+      tlRef.current?.reverse()
+    }
+  }, [open])
 
   return (
-    <Section className={$.modal} as="aside" mainWrapper={false}>
+    <aside className={$.modal} ref={comp}>
       <div className={$.main_wrapper}>
-        <h2 className="text-style-uppercase">
+        <h2 className="text-style-uppercase" data-item>
           <Parse html={d?.title} excludeTags={['p']} />
         </h2>
         <Tabs
           className={$.tabs}
-          selectedKey={tabKey}
-          onSelectionChange={setTabKey}
+          selectedKey={bookinkKey}
+          onSelectionChange={(key) => setBookingKey(key as any)}
         >
-          <TabList aria-label="History of Ancient Rome">
-            {d?.tabs.map((tab) => (
-              <Tab id={tab.id} key={tab.id}>
+          <TabList aria-label="Bookings" className={$.tab_list}>
+            {d?.tabs.map((tab, k) => (
+              <Tab
+                id={String(k)}
+                key={k}
+                className={$.tab}
+                data-active={String(k) === String(bookinkKey)}
+                data-item
+                data-cacca={String(k)}
+              >
                 {tab.title}
+                <div className={$.tab_line} />
               </Tab>
             ))}
           </TabList>
-          {d?.tabs.map((tab) => (
-            <TabPanel id={tab.id} key={tab.id} className="fade-in">
-              <EmblaCarousel
-                options={{ loop: true }}
-                slides={tab.cards.map((card) => (
-                  <div key={card.id} className={$.slide}>
-                    {card.title}
-                  </div>
-                ))}
-              />
-            </TabPanel>
-          ))}
+          <div className={$.tabs_line} data-line />
+          <div data-item>
+            {d?.tabs.map((tab, k) => (
+              <TabPanel
+                id={String(k)}
+                key={k}
+                className="fade-in relative"
+                data-item
+                data-cacca={String(k)}
+              >
+                <EmblaCarousel
+                  containerClassName={$.embla_container}
+                  options={{ loop: true }}
+                  slides={tab.cards.map((card) => (
+                    <CardBookingModal
+                      key={card.id}
+                      data={card}
+                      href={getLinkUrl({ data: card.link }) || undefined}
+                      transitionType="fade"
+                      onClick={() => setOpen(false)}
+                    />
+                  ))}
+                />
+                <div className={$.overlay} />
+              </TabPanel>
+            ))}
+          </div>
         </Tabs>
       </div>
-    </Section>
+
+      <IconButton
+        data-item
+        className={$.close}
+        icon={<X width="100%" height="100%" strokeWidth={1} />}
+        size="large"
+        isNext={false}
+        as="button"
+        iconAnimation="rotate"
+        onClick={() => setOpen(false)}
+      />
+    </aside>
   )
 }
 

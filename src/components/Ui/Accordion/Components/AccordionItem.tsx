@@ -3,6 +3,7 @@
 import { DUR } from '@/animations/vars'
 import Title, { TitleTags } from '@/components/Core/Title'
 import { useStoreCursor } from '@/store'
+import { ScrollTrigger, gsap } from '@gsap'
 import { Icon } from '@iconify-icon/react'
 import { useLenis } from '@studio-freight/react-lenis'
 import clsx from 'clsx'
@@ -54,6 +55,10 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
   //stores
   const { setHoverDefault } = useStoreCursor()
 
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
+  }, [])
+
   //Hooks
   useEffect(() => {
     if (contentRef.current) {
@@ -63,6 +68,8 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
         setHeight('0px')
       }
     }
+
+    ScrollTrigger.refresh()
   }, [isOpen])
 
   const lenis = useLenis()

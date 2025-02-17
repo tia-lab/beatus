@@ -16,7 +16,10 @@ const isModelApiKeyAvailable = (url: any): url is { _modelApiKey: string } => {
 const getLinkUrl = ({ data }: Props) => {
   if (!data?.url) {
     return null
+  } else if (data.isExternal) {
+    return data.externalUrl
   }
+
   const url = () => {
     if (!isModelApiKeyAvailable(data.url)) return
     switch (data.url?._modelApiKey) {

@@ -37,6 +37,7 @@ const Header = ({ data }: HeaderProps) => {
   const headerHidden = useStoreNavigation.use.headerHidden()
   const setHeaderHidden = useStoreNavigation.use.setHeaderHidden()
   const headerColor = useStoreNavigation.use.headerColor()
+  const setOpenBookingModal = useStoreNavigation.use.setBookingModalOpen()
 
   useGSAPMedia({
     media: MEDIA,
@@ -88,7 +89,9 @@ const Header = ({ data }: HeaderProps) => {
           >
             {PROJECT === 'beatus' && <LogoBeatus />}
           </BaseLink>
-          <div className={$.buttons}>buttons</div>
+          <div className={$.buttons} onClick={() => setOpenBookingModal(true)}>
+            buttons
+          </div>
         </Container>
       </div>
     </Section>
