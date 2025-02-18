@@ -2,7 +2,7 @@
 import { animateBookingModal } from '@/animations/components'
 import { Parse } from '@/components/Core'
 import { EmblaCarousel, IconButton } from '@/components/Ui'
-import { useGSAPContext } from '@/hooks'
+import { useGSAPContext, useKeyPress } from '@/hooks'
 import { getLinkUrl } from '@/lib/slugs'
 import { useStoreNavigation } from '@/store'
 import { Lib } from '@/types'
@@ -47,6 +47,10 @@ const Client = ({ ...props }: Props) => {
       tlRef.current?.reverse()
     }
   }, [open])
+
+  useKeyPress('Escape', () => {
+    setOpen(false)
+  })
 
   return (
     <aside className={$.modal} ref={comp}>

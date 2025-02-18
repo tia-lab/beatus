@@ -5,6 +5,7 @@ import CardBookingModal from './Cards/CardBookingModal'
 import CardListItem from './Cards/CardListItem'
 import CardPackage from './Cards/CardPackage'
 import CardRoom from './Cards/CardRoom'
+import DetailDescription from './Detail/Description'
 import DetailGallery from './Detail/Gallery'
 import Footer from './Footer'
 import Header from './Header'
@@ -19,6 +20,7 @@ export {
   CardListItem,
   CardPackage,
   CardRoom,
+  DetailDescription,
   DetailGallery,
   Footer,
   Header,

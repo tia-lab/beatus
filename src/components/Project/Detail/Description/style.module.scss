@@ -1,0 +1,7 @@
+.section {
+  padding: $padding-vertical-sm 0 $space-2xl;
+
+  .description {
+    grid-column: 4 / -4;
+  }
+}
