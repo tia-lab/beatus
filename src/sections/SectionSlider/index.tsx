@@ -9,7 +9,7 @@ import VariantImages from './variants/Images'
 
 export interface SectionSliderProps {
   data: Lib.FragmentOf<typeof SectionSliderFragment>
-  params: SectionBuilderProps['params']
+  params?: SectionBuilderProps['params']
 }
 
 export type Variants = 'gallery' | 'fifty' | 'images' | 'packages' | 'rooms'

@@ -574,6 +574,36 @@ type FaqRecord implements RecordInterface {
     locale: SiteLocale
     filter: HomeModelFilter
   ): CollectionMetadata!
+  _allReferencingPackages(
+    """Specifies how to filter linking records"""
+    through: InverseRelationshipFilterBetweenPackageAndFaq
+
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+
+    """Skip the first results"""
+    skip: IntType
+
+    """Limit the number of results"""
+    first: IntType = 20
+    filter: PackageModelFilter
+    orderBy: [PackageModelOrderBy] = [position_ASC]
+  ): [PackageRecord!]!
+
+  """Returns meta information regarding a record collection"""
+  _allReferencingPackagesMeta(
+    """Specifies how to filter linking records"""
+    through: InverseRelationshipFilterBetweenPackageAndFaq
+
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+    filter: PackageModelFilter
+  ): CollectionMetadata!
   _allReferencingPages(
     """Specifies how to filter linking records"""
     through: InverseRelationshipFilterBetweenPageAndFaq
@@ -603,6 +633,36 @@ type FaqRecord implements RecordInterface {
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
     filter: PageModelFilter
+  ): CollectionMetadata!
+  _allReferencingRooms(
+    """Specifies how to filter linking records"""
+    through: InverseRelationshipFilterBetweenRoomAndFaq
+
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+
+    """Skip the first results"""
+    skip: IntType
+
+    """Limit the number of results"""
+    first: IntType = 20
+    filter: RoomModelFilter
+    orderBy: [RoomModelOrderBy] = [position_ASC]
+  ): [RoomRecord!]!
+
+  """Returns meta information regarding a record collection"""
+  _allReferencingRoomsMeta(
+    """Specifies how to filter linking records"""
+    through: InverseRelationshipFilterBetweenRoomAndFaq
+
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+    filter: RoomModelFilter
   ): CollectionMetadata!
   _allTitleLocales(
     """
@@ -3093,6 +3153,19 @@ input InverseRelationshipFieldFilterBetweenHomeAndFaq {
 }
 
 """Specifies how to filter by linking fields"""
+input InverseRelationshipFieldFilterBetweenPackageAndFaq {
+  """
+  Filter linking records that reference current record in at least one of the specified fields
+  """
+  anyIn: [PackageModelFieldsReferencingFaqModel!]
+
+  """
+  Filter linking records that do not reference current record in any of the specified fields
+  """
+  notIn: [PackageModelFieldsReferencingFaqModel!]
+}
+
+"""Specifies how to filter by linking fields"""
 input InverseRelationshipFieldFilterBetweenPageAndFaq {
   """
   Filter linking records that reference current record in at least one of the specified fields
@@ -3105,6 +3178,19 @@ input InverseRelationshipFieldFilterBetweenPageAndFaq {
   notIn: [PageModelFieldsReferencingFaqModel!]
 }
 
+"""Specifies how to filter by linking fields"""
+input InverseRelationshipFieldFilterBetweenRoomAndFaq {
+  """
+  Filter linking records that reference current record in at least one of the specified fields
+  """
+  anyIn: [RoomModelFieldsReferencingFaqModel!]
+
+  """
+  Filter linking records that do not reference current record in any of the specified fields
+  """
+  notIn: [RoomModelFieldsReferencingFaqModel!]
+}
+
 """Specifies how to filter linking records"""
 input InverseRelationshipFilterBetweenHomeAndFaq {
   """Specifies how to filter by linking fields"""
@@ -3115,9 +3201,27 @@ input InverseRelationshipFilterBetweenHomeAndFaq {
 }
 
 """Specifies how to filter linking records"""
+input InverseRelationshipFilterBetweenPackageAndFaq {
+  """Specifies how to filter by linking fields"""
+  fields: InverseRelationshipFieldFilterBetweenPackageAndFaq
+
+  """Specifies how to filter by linking locales"""
+  locales: LinkingLocalesFilter
+}
+
+"""Specifies how to filter linking records"""
 input InverseRelationshipFilterBetweenPageAndFaq {
   """Specifies how to filter by linking fields"""
   fields: InverseRelationshipFieldFilterBetweenPageAndFaq
+
+  """Specifies how to filter by linking locales"""
+  locales: LinkingLocalesFilter
+}
+
+"""Specifies how to filter linking records"""
+input InverseRelationshipFilterBetweenRoomAndFaq {
+  """Specifies how to filter by linking fields"""
+  fields: InverseRelationshipFieldFilterBetweenRoomAndFaq
 
   """Specifies how to filter by linking locales"""
   locales: LinkingLocalesFilter
@@ -3630,6 +3734,12 @@ input OrientationFilter {
   neq: UploadOrientation
 }
 
+"""Linking fields"""
+enum PackageModelFieldsReferencingFaqModel {
+  package_sectionBuilder
+  package_sectionBuilder__sectionBuilderDetail_sectionBuilder__sectionFaq_faqs
+}
+
 input PackageModelFilter {
   _createdAt: CreatedAtFilter
   id: ItemIdFilter
@@ -3704,6 +3814,12 @@ type PackageRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): [RedirectLinkRecordMultiLocaleField!]
+  _allSectionBuilderLocales(
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [SectionBuilderDetailRecordNonNullMultiLocaleField!]
   _allSeoMetaLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
@@ -3786,6 +3902,15 @@ type PackageRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): RedirectLinkRecord
+  sectionBuilder(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): SectionBuilderDetailRecord!
   seoAnalysis: JsonField
   seoMeta(
     """The locale to use to fetch the field's content"""
@@ -5049,6 +5174,12 @@ type RoomCategoryRecordMultiLocaleField {
   value: RoomCategoryRecord
 }
 
+"""Linking fields"""
+enum RoomModelFieldsReferencingFaqModel {
+  room_sectionBuilder
+  room_sectionBuilder__sectionBuilderDetail_sectionBuilder__sectionFaq_faqs
+}
+
 input RoomModelFilter {
   _createdAt: CreatedAtFilter
   id: ItemIdFilter
@@ -5063,6 +5194,8 @@ input RoomModelFilter {
   _locales: LocalesFilter
   amenities: LinksFilter
   category: LinkFilter
+  description: TextFilter
+  overline: StringFilter
   people: TextFilter
   seoAnalysis: JsonFilter
   seoMeta: SeoFilter
@@ -5095,6 +5228,8 @@ enum RoomModelOrderBy {
   _updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
+  overline_ASC
+  overline_DESC
   title_ASC
   title_DESC
 }
@@ -5113,6 +5248,21 @@ type RoomRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): [RoomCategoryRecordMultiLocaleField!]
+  _allDescriptionLocales(
+    """Process content as markdown"""
+    markdown: Boolean
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [StringNonNullMultiLocaleField!]
+  _allOverlineLocales(
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [StringMultiLocaleField!]
   _allPeopleLocales(
     """Process content as markdown"""
     markdown: Boolean
@@ -5128,6 +5278,12 @@ type RoomRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): [RedirectLinkRecordMultiLocaleField!]
+  _allSectionBuilderLocales(
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): [SectionBuilderDetailRecordMultiLocaleField!]
   _allSeoMetaLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
@@ -5201,9 +5357,30 @@ type RoomRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): RoomCategoryRecord
+  description(
+    """Process content as markdown"""
+    markdown: Boolean
+
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String!
   gallery: [ImageBlockRecord!]!
   id: ItemId!
   image: ImageBlockRecord!
+  overline(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): String
   people(
     """Process content as markdown"""
     markdown: Boolean
@@ -5226,6 +5403,15 @@ type RoomRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): RedirectLinkRecord
+  sectionBuilder(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+  ): SectionBuilderDetailRecord
   seoAnalysis: JsonField
   seoMeta(
     """The locale to use to fetch the field's content"""
@@ -5314,6 +5500,42 @@ type SectionAboutRecord implements RecordInterface {
     """Process content as markdown"""
     markdown: Boolean
   ): String
+}
+
+union SectionBuilderDetailModelSectionBuilderField = SectionCtaRecord | SectionFaqRecord | SectionSliderCardRecord | SectionSliderRecord | SectionTextDisplayRecord
+
+"""Block of type 🏗️ Section builder detail (section_builder_detail)"""
+type SectionBuilderDetailRecord implements RecordInterface {
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  id: ItemId!
+  sectionBuilder: [SectionBuilderDetailModelSectionBuilderField!]!
+}
+
+type SectionBuilderDetailRecordMultiLocaleField {
+  locale: SiteLocale
+  value: SectionBuilderDetailRecord
+}
+
+type SectionBuilderDetailRecordNonNullMultiLocaleField {
+  locale: SiteLocale
+  value: SectionBuilderDetailRecord!
 }
 
 union SectionBuilderModelSectionBuilderField = SectionAboutRecord | SectionCtaRecord | SectionFaqRecord | SectionFormRequestRecord | SectionGalleryRecord | SectionHeroHomeRecord | SectionHeroRecord | SectionListRecord | SectionListingRecord | SectionPrivacyRecord | SectionSliderCardRecord | SectionSliderRecord | SectionTextDisplayRecord | SectionTextImageRecord | SectionTextRecord

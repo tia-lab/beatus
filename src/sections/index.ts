@@ -1,7 +1,6 @@
 import SectionAbout from './SectionAbout'
 import SectionCta from './SectionCta'
 import SectionFaq from './SectionFaq'
-import SectionGallery from './SectionGallery'
 import SectionHero from './SectionHero'
 import SectionList from './SectionList'
 import SectionListing from './SectionListing'
@@ -15,7 +14,6 @@ export {
   SectionAbout,
   SectionCta,
   SectionFaq,
-  SectionGallery,
   SectionHero,
   SectionList,
   SectionListing,

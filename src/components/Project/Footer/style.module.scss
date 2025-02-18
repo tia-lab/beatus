@@ -1,3 +1,17 @@
+@mixin label {
+  @include text-small;
+  opacity: 0.4;
+  text-transform: uppercase;
+}
+
+@mixin animation {
+  transition: transform $duration-base $out-cubic;
+
+  &:hover {
+    transform: translateY(-0.25rem);
+  }
+}
+
 .footer {
   padding: 0 0 $padding-vertical-md;
   background-color: $primary-400;
@@ -10,9 +24,7 @@
   }
 
   .label {
-    @include text-small;
-    opacity: 0.4;
-    text-transform: uppercase;
+    @include label;
   }
 
   .contact,
@@ -56,6 +68,47 @@
     .socials_list {
       @include flex(row, flex-start, center);
       gap: $space-md;
+
+      .social {
+        @include animation;
+      }
+    }
+  }
+}
+
+.partners {
+  padding: $padding-global;
+
+  .label {
+    @include label;
+    grid-column: span 12;
+  }
+
+  .partner_wrap {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-column: span 12;
+    align-items: center;
+    gap: $space-2xl;
+
+    .partner_highlight {
+      width: 9.75rem;
+      max-height: 9.75rem;
+      display: block;
+      @include animation;
+    }
+
+    .partners {
+      @include flex(row, center, center);
+      gap: $space-2xl;
+      justify-self: end;
+
+      .partner {
+        max-width: 4rem;
+        max-height: 4rem;
+        display: block;
+        @include animation;
+      }
     }
   }
 }

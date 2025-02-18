@@ -29,7 +29,14 @@ const SectionBuilder = ({ sections, params }: SectionBuilderProps) => {
     return sections.map((section, k) => {
       switch (section.__typename) {
         case 'SectionHeroRecord':
-          return <SectionHero key={k} data={section} params={params} />
+          return (
+            <SectionHero
+              key={k}
+              data={section}
+              params={params}
+              variant="default"
+            />
+          )
         case 'SectionHeroHomeRecord':
           return <SectionHeroHome key={k} data={section} params={params} />
         case 'SectionAboutRecord':

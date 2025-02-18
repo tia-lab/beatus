@@ -1,0 +1,83 @@
+.slider {
+  .slider_container {
+    position: relative;
+  }
+
+  .embla {
+    @include fluid;
+    margin-top: $space-3xl;
+
+    .embla_container {
+      grid-auto-columns: 66%;
+
+      .slide {
+        width: 100%;
+        height: 36rem;
+        @include object-fit-wrap;
+      }
+    }
+  }
+
+  .frame_overlay {
+    width: calc(34% + $container-gutter);
+    height: 100%;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    right: calc(-1 * $padding-global);
+    background-color: $slider-frame;
+    pointer-events: none;
+
+    .frame_border {
+      width: $container-gutter;
+      height: 100%;
+      background-color: $neutral-100;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    .buttons {
+      pointer-events: visible;
+      position: absolute;
+      right: $padding-global;
+      bottom: $padding-global;
+      z-index: 5;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: $space-sm;
+
+      .button {
+        background-color: rgb(255 255 255 / 40%);
+        backdrop-filter: blur(12px);
+        border-radius: $radius-full;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 6rem;
+        height: 6rem;
+        color: $primary-300;
+        cursor: pointer;
+        transition: background-color $duration-base $out-cubic;
+
+        &[data-disabled='true'] {
+          opacity: 0.2;
+          pointer-events: none;
+        }
+
+        &:hover {
+          background-color: rgb(255 255 255 / 80%);
+        }
+
+        .icon {
+          width: 2.25rem;
+          height: 2.25rem;
+
+          &.icon_prev {
+            transform: rotate(-180deg);
+          }
+        }
+      }
+    }
+  }
+}

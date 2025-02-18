@@ -11,6 +11,7 @@ import ResponsiveImage from './ResponsiveImage'
 import RichText from './RichText'
 import Section from './Section'
 import SectionBuilder from './SectionBuilder'
+import SectionBuilderDetail from './SectionBuilderDetail'
 import StoreRoutes from './StoreRoutes'
 import Text from './Text'
 import Title from './Title'
@@ -32,6 +33,7 @@ export {
   RichText,
   Section,
   SectionBuilder,
+  SectionBuilderDetail,
   StoreRoutes,
   Text,
   Title,

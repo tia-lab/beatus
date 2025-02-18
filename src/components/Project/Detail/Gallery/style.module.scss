@@ -1,0 +1,23 @@
+.section {
+  padding: 0;
+
+  .content {
+    @include grid-span-cols(12);
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+
+    .content_title {
+      display: flex;
+      flex-direction: column;
+      gap: $space-md;
+    }
+
+    .content_text {
+      padding-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: $space-lg;
+      align-items: flex-start;
+    }
+  }
+}
