@@ -1,6 +1,6 @@
 .calendar {
   max-width: 22rem;
-  border-radius: $radius-large;
+  border-radius: $radius-medium;
   box-shadow: 0 8px 16px 0 rgb(10 10 10 / 12%);
   background-color: $neutral-100;
 
@@ -42,10 +42,15 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: $radius-small;
+        cursor: pointer;
+        border-radius: $radius-full;
         transition:
           color calc($duration-base / 2) $out-cubic,
           background-color calc($duration-base / 2) $out-cubic;
+
+        &:hover {
+          background-color: $neutral-200;
+        }
 
         &[data-selected] {
           background-color: $primary-300;
@@ -53,7 +58,7 @@
           color: $neutral-100;
 
           &[data-focus-visible] {
-            outline-color: var(--highlight-foreground);
+            outline-color: $primary-300;
             outline-offset: -3px;
           }
         }

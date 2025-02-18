@@ -1,0 +1,66 @@
+.field {
+  position: relative;
+
+  .popover {
+    background-color: $neutral-100;
+    padding: $space-md;
+    border-radius: $radius-medium;
+    border: 1px solid $neutral-200;
+    position: absolute;
+    display: none;
+    bottom: 3rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $space-md;
+    left: -50%;
+    z-index: 1000;
+
+    &[data-visible='true'] {
+      display: flex;
+    }
+
+    .rooms {
+      @include flex(row, flex-start, flex-start);
+      gap: $space-lg;
+
+      .room {
+        @include flex(column, flex-start, flex-start);
+        gap: $space-md;
+      }
+    }
+
+    .number_field {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: $space-md;
+      width: 100%;
+
+      .label {
+        @include text-small;
+        text-wrap: nowrap;
+      }
+
+      .group {
+        @include flex(row, space-between, stretch);
+        justify-self: end;
+
+        .button {
+          width: 1.5rem;
+          height: 1.5rem;
+          @include flex(column, center, center);
+          padding: 0.1rem;
+          border: 1px solid $neutral-200;
+          cursor: pointer;
+        }
+
+        .input {
+          border-top: 1px solid $neutral-200;
+          border-bottom: 1px solid $neutral-200;
+          text-align: center;
+          width: 3rem;
+          height: 1.5rem;
+        }
+      }
+    }
+  }
+}

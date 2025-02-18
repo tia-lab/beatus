@@ -17,7 +17,7 @@
 
     .text {
       @include rich-text;
-      margin: $space-md;
+      margin-top: $space-md;
       grid-column: 2 / span 5;
     }
   }

@@ -26,7 +26,7 @@ const PageFragment = graphql(
       sectionBuilder {
         ...SectionBuilderFragment
       }
-
+      bookingBar
       ...ParentTreeFragmentAllLocales
     }
   `,

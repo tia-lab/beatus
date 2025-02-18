@@ -1,8 +1,8 @@
 'use client'
 
+import Logo from '$/public/beatus/logo/logo.svg'
 import { animatePreload } from '@/animations/components'
 import { LayoutFragment } from '@/app/[locale]/query'
-import { Image } from '@/components/Core'
 import { useGSAPContext } from '@/hooks'
 import { useStorePreload } from '@/store'
 import { Lib } from '@/types'
@@ -42,7 +42,9 @@ const Preload = ({ children, data }: PreloadProps) => {
       {!isPreloaded && (
         <div ref={comp} className={$.preload}>
           <div data-logo>
-            <Image data={data?.preloadLogo} isClient />
+            <div className={$.logo}>
+              <Logo />
+            </div>
           </div>
         </div>
       )}

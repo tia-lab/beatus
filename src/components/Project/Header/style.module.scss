@@ -14,15 +14,15 @@
   }
 
   .bg {
-    background-color: $neutral-600;
+    background-color: $white;
     width: 100%;
     height: 100%;
-    opacity: 0;
+    opacity: 0.1;
     position: absolute;
-    transition: opacity $duration-base $out-cubic;
+    transition: background-color $duration-base $out-cubic;
 
-    &[data-active='true'] {
-      opacity: 0.1;
+    &[data-color='light'] {
+      background-color: $black;
     }
   }
 
@@ -70,10 +70,29 @@
       .buttons {
         @include flex(row, center, center);
         gap: $space-sm;
+        padding: $space-sm;
+        overflow: hidden;
+        border-radius: $radius-medium;
+        position: relative;
+
+        .buttons_overlay {
+          backdrop-filter: blur(2px);
+          background-color: $white;
+          opacity: 0.2;
+          inset: 0;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+
+          &[data-color='light'] {
+            background-color: $black;
+          }
+        }
 
         .button_1 {
           border-color: $black;
           color: $black;
+          border-radius: $radius-medium;
           transition:
             background-color $duration-base $out-cubic,
             border-color $duration-base $out-cubic;
@@ -81,6 +100,10 @@
           &[data-light='true'] {
             border-color: $white;
             color: $white;
+
+            &:hover {
+              color: $black;
+            }
           }
         }
 
@@ -88,6 +111,8 @@
           background-color: $black;
           border-color: $black;
           color: $white;
+          border-radius: $radius-medium;
+
           transition:
             background-color $duration-base $out-cubic,
             border-color $duration-base $out-cubic;

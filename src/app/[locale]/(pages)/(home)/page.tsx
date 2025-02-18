@@ -1,6 +1,7 @@
 import { Redirect, UpdateLangSwitch } from '@/components/Core'
 import SectionBuilder from '@/components/Core/SectionBuilder'
 import { TransitionIn } from '@/components/Layout'
+import { BookingBar } from '@/components/Project'
 import { getMetadata } from '@/lib/next'
 import { executeQuery } from '@/lib/query'
 import { I18N } from '@config'
@@ -39,6 +40,7 @@ export default async function Page({ params }: PageProps) {
       <Redirect data={home?.redirect} />
       <UpdateLangSwitch locale={params.locale} isHome />
       <SectionBuilder sections={home.sectionBuilder.sectionBuilder} />
+      <BookingBar active={home.bookingBar} />
       <TransitionIn />
     </>
   )

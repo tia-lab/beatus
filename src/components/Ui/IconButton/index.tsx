@@ -17,6 +17,7 @@ export interface IconButtonProps extends BaseLinkProps {
   activeState?: boolean
   hoverState?: boolean
   ariaWrapper?: boolean
+  onImage?: boolean
 }
 
 export const iconButtonVariants = ['fill', 'outline', 'ghost']
@@ -31,6 +32,7 @@ const IconButton = forwardRef<HTMLAnchorElement, IconButtonProps>(
       icon,
       iconAnimation,
       activeState,
+      onImage,
       hoverState,
       ariaWrapper,
       ...props
@@ -62,6 +64,7 @@ const IconButton = forwardRef<HTMLAnchorElement, IconButtonProps>(
         [$.icon_animation_rotate]: iconAnimation === 'rotate',
         [$.disabled]: isDisabled || props.disabled,
         [$.active]: activeState,
+        [$.on_image]: onImage,
         [$.hover]: hoverState || _isHover
       },
       className

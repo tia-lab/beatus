@@ -4,6 +4,7 @@ import { CalendarDate, getLocalTimeZone, today } from '@internationalized/date'
 import clsx from 'clsx'
 import { forwardRef, memo, useImperativeHandle, useRef, useState } from 'react'
 
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import {
   Button as AriaButton,
   Calendar as AriaCalendar,
@@ -60,7 +61,9 @@ const Calendar = forwardRef<CalendarRefProps, CalendarProps>(
           <div className={$.calendar_buttons}>
             <AriaButton slot="previous">
               <IconButton
-                icon="lucide:chevron-left"
+                icon={
+                  <ChevronLeft width="100%" height="100%" strokeWidth={1} />
+                }
                 size="large"
                 variant="outline"
               />
@@ -68,7 +71,9 @@ const Calendar = forwardRef<CalendarRefProps, CalendarProps>(
 
             <AriaButton slot="next">
               <IconButton
-                icon="lucide:chevron-right"
+                icon={
+                  <ChevronRight width="100%" height="100%" strokeWidth={1} />
+                }
                 size="large"
                 variant="outline"
               />

@@ -31,6 +31,7 @@ export interface TextFieldProps extends AriaTextFieldProps {
   placeholder?: string
   iconLeading?: string | React.ReactNode
   iconTrailing?: string | React.ReactNode
+  defaultValue?: string // Support uncontrolled mode
 }
 
 export interface TextFieldRefProps {
@@ -51,6 +52,9 @@ const TextField = forwardRef<TextFieldRefProps, TextFieldProps>(
       iconTrailing,
       isRequired,
       type,
+      value: controlledValue, // Controlled mode
+      defaultValue, // Uncontrolled mode
+      onChange, // Change handler for controlled mode
       ...props
     },
     ref
@@ -59,15 +63,29 @@ const TextField = forwardRef<TextFieldRefProps, TextFieldProps>(
     const comp = useRef<any>(null)
     const textareaRef = useRef<HTMLTextAreaElement>(null)
 
-    // States
-    const [value, setValue] = useState<string>('')
+    // Determine controlled or uncontrolled behavior
+    const isControlled = controlledValue !== undefined
+
+    // States (for uncontrolled mode only)
+    const [internalValue, setInternalValue] = useState<string>(
+      defaultValue || ''
+    )
     const [focused, setFocused] = useState<boolean>(false)
+
+    // Unified change handler
+    const handleChange = (newValue: string) => {
+      if (isControlled) {
+        onChange?.(newValue) // External state updates
+      } else {
+        setInternalValue(newValue) // Internal state update
+      }
+    }
 
     // API
     useImperativeHandle(ref, () => ({
       comp: comp.current,
-      value: value,
-      setValue: (value: string) => setValue(value)
+      value: isControlled ? controlledValue! : internalValue,
+      setValue: (newValue: string) => handleChange(newValue)
     }))
 
     // Dynamic height adjustment for TextArea
@@ -81,7 +99,7 @@ const TextField = forwardRef<TextFieldRefProps, TextFieldProps>(
     // Composers
     const textFieldClass = clsx($.text_field, {
       [$.focused]: focused,
-      [$.has_value]: value.length > 0
+      [$.has_value]: (isControlled ? controlledValue : internalValue).length > 0
     })
 
     const inputWrapClass = clsx($.input_wrap, {
@@ -96,10 +114,10 @@ const TextField = forwardRef<TextFieldRefProps, TextFieldProps>(
       <AriaTextField
         {...props}
         ref={comp}
-        onChange={setValue}
+        onChange={handleChange}
         className={textFieldClass}
         onFocusChange={setFocused}
-        value={value}
+        value={isControlled ? controlledValue : internalValue}
         type={type}
         isRequired={isRequired}
       >
@@ -121,7 +139,12 @@ const TextField = forwardRef<TextFieldRefProps, TextFieldProps>(
                 onInput={handleTextareaInput}
               />
             ) : (
-              <Input className={inputClass} placeholder={placeholder} />
+              <Input
+                className={inputClass}
+                placeholder={placeholder}
+                value={isControlled ? controlledValue : internalValue}
+                onChange={(e) => handleChange(e.target.value)}
+              />
             )}
           </div>
           {iconTrailing && <Icon icon={iconTrailing} />}

@@ -10,7 +10,8 @@
   transition:
     background-color $duration-base $out-cubic,
     border-color $duration-base $out-cubic,
-    color $duration-base $out-cubic;
+    color $duration-base $out-cubic,
+    opacity $duration-base $out-cubic;
 
   &.icon_animation_rotate {
     .icon {
@@ -37,10 +38,22 @@
       background-color: $primary-400;
       border-color: $primary-400;
     }
+
+    &.on_image {
+      background-color: $white;
+      color: $black;
+      border-color: $white;
+
+      &:hover,
+      &.hover,
+      &.active {
+        opacity: 0.8;
+      }
+    }
   }
 
   &.variant_outline {
-    border-color: $neutral-600;
+    border-color: $neutral-300;
     background-color: $neutral-100;
 
     &:hover,

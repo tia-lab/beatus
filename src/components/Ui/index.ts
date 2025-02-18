@@ -15,6 +15,7 @@ import NotificationBar from './NotificationBar'
 import NumberField from './NumberField'
 import Radio from './Radio'
 import RangeSlider from './RangeSlider'
+import RoomPeopleField from './RoomPeopleField/RoomPeopleField'
 import SearchField from './SearchField'
 import { SelectField, SelectFieldItem } from './SelectField'
 import Switch from './Switch'
@@ -41,6 +42,7 @@ export {
   NumberField,
   Radio,
   RangeSlider,
+  RoomPeopleField,
   SearchField,
   SelectField,
   SelectFieldItem,

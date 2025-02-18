@@ -21,6 +21,7 @@ const query = graphql(
         sectionBuilder {
           ...SectionBuilderFragment
         }
+        bookingBar
       }
     }
   `,

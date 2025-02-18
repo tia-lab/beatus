@@ -1,5 +1,4 @@
 import {
-  ImageFragment,
   LinkFragment,
   MenuDropdownFragment,
   PartnerBlockFragment
@@ -12,37 +11,32 @@ export const LayoutFragment = graphql(
       notification
       notificationIsActive
       notificationTitle
-      newsletterLink {
-        ...LinkFragment
-      }
       notificationLink {
         ...LinkFragment
-      }
-      preloadLogo {
-        ...ImageFragment
       }
 
       footerLinks {
         ...LinkFragment
       }
-
+      footerLinksCol2 {
+        ...LinkFragment
+      }
+      footerContact
+      socialLinks {
+        link
+        icon
+      }
+      footerCopyright
       navigation {
         ...MenuDropdownFragment
       }
-      footerDescription
-      contactAddress
-      contactPhone
-      contactEmail
-      instagramLink
-      youtubeLink
-      facebookLink
-      viemoLink
+
       partners {
         ...PartnerBlockFragment
       }
     }
   `,
-  [LinkFragment, PartnerBlockFragment, MenuDropdownFragment, ImageFragment]
+  [LinkFragment, PartnerBlockFragment, MenuDropdownFragment]
 )
 
 const queryLayout = graphql(

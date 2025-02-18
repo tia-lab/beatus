@@ -2,26 +2,41 @@
   .input_wrap {
     display: flex;
     flex-direction: column;
-    gap: $space-sm;
 
     .input {
       display: flex;
       flex-direction: row;
-      border: 1px solid black;
+      border: 1px solid $neutral-300;
       align-items: center;
-      padding: 0 $space-sm;
+      justify-content: space-between;
       column-gap: $space-sm;
       border-radius: $radius-small;
       padding-right: 0;
       overflow: hidden;
 
-      .input_date {
+      .input_group {
+        padding: $space-sm $space-md;
         display: flex;
-        @include text-main;
-        opacity: 0.5;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
 
-        &.input_date_active {
-          opacity: 1;
+        .label {
+          font-size: 0.75rem;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 100%; /* 0.75rem */
+        }
+
+        .input_date {
+          pointer-events: none;
+          display: flex;
+          @include text-main;
+          opacity: 0.5;
+
+          &.input_date_active {
+            opacity: 1;
+          }
         }
       }
 

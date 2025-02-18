@@ -77,7 +77,7 @@ const Header = ({ data }: HeaderProps) => {
       ref={comp}
       data-color={headerColor}
     >
-      <div className={$.bg} data-active={headerColor === 'light'} />
+      <div className={$.bg} data-color={headerColor} />
       <div className="main-wrapper">
         <NotificationBar data={notification} />
         <Container className={$.container}>
@@ -98,6 +98,7 @@ const Header = ({ data }: HeaderProps) => {
               {t('header_booking')}
             </p>
             <div className={$.buttons}>
+              <div className={$.buttons_overlay} data-color={headerColor} />
               <Button
                 isNext={false}
                 className={$.button_1}

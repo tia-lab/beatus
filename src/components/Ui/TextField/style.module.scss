@@ -13,14 +13,15 @@
   align-items: flex-start;
 
   .label {
-    @include text-small;
-    font-weight: bold;
-    text-transform: capitalize;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%; /* 0.75rem */
   }
 
   .input_wrap {
     border-radius: $radius-small;
-    border: 1px solid $neutral-400;
+    border: 1px solid $neutral-300;
     padding: $space-sm $space-md;
     display: flex;
     align-items: center;

@@ -21,6 +21,7 @@ import { Button as AriaButton } from 'react-aria-components'
 import $ from './style.module.scss'
 
 export interface ButtonProps extends BaseLinkProps {
+  type?: 'button' | 'submit' | 'reset'
   children?: React.ReactNode
   variant?: 'fill' | 'outline' | 'ghost' | 'text'
   size?: 'base' | 'small'
@@ -112,6 +113,7 @@ const Button = forwardRef<HTMLAnchorElement, ButtonProps>(
 
     const Component = () => (
       <BaseLink
+        type={props.type}
         ref={comp}
         {...props}
         className={classNames}
@@ -134,7 +136,7 @@ const Button = forwardRef<HTMLAnchorElement, ButtonProps>(
             ? title
             : data?.text || children) as React.ReactNode
         }
-        {variant === 'text' && <aside className={$.line} />}
+        {variant === 'text' && <aside data-line className={$.line} />}
       </BaseLink>
     )
 

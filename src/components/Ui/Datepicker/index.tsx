@@ -38,7 +38,15 @@ export interface DatePickerRefProps {
 
 const DatePicker = forwardRef<DatePickerRefProps, DatePickerPros<DateValue>>(
   (
-    { label, description, errorMessage, initialValue, onChange, ...props },
+    {
+      label,
+      description,
+      errorMessage,
+      initialValue,
+      onChange,
+      isRequired,
+      ...props
+    },
     ref
   ) => {
     //Refs
@@ -64,6 +72,7 @@ const DatePicker = forwardRef<DatePickerRefProps, DatePickerPros<DateValue>>(
       <AriaDatePicker
         {...props}
         ref={comp}
+        isRequired={isRequired}
         className={$.date_picker}
         value={value}
         onChange={(value) => {
@@ -72,23 +81,25 @@ const DatePicker = forwardRef<DatePickerRefProps, DatePickerPros<DateValue>>(
         }}
       >
         <div className={$.input_wrap}>
-          <Label>{label}</Label>
           <Group className={$.input}>
-            <DateInput
-              className={clsx($.input_date, value && $.input_date_active)}
-            >
-              {(segment) => <DateSegment segment={segment} />}
-            </DateInput>
+            <AriaButton>
+              <div className={$.input_group}>
+                <Label className={$.label}>{label}</Label>
+                <DateInput
+                  className={clsx($.input_date, value && $.input_date_active)}
+                >
+                  {(segment) => <DateSegment segment={segment} />}
+                </DateInput>
+              </div>
+            </AriaButton>
             <div className="flex">
-              <AriaButton>
-                <IconButton icon="lucide:calendar" className={$.icon_button} />
-              </AriaButton>
               {value && (
                 <IconButton
                   icon="lucide:x"
                   className={$.icon_button}
                   onClick={handleReset}
                   iconAnimation="rotate"
+                  variant="ghost"
                 />
               )}
             </div>
