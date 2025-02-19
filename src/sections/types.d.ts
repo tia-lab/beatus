@@ -1,6 +1,7 @@
 import { SectionAboutProps } from './SectionAbout'
 import type { SectionCtaProps } from './SectionCta'
 import type { SectionFaqProps } from './SectionFaq'
+import type { SectionFormProps } from './SectionForm'
 import type { SectionHeroProps } from './SectionHero'
 import type { SectionListProps } from './SectionList'
 import type { SectionListingProps } from './SectionListing'
@@ -15,6 +16,7 @@ export type {
   SectionAboutProps,
   SectionCtaProps,
   SectionFaqProps,
+  SectionFormProps,
   SectionHeroProps,
   SectionListingProps,
   SectionListProps,

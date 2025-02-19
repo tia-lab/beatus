@@ -2,6 +2,7 @@
   "name": "nextjs-starter-kit",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "redirects": "node scripts/redirects/index.mjs",
     "types": "bun ./scripts/sanity/types.mjs",
@@ -18,7 +19,8 @@
     "schema": "dotenv -c -- bash -c 'gql.tada generate schema https://graphql.datocms.com --header \"X-Exclude-Invalid: true\" --header \"Authorization: $DATOCMS_PUBLISHED_CONTENT_CDA_TOKEN\"'",
     "format": "npx prettier . --write",
     "prepare": "husky && npx simple-git-hooks && bun schema",
-    "pull-env": "vercel env pull"
+    "pull-env": "vercel env pull",
+    "dato-clone": "NODE_OPTIONS=\"--loader ts-node/esm\" ts-node scripts/dato/clone.ts"
   },
   "dependencies": {
     "@datocms/cda-client": "^0.2.1",
@@ -49,6 +51,7 @@
     "react-device-detect": "^2.2.3",
     "react-dom": "^18",
     "react-player": "^2.16.0",
+    "readline-sync": "^1.4.10",
     "serialize-error": "^11.0.3",
     "tsx": "^4.19.2",
     "usehooks-ts": "^3.1.0",
@@ -64,6 +67,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/readline-sync": "^1.4.8",
     "boxen": "^8.0.1",
     "chalk": "^5.3.0",
     "commitlint": "^19.4.0",
@@ -82,6 +86,7 @@
     "stylelint-config-standard": "^36.0.1",
     "stylelint-config-standard-scss": "^13.1.0",
     "stylelint-prettier": "^5.0.2",
+    "ts-node": "^10.9.2",
     "typescript": "^5.5.3"
   },
   "simple-git-hooks": {

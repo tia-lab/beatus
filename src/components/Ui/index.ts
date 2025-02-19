@@ -13,7 +13,7 @@ import Iconify from './Iconify'
 import LangSwitch from './LangSwitch'
 import NotificationBar from './NotificationBar'
 import NumberField from './NumberField'
-import Radio from './Radio'
+import { Radio, RadioGroup } from './Radio'
 import RangeSlider from './RangeSlider'
 import RoomPeopleField from './RoomPeopleField/RoomPeopleField'
 import SearchField from './SearchField'
@@ -41,6 +41,7 @@ export {
   NotificationBar,
   NumberField,
   Radio,
+  RadioGroup,
   RangeSlider,
   RoomPeopleField,
   SearchField,

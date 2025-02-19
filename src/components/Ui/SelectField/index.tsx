@@ -4,7 +4,7 @@ import { Icon as IconifyIcon } from '@iconify-icon/react'
 import clsx from 'clsx'
 import React, { useState } from 'react'
 import type {
-  ListBoxItemProps,
+  ListBoxItemProps as AriaListBoxItemProps,
   SelectProps,
   ValidationResult
 } from 'react-aria-components'
@@ -16,13 +16,12 @@ import {
   ListBoxItem,
   Popover,
   Select,
-  SelectValue,
-  Text
+  SelectValue
 } from 'react-aria-components'
 import $ from './style.module.scss'
 
 export interface SelectFieldProps<T extends object>
-  extends Omit<SelectProps<T>, 'children'> {
+  extends Omit<SelectProps<T>, 'children' | 'value' | 'onSelectionChange'> {
   label?: string
   description?: string
   errorMessage?: string | ((_validation: ValidationResult) => string)
@@ -31,11 +30,18 @@ export interface SelectFieldProps<T extends object>
   iconLeading?: string | React.ReactNode
   iconTrailing?: string | React.ReactNode
   placeholder?: string
+  popoverClassName?: string
+  selectFieldClassName?: string
+
+  uncontrolled?: boolean // ✅ Controlled by default
+  value?: string // ✅ Used when controlled
+  defaultValue?: string // ✅ Used for initial value in uncontrolled mode
+  onChange?: (value: string) => void // ✅ Controlled change handler
 }
 
 export function SelectField<T extends object>({
+  uncontrolled = false, // ✅ Controlled by default
   label,
-  description,
   errorMessage,
   items,
   children,
@@ -43,35 +49,55 @@ export function SelectField<T extends object>({
   isRequired,
   iconTrailing,
   placeholder,
+  popoverClassName,
+  selectFieldClassName,
+  value, // ✅ Controlled value
+  defaultValue, // ✅ Uncontrolled initial value
+  onChange, // ✅ Controlled change handler
   ...props
 }: SelectFieldProps<T>) {
-  const [value, setValue] = useState<string | null>(null)
+  const [internalValue, setInternalValue] = useState<string | null>(
+    uncontrolled ? (defaultValue ?? null) : null
+  ) // ✅ State for uncontrolled mode
+
   const [open, setOpen] = useState(false)
+
+  const handleSelection = (v: string | number) => {
+    const newValue = String(v)
+
+    if (uncontrolled) {
+      setInternalValue(newValue) // ✅ Update internal state in uncontrolled mode
+    }
+
+    if (onChange) {
+      onChange(newValue) // ✅ Update external state in controlled mode
+    }
+  }
 
   return (
     <Select
       {...props}
-      className={$.select_field}
-      onSelectionChange={(key) => setValue(String(key))}
+      className={clsx($.select_field, selectFieldClassName)}
+      onSelectionChange={handleSelection}
       isOpen={open}
       onOpenChange={setOpen}
+      selectedKey={uncontrolled ? internalValue : value} // ✅ Correct controlled vs uncontrolled behavior
     >
-      <Label className={$.label}>{label}</Label>
-      {description && (
-        <Text slot="description" className={$.description}>
-          {description}
-          {isRequired && <span className="text-primary-300">*</span>}
-        </Text>
-      )}
       <Button className={$.select_trigger}>
-        {iconLeading && <Icon icon={iconLeading} />}
-        {!value && placeholder && (
-          <span className={$.placeholder}>{placeholder}</span>
+        {label && (
+          <Label
+            className={$.label}
+          >{`${label}${isRequired ? ' *' : ''}`}</Label>
         )}
+        {iconLeading && <Icon icon={iconLeading} />}
         <SelectValue>
-          {({ defaultChildren, isPlaceholder }) => {
-            return isPlaceholder ? '' : defaultChildren
-          }}
+          {({ defaultChildren, isPlaceholder }) =>
+            isPlaceholder && placeholder ? (
+              <span className={$.placeholder}>{placeholder}</span>
+            ) : (
+              defaultChildren
+            )
+          }
         </SelectValue>
 
         <div className={$.icon_trailing}>
@@ -86,7 +112,8 @@ export function SelectField<T extends object>({
       </Button>
 
       <FieldError className={$.error}>{errorMessage}</FieldError>
-      <Popover className={$.popover}>
+
+      <Popover className={clsx($.popover, popoverClassName)}>
         <ListBox items={items} className={$.listbox}>
           {children}
         </ListBox>
@@ -95,15 +122,23 @@ export function SelectField<T extends object>({
   )
 }
 
-export function SelectFieldItem(props: ListBoxItemProps) {
+interface ListBoxItemProps extends AriaListBoxItemProps {
+  inert?: boolean
+}
+
+export function SelectFieldItem({ className, ...props }: ListBoxItemProps) {
   return (
     <ListBoxItem
       {...props}
       className={({ isFocused, isSelected }) =>
-        clsx($.option, {
-          [$.focused]: isFocused,
-          [$.selected]: isSelected
-        })
+        clsx(
+          $.option,
+          {
+            [$.focused]: isFocused,
+            [$.selected]: isSelected
+          },
+          className
+        )
       }
     />
   )

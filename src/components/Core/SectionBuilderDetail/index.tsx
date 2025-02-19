@@ -2,6 +2,7 @@ import { routing } from '@/i18n/routing'
 import {
   SectionCta,
   SectionFaq,
+  SectionForm,
   SectionSlider,
   SectionTextDisplay
 } from '@/sections'
@@ -30,6 +31,8 @@ const SectionBuilderDetail = ({ sections }: SectionBuilderPropsDetail) => {
           return <SectionSlider key={k} data={section} />
         case 'SectionFaqRecord':
           return <SectionFaq key={k} data={section} />
+        case 'SectionFormRecord':
+          return <SectionForm key={k} data={section} />
         default:
           return null
       }

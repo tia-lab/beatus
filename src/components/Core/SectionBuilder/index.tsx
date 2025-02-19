@@ -3,6 +3,7 @@ import {
   SectionAbout,
   SectionCta,
   SectionFaq,
+  SectionForm,
   SectionHero,
   SectionList,
   SectionListing,
@@ -55,6 +56,8 @@ const SectionBuilder = ({ sections, params }: SectionBuilderProps) => {
           return <SectionListing key={k} data={section} params={params} />
         case 'SectionFaqRecord':
           return <SectionFaq key={k} data={section} params={params} />
+        case 'SectionFormRecord':
+          return <SectionForm key={k} data={section} params={params} />
         default:
           return null
       }

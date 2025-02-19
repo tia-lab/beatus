@@ -2,6 +2,7 @@ import { graphql } from '@/lib/query'
 import SectionAboutFragment from '@/sections/SectionAbout/query'
 import SectionCtaFragment from '@/sections/SectionCta/query'
 import SectionFaqFragment from '@/sections/SectionFaq/query'
+import SectionFormFragment from '@/sections/SectionForm/query'
 import SectionHeroFragment from '@/sections/SectionHero/query'
 import SectionHeroHomeFragment from '@/sections/SectionHeroHome/query'
 import SectionListFragment from '@/sections/SectionList/query'
@@ -24,6 +25,7 @@ const SectionBuilderFragment = graphql(
         ...SectionListFragment
         ...SectionListingFragment
         ...SectionFaqFragment
+        ...SectionFormFragment
       }
     }
   `,
@@ -37,7 +39,8 @@ const SectionBuilderFragment = graphql(
     SectionSliderFragment,
     SectionListFragment,
     SectionListingFragment,
-    SectionFaqFragment
+    SectionFaqFragment,
+    SectionFormFragment
   ]
 )
 

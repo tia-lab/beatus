@@ -1,0 +1,45 @@
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $space-lg $container-gutter;
+
+  .field {
+    grid-column: span 2;
+
+    &.half {
+      grid-column: span 1;
+    }
+  }
+
+  .button {
+    justify-self: start;
+  }
+
+  .separator {
+    height: 2rem;
+    grid-column: span 2;
+
+    &.half {
+      grid-column: span 1;
+    }
+  }
+}
+
+.form_messages {
+  @include rich-text;
+  grid-column: 3 / -3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: $space-sm;
+  border-radius: 0.5rem;
+  background: $primary-400;
+  color: $primary-200;
+  padding: 5rem;
+  text-align: center;
+
+  p {
+    color: $neutral-100;
+  }
+}

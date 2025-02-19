@@ -32,6 +32,7 @@ const SectionHero = ({ data }: SectionHeroProps) => {
         wrap={{ className: $.image }}
         fitWrap
         ar="16x9"
+        sizes="100vw"
       />
       <div className={$.overlay} />
       <Container className={$.container}>

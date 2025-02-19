@@ -20,7 +20,8 @@
     }
 
     .rooms {
-      @include flex(row, flex-start, flex-start);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: $space-lg;
 
       .room {

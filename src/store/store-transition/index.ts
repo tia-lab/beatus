@@ -1,5 +1,6 @@
 import { TransitionTypes } from '@/components/Layout/types'
 import { create } from 'zustand'
+import createSelectors from '../utils/createSelectors'
 
 export interface State {
   isTransitionIn: boolean
@@ -19,7 +20,7 @@ export interface Action {
 /* eslint-enable no-unused-vars */
 
 // Create the Zustand store with a hook
-const useStoreTransition = create<State & Action>((set) => ({
+const _useStoreTransition = create<State & Action>((set) => ({
   isTransitionIn: false,
   isTransitionOut: false,
   transitionType: undefined,
@@ -36,5 +37,6 @@ const useStoreTransition = create<State & Action>((set) => ({
       transitionType: undefined
     })
 }))
+const useStoreTransition = createSelectors(_useStoreTransition)
 
 export default useStoreTransition

@@ -1,3 +1,25 @@
+.radio_group {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-sm;
+  border-radius: $radius-small;
+  border: 1px solid $neutral-300;
+  padding: $space-sm;
+
+  .group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $space-sm;
+    justify-self: start;
+  }
+
+  .label {
+    color: $neutral-600;
+    font-family: $font-primary;
+    width: 100%;
+  }
+}
+
 .radio {
   display: flex;
   justify-self: start;
@@ -19,7 +41,7 @@
       width: 0.75rem;
       height: 0.75rem;
       border-radius: $radius-round;
-      background-color: $primary-300;
+      background-color: $primary-400;
       opacity: 0;
       transition: opacity $duration-base $out-cubic;
     }
@@ -27,7 +49,7 @@
 
   &[data-selected='true'] {
     .dot {
-      border-color: $primary-300;
+      border-color: $primary-400;
       border-width: 2px;
 
       .dot_inner {
@@ -38,7 +60,7 @@
 
   &:hover {
     .dot {
-      border-color: $primary-300;
+      border-color: $primary-400;
     }
   }
 

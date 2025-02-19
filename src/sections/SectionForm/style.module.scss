@@ -1,0 +1,7 @@
+.section {
+  padding: $padding-vertical-sm 0;
+
+  .form {
+    grid-column: 2 / -2;
+  }
+}

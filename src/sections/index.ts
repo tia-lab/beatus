@@ -1,6 +1,7 @@
 import SectionAbout from './SectionAbout'
 import SectionCta from './SectionCta'
 import SectionFaq from './SectionFaq'
+import SectionForm from './SectionForm'
 import SectionHero from './SectionHero'
 import SectionList from './SectionList'
 import SectionListing from './SectionListing'
@@ -9,11 +10,11 @@ import SectionSlider from './SectionSlider'
 import SectionText from './SectionText'
 import SectionTextDisplay from './SectionTextDisplay'
 import SectionTextImage from './SectionTextImage'
-
 export {
   SectionAbout,
   SectionCta,
   SectionFaq,
+  SectionForm,
   SectionHero,
   SectionList,
   SectionListing,

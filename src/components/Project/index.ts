@@ -8,6 +8,7 @@ import CardRoom from './Cards/CardRoom'
 import DetailContent from './Detail/Content'
 import DetailGallery from './Detail/Gallery'
 import Footer from './Footer'
+import FormBuilder from './FormBuilder'
 import Header from './Header'
 import Nav from './Nav'
 import Privacy from './Privacy'
@@ -25,6 +26,7 @@ export {
   DetailContent,
   DetailGallery,
   Footer,
+  FormBuilder,
   Header,
   Nav,
   Privacy,

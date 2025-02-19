@@ -18,7 +18,6 @@ import {
   FieldError,
   Input,
   Label,
-  Text,
   TextArea
 } from 'react-aria-components'
 import $ from './style.module.scss'
@@ -44,11 +43,11 @@ const TextField = forwardRef<TextFieldRefProps, TextFieldProps>(
   (
     {
       label,
-      description,
       errorMessage,
       textarea,
       placeholder,
       iconLeading,
+      className,
       iconTrailing,
       isRequired,
       type,
@@ -97,10 +96,15 @@ const TextField = forwardRef<TextFieldRefProps, TextFieldProps>(
     }
 
     // Composers
-    const textFieldClass = clsx($.text_field, {
-      [$.focused]: focused,
-      [$.has_value]: (isControlled ? controlledValue : internalValue).length > 0
-    })
+    const textFieldClass = clsx(
+      $.text_field,
+      {
+        [$.focused]: focused,
+        [$.has_value]:
+          (isControlled ? controlledValue : internalValue).length > 0
+      },
+      className
+    )
 
     const inputWrapClass = clsx($.input_wrap, {
       [$.input_wrap_textarea]: textarea
@@ -121,16 +125,12 @@ const TextField = forwardRef<TextFieldRefProps, TextFieldProps>(
         type={type}
         isRequired={isRequired}
       >
-        {description && (
-          <Text slot="description" className={$.description}>
-            {description}
-            {isRequired && <span className="text-primary-300">*</span>}
-          </Text>
-        )}
         <div className={inputWrapClass}>
           {iconLeading && <Icon icon={iconLeading} />}
           <div className={$.input_container}>
-            <Label className={$.label}>{label}</Label>
+            <Label
+              className={$.label}
+            >{`${label}${isRequired ? ' *' : ''}`}</Label>
             {textarea ? (
               <TextArea
                 ref={textareaRef}

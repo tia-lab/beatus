@@ -13,7 +13,11 @@ const Detail = ({ data }: Omit<SectionHeroProps, 'variant'>) => {
   )
   if (!d) return null
   return (
-    <Section className={$.section_detail}>
+    <Section
+      className={$.section_detail}
+      headerColor="dark"
+      headerColorImmediate
+    >
       <Container className={$.container} anim="section-fade-in">
         {d.overline && <p className={$.overline}>{d.overline}</p>}
         <h1 className={$.title}>

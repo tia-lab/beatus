@@ -1,23 +1,62 @@
-//https://react-spectrum.adobe.com/react-aria/Checkbox.html
-
 'use client'
 
 import clsx from 'clsx'
 import { forwardRef, memo, useImperativeHandle, useRef } from 'react'
-import type { RadioProps as AriaRadioProps } from 'react-aria-components'
-import { Radio as AriaRadio } from 'react-aria-components'
+import type {
+  RadioGroupProps as AriaRadioGroupProps,
+  RadioProps as AriaRadioProps
+} from 'react-aria-components'
+import {
+  Radio as AriaRadio,
+  RadioGroup as AriaRadioGroup,
+  Label
+} from 'react-aria-components'
 import $ from './style.module.scss'
 
+// ✅ RadioGroup Props
+export interface RadioGroupProps
+  extends Omit<AriaRadioGroupProps, 'value' | 'onChange'> {
+  value?: string // Controlled value
+  onChange?: (value: string) => void // Controlled state update
+  label?: string
+}
+
+// ✅ Radio Props (does NOT need state, controlled by `RadioGroup`)
 export interface RadioProps extends AriaRadioProps {}
-export interface RadioRefProps extends RadioProps {}
 
-const Radio = forwardRef<RadioRefProps, RadioProps>(
+// ✅ RadioGroup Component
+const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
+  ({ value, onChange, children, className, ...props }, ref) => {
+    const comp = useRef<HTMLDivElement>(null)
+
+    useImperativeHandle(ref, () => comp.current!)
+
+    return (
+      <AriaRadioGroup
+        ref={comp}
+        {...props}
+        className={clsx($.radio_group, className)}
+        value={value} // ✅ Controlled by parent
+        onChange={(event) => onChange?.(event as string)} // ✅ Ensure correct type
+      >
+        <>
+          <Label className={$.label}>{props.label}</Label>
+
+          <div className={$.group}>
+            <>{children}</>
+          </div>
+        </>
+      </AriaRadioGroup>
+    )
+  }
+)
+
+// ✅ Radio Component (No need for internal state)
+const Radio = forwardRef<HTMLLabelElement, RadioProps>(
   ({ children, className, ...props }, ref) => {
-    //Refs
-    const comp = useRef<any>(null)
+    const comp = useRef<HTMLLabelElement>(null)
 
-    //API
-    useImperativeHandle(ref, () => comp.current)
+    useImperativeHandle(ref, () => comp.current!)
 
     return (
       <AriaRadio ref={comp} {...props} className={clsx($.radio, className)}>
@@ -30,6 +69,8 @@ const Radio = forwardRef<RadioRefProps, RadioProps>(
   }
 )
 
+RadioGroup.displayName = 'RadioGroup'
 Radio.displayName = 'Radio'
 
-export default memo(Radio)
+export { Radio, RadioGroup }
+export default memo(RadioGroup)
