@@ -1,7 +1,7 @@
 'use client'
 
 import { DUR } from '@/animations/vars'
-import { ScrollToParams } from '@studio-freight/react-lenis/types'
+import { ScrollToParams } from '@studio-freight/react-lenis'
 import clsx from 'clsx'
 import React, { ReactNode, createContext, memo, useState } from 'react'
 import $ from '../style.module.scss'
