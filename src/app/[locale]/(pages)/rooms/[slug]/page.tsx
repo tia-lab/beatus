@@ -4,7 +4,7 @@ import {
   UpdateLangSwitch
 } from '@/components/Core'
 import { TransitionIn } from '@/components/Layout'
-import { DetailDescription, DetailGallery } from '@/components/Project'
+import { BookingBar, DetailContent, DetailGallery } from '@/components/Project'
 import { routing } from '@/i18n/routing'
 import { getMetadata } from '@/lib/next'
 import { executeQuery } from '@/lib/query'
@@ -81,13 +81,13 @@ export default async function Page({ params }: PageProps) {
       />
       <SectionHero data={room} variant="detail" />
       <DetailGallery data={room} />
-      <DetailDescription data={room} />
+      <DetailContent data={room} />
       <SectionBuilderDetail
         //@ts-expect-error
         sections={room.sectionBuilder?.sectionBuilder}
         params={params}
       />
-
+      <BookingBar active={room.bookingBar} />
       <TransitionIn />
     </>
   )

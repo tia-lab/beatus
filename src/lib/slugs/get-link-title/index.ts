@@ -22,6 +22,11 @@ const getLinkTitle = ({ data }: Props) => {
           return data.url?.pageTitle
         }
         break
+      case 'room':
+        if ('slug' in data.url && 'title' in data.url) {
+          return data.url?.title
+        }
+        break
       default:
         return undefined
     }

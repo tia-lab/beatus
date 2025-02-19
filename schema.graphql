@@ -395,6 +395,43 @@ scalar CustomData
 """A ISO 8601 compliant datetime value"""
 scalar DateTime
 
+union DetailContentModelContentBlocksField = ImageBlockRecord | LinkRecord | SpacerRecord
+
+type DetailContentModelContentField {
+  blocks: [DetailContentModelContentBlocksField!]!
+  links: [String!]!
+  value: JsonField!
+}
+
+"""Block of type 📔 Detail content (detail_content)"""
+type DetailContentRecord implements RecordInterface {
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  content: DetailContentModelContentField
+  id: ItemId!
+}
+
+type DetailContentRecordNonNullMultiLocaleField {
+  locale: SiteLocale
+  value: DetailContentRecord!
+}
+
 input FaqCategoryModelFilter {
   _createdAt: CreatedAtFilter
   id: ItemIdFilter
@@ -3427,7 +3464,7 @@ input LinkFilter {
   exists: BooleanType
 }
 
-union LinkModelUrlField = HomeRecord | PageRecord
+union LinkModelUrlField = HomeRecord | PageRecord | RoomRecord
 
 """Block of type ➡️ Link (link)"""
 type LinkRecord implements RecordInterface {
@@ -3456,6 +3493,7 @@ type LinkRecord implements RecordInterface {
   text: String
   titleText: BooleanType!
   url: LinkModelUrlField
+  urlParams: String
 }
 
 type LinkRecordListListNonNullMultiLocaleField {
@@ -5193,8 +5231,8 @@ input RoomModelFilter {
   _isValid: BooleanFilter
   _locales: LocalesFilter
   amenities: LinksFilter
+  bookingBar: BooleanFilter
   category: LinkFilter
-  description: TextFilter
   overline: StringFilter
   people: TextFilter
   seoAnalysis: JsonFilter
@@ -5228,6 +5266,8 @@ enum RoomModelOrderBy {
   _updatedAt_DESC
   _isValid_ASC
   _isValid_DESC
+  bookingBar_ASC
+  bookingBar_DESC
   overline_ASC
   overline_DESC
   title_ASC
@@ -5248,15 +5288,12 @@ type RoomRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): [RoomCategoryRecordMultiLocaleField!]
-  _allDescriptionLocales(
-    """Process content as markdown"""
-    markdown: Boolean
-
+  _allContentLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): [StringNonNullMultiLocaleField!]
+  ): [DetailContentRecordNonNullMultiLocaleField!]
   _allOverlineLocales(
     """
     If you want to fallback to a default translation when a translation has not been found
@@ -5348,6 +5385,7 @@ type RoomRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): [RoomAmenityRecord!]!
+  bookingBar: BooleanType!
   category(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
@@ -5357,10 +5395,7 @@ type RoomRecord implements RecordInterface {
     """
     fallbackLocales: [SiteLocale!]
   ): RoomCategoryRecord
-  description(
-    """Process content as markdown"""
-    markdown: Boolean
-
+  content(
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
 
@@ -5368,7 +5403,7 @@ type RoomRecord implements RecordInterface {
     If you want to fallback to a default translation when a translation has not been found
     """
     fallbackLocales: [SiteLocale!]
-  ): String!
+  ): DetailContentRecord!
   gallery: [ImageBlockRecord!]!
   id: ItemId!
   image: ImageBlockRecord!
@@ -6221,6 +6256,30 @@ type SocialLinkRecord implements RecordInterface {
   icon: String!
   id: ItemId!
   link: String!
+}
+
+"""Block of type ↔️ Spacer (spacer)"""
+type SpacerRecord implements RecordInterface {
+  _createdAt: DateTime!
+
+  """Editing URL"""
+  _editingUrl: String
+  _firstPublishedAt: DateTime
+  _isValid: BooleanType!
+  _modelApiKey: String!
+  _publicationScheduledAt: DateTime
+  _publishedAt: DateTime
+
+  """Generates SEO and Social card meta tags to be used in your frontend"""
+  _seoMetaTags(
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [Tag!]!
+  _status: ItemStatus!
+  _unpublishingScheduledAt: DateTime
+  _updatedAt: DateTime!
+  id: ItemId!
+  space: String!
 }
 
 """Specifies how to filter by status"""

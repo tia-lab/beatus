@@ -40,7 +40,10 @@ export const sectionPaddingsVars = {
   }
 }
 
-export const spacings: SCSSVars = [spacingVars, [{ mb: 'margin-bottom' }]]
+export const spacings: SCSSVars = [
+  spacingVars,
+  [{ mb: 'margin-bottom' }, { h: 'height' }]
+]
 export const layoutSpacings: SCSSVars = [layoutSpacingVars, []]
 export const sectionSpacings: SCSSVars = [
   sectionPaddingsVars,

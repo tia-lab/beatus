@@ -16,11 +16,18 @@ const LinkFragment = graphql(
           _modelApiKey
           ...ParentTreeFragment
         }
+        ... on RoomRecord {
+          id
+          slug
+          title
+          _modelApiKey
+        }
       }
       externalUrl
       isExternal
       text
       targetBlank
+      urlParams
       titleText
       _modelApiKey
     }

@@ -1,34 +1,44 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
+
   "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit",
-    "source.organizeImports": "explicit",
     "source.fixAll.eslint": "explicit",
-    "source.fixAll.stylelint": "explicit"
+    "source.organizeImports": "explicit"
   },
+
   "eslint.validate": [
     "javascript",
     "javascriptreact",
     "typescript",
     "typescriptreact"
   ],
+
+  "eslint.options": {
+    "ignorePath": "./config/.eslintignore"
+  },
+
   "stylelint.enable": true,
+  "stylelint.validate": ["css", "scss"],
+  "stylelint.configFile": "./config/.stylelintrc.json",
+
+  "prettier.configPath": "./config/.prettierrc.json",
+  "prettier.ignorePath": "./config/.prettierignore",
 
   "files.associations": {
     "*.mts": "typescript",
     "*.mjs": "javascript"
   },
-  //eslint
-  "eslint.options": {
-    "ignorePath": "./config/.eslintignore"
-  },
-  // Prettier
-  "prettier.configPath": "./config/.prettierrc.json",
-  "prettier.ignorePath": "./config/.prettierignore",
-  // Stylelint
-  "stylelint.configFile": "./config/.stylelintrc.json",
-  "stylelint.validate": ["css", "scss"],
+
   "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/.next/**": true,
+    "**/dist/**": true
+  },
+
+  "editor.inlineSuggest.enabled": true,
+  "editor.suggestSelection": "first"
 }

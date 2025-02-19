@@ -5,12 +5,14 @@ import CardBookingModal from './Cards/CardBookingModal'
 import CardListItem from './Cards/CardListItem'
 import CardPackage from './Cards/CardPackage'
 import CardRoom from './Cards/CardRoom'
-import DetailDescription from './Detail/Description'
+import DetailContent from './Detail/Content'
 import DetailGallery from './Detail/Gallery'
 import Footer from './Footer'
 import Header from './Header'
 import Nav from './Nav'
 import Privacy from './Privacy'
+import RichText from './RichText'
+import Spacer from './Spacer'
 
 export {
   BookingBar,
@@ -20,10 +22,12 @@ export {
   CardListItem,
   CardPackage,
   CardRoom,
-  DetailDescription,
+  DetailContent,
   DetailGallery,
   Footer,
   Header,
   Nav,
-  Privacy
+  Privacy,
+  RichText,
+  Spacer
 }

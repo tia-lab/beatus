@@ -2,6 +2,7 @@ import SectionBuilderDetailFragment from '@/components/Core/SectionBuilderDetail
 import { graphql } from '@/lib/query'
 import ImageFragment from '../../image'
 import RedirectLinkFragment from '../../redirect-link'
+import DetailContentFragment from '../../structured-text/detail'
 import TagFragment from '../../tag'
 
 const RoomFragment = graphql(
@@ -24,7 +25,6 @@ const RoomFragment = graphql(
       size
       people
       shortDescription
-      description
       image {
         ...ImageFragment
       }
@@ -40,13 +40,20 @@ const RoomFragment = graphql(
       sectionBuilder {
         ...SectionBuilderDetailFragment
       }
+      bookingBar
+      content {
+        id
+        ...DetailContentFragment
+      }
     }
   `,
   [
     RedirectLinkFragment,
     TagFragment,
     ImageFragment,
-    SectionBuilderDetailFragment
+    SectionBuilderDetailFragment,
+    ImageFragment,
+    DetailContentFragment
   ]
 )
 

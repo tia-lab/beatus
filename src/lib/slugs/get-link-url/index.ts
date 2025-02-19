@@ -20,17 +20,24 @@ const getLinkUrl = ({ data }: Props) => {
     return data.externalUrl
   }
 
+  const params = 'urlParams' in data ? data.urlParams : ''
+
   const url = () => {
     if (!isModelApiKeyAvailable(data.url)) return
     switch (data.url?._modelApiKey) {
       case 'page':
         if ('slug' in data.url && 'parent' in data.url) {
           const path = getParentSlug(data.url.parent)
-          return `${path}/${data.url?.slug}`
+          return `${path}/${data.url?.slug}/${params}`
+        }
+        break
+      case 'room':
+        if ('slug' in data.url) {
+          return `/rooms/${data.url?.slug}/${params}`
         }
         break
       default:
-        return '/'
+        return `/${params}`
     }
   }
   return url()

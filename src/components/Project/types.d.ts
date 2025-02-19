@@ -4,12 +4,13 @@ import type { CardListItemProps } from './Cards/CardListItem'
 import type { CardPackageProps } from './Cards/CardPackage'
 import type { FooterProps } from './Footer'
 import type { HeaderProps } from './Header'
-
+import type { RichTextProps } from './RichText'
 export {
   BookingBarProps,
   CardBookingModalProps,
   CardListItemProps,
   CardPackageProps,
   FooterProps,
-  HeaderProps
+  HeaderProps,
+  RichTextProps
 }

@@ -8,7 +8,6 @@ import MediaQuery from './MediaQuery'
 import Parse from './Parse'
 import Redirect from './Redirect'
 import ResponsiveImage from './ResponsiveImage'
-import RichText from './RichText'
 import Section from './Section'
 import SectionBuilder from './SectionBuilder'
 import SectionBuilderDetail from './SectionBuilderDetail'
@@ -30,7 +29,6 @@ export {
   Parse,
   Redirect,
   ResponsiveImage,
-  RichText,
   Section,
   SectionBuilder,
   SectionBuilderDetail,
