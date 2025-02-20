@@ -1,5 +1,6 @@
 'use client'
 
+import { Image } from '@/components/Core'
 import { Button } from '@/components/Ui'
 import { useGSAPContext } from '@/hooks'
 import { MenuDropdownFragment } from '@/lib/fragments'
@@ -24,8 +25,9 @@ const NavDropdownItem = ({
 }: NavDropdownProps) => {
   const comp = useRef<any>(null)
   const tl = useRef<GSAPTimeline | null>(null)
+  const openItem = useStoreNavigation.use.openDropdown()
+  const { toggleItem } = useDropdown()
 
-  const { openItem, toggleItem } = useDropdown()
   const isOpen = openItem === id
 
   //stores
@@ -37,8 +39,15 @@ const NavDropdownItem = ({
     callback: () => {
       const body = '[data-body]'
       tl.current = gsap.timeline({ paused: true })
-      gsap.set(body, { height: 0, opacity: 0, overflow: 'hidden' })
-      tl.current.to(body, { height: 'auto', opacity: 1, duration: 0.3 })
+      gsap.set(body, {
+        autoAlpha: 0,
+        overflow: 'hidden',
+        pointerEvents: 'none',
+        display: 'none'
+      })
+      tl.current
+        .to(body, { display: 'flex', duration: 0, pointerEvents: 'all' })
+        .to(body, { autoAlpha: 1, duration: 0.3 })
     }
   })
 
@@ -53,36 +62,33 @@ const NavDropdownItem = ({
       className={clsx($.nav_dropdown_item, { [$.open]: isOpen }, className)}
       {...props}
     >
-      <div className={$.icon} onClick={() => toggleItem(id)} data-open={isOpen}>
-        <div className="title-h3">{data.dropdownTitle}</div>
+      <div
+        className={$.title}
+        onClick={() => toggleItem(id)}
+        data-open={isOpen}
+      >
+        <div className={$.title}>{data.dropdownTitle}</div>
       </div>
-      <div className={$.links}>
-        <div className={$.title}>
-          <Button
-            data={data.dropdownItems[0]}
-            variant="text"
-            className={$.dropdown_link}
-            onClick={() => setNavOpen(false)}
-            preventSameUrlClass="pointer-events-none"
-            transitionType={
-              data.dropdownItems[0].isExternal ? undefined : 'fade'
-            }
-          />
-        </div>
 
-        <div className={$.body} data-body>
-          {data.dropdownItems.slice(1).map((item, i) => (
+      <div className={$.body} data-body>
+        <div className={$.links}>
+          {data.dropdownItems.map((item, i) => (
             <Button
               data={item}
+              className={$.link}
               key={i}
               variant="text"
               preventSameUrlClass="pointer-events-none"
-              className={clsx($.dropdown_link)}
               onClick={() => setNavOpen(false)}
               transitionType={item.isExternal ? undefined : 'fade'}
             />
           ))}
         </div>
+        <Image
+          data={data.dropdownImage}
+          wrap={{ className: clsx($.image) }}
+          fitWrap
+        />
       </div>
     </div>
   )

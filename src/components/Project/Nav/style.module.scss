@@ -56,34 +56,13 @@
       background-color: $primary-300;
     }
 
-    .modal_content {
+    .nav {
       display: grid;
-      grid-template-columns: 47.5rem 1fr;
+      grid-template-columns: 1fr;
       height: 100%;
       overflow-y: scroll;
       padding: $space-md 0;
-      @include tablet {
-        grid-template-columns: 1fr;
-      }
-
-      .menu {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 0;
-        align-self: start;
-
-        .menu_item {
-          @include h3;
-          text-transform: uppercase;
-          padding: $space-sm 0;
-        }
-      }
-
-      .dropdowns {
-        height: 100%;
-        overflow-y: scroll;
-        padding-right: 1.5rem;
-      }
+      position: relative;
     }
   }
 

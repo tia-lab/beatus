@@ -50,6 +50,7 @@
       .text {
         margin-bottom: $padding-vertical-md;
         width: 100%;
+        grid-row: 3;
       }
 
       .image {
@@ -60,7 +61,7 @@
 
         &.is_bottom {
           top: 0;
-          grid-row: 3;
+          grid-row: 4;
           justify-self: start;
         }
       }

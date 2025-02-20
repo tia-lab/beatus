@@ -61,7 +61,7 @@ const BookingBar = ({ ...props }: BookingBarProps) => {
           data-open={open}
           data-hidden={headerHidden}
         >
-          <p className="title-h5 text-style-uppercase">Open</p>
+          <p className="title-h5 text-style-uppercase">{t('booking_mobile')}</p>
           <div className={$.open_icon}>
             <ChevronDown width="100%" height="100%" strokeWidth={1} />
           </div>

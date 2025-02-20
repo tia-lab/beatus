@@ -10,6 +10,7 @@ export interface State {
   bookingModalOpen: boolean
   bookingKey: string
   openDropdown: string | null
+  allDropdonwsClosed: boolean
   //tlNav: GSAPTimeline | null
 }
 
@@ -40,6 +41,7 @@ const _useStoreNavigation = create<State & Action>()(
       headerColor: 'dark',
       bookingModalOpen: false,
       openDropdown: null,
+      allDropdonwsClosed: true,
       setBookingKey: (bookingKey) => set({ bookingKey }),
       setNavOpen: (navOpen) => set({ navOpen }),
       setNotificationActive: (notificationActive) =>
@@ -47,7 +49,8 @@ const _useStoreNavigation = create<State & Action>()(
       setHeaderHidden: (headerHidden) => set({ headerHidden }),
       setHeaderColor: (headerColor) => set({ headerColor }),
       setBookingModalOpen: (bookingModalOpen) => set({ bookingModalOpen }),
-      setOpenDropdown: (id) => set({ openDropdown: id })
+      setOpenDropdown: (id) =>
+        set({ openDropdown: id, allDropdonwsClosed: id === null })
       //setTlNav: (tlNav) => set({ tlNav })
     }),
     {

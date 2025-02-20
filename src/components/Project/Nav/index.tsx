@@ -86,14 +86,13 @@ const Nav = ({ data, ...props }: NavModalProps) => {
             />
           </div>
           <div className={$.line} data-line />
-          <div className={$.modal_content} data-lenis-prevent>
-            <div className={$.menu}>
-              <NavDropdown menuItems={navArray}>
-                {data?.navigation.map((item, i) => (
-                  <NavDropdownItem key={i} id={item.id} data={item} />
-                ))}
-              </NavDropdown>
-            </div>
+          <div className={$.nav} data-lenis-prevent>
+            <NavDropdown menuItems={navArray}>
+              {data?.navigation.map((item, i) => (
+                <NavDropdownItem key={i} id={item.id} data={item} />
+              ))}
+            </NavDropdown>
+
             <div className={$.lang_switch}>
               <LangSwitch />
             </div>

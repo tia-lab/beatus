@@ -30,14 +30,6 @@ const Cards = ({ ...props }: CardsProps) => {
           key={k}
           data={item as Lib.FragmentOf<typeof RoomCardFragment>}
           className="fade-in"
-          button1Props={{
-            transitionType: 'slide',
-            href: `/rooms/${item.slug}`
-          }}
-          button2Props={{
-            transitionType: 'slide',
-            href: `/rooms/${item.slug}`
-          }}
         />
       )
     default:

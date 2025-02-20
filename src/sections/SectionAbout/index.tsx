@@ -41,7 +41,7 @@ const SectionAbout = ({ data }: SectionAboutProps) => {
             </Div>
           </div>
           <div className={$.row}>
-            <Div parallax={5}>
+            <Div parallax={5} className={clsx($.image, $.is_bottom)}>
               <Image
                 data={data.imageBottom}
                 wrap={{ className: clsx($.image, $.is_bottom) }}

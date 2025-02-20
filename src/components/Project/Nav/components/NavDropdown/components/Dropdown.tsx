@@ -1,5 +1,3 @@
-'use client'
-
 import { useStoreNavigation } from '@/store'
 import clsx from 'clsx'
 import { useParams } from 'next/navigation'
@@ -9,6 +7,7 @@ import $ from '../style.module.scss'
 interface DropdownContextValue {
   openItem: string | null
   toggleItem: (_id: string) => void
+  allClosed: boolean // Add allClosed to the context
 }
 
 const DropdownContext = createContext<DropdownContextValue | undefined>(
@@ -20,7 +19,7 @@ export const DropdownProvider = ({
   menuItems
 }: {
   children: ReactNode
-  menuItems: { id: string; dropdownItems: { url?: { slug?: string } }[] }[] // Ensures dropdownItems contain URL slugs
+  menuItems: { id: string; dropdownItems: { url?: { slug?: string } }[] }[]
 }) => {
   const params = useParams()
   let currentSlug = params?.slug
@@ -31,29 +30,31 @@ export const DropdownProvider = ({
 
   const openDropdown = useStoreNavigation.use.openDropdown()
   const setOpenDropdown = useStoreNavigation.use.setOpenDropdown()
+  const allClosed = useStoreNavigation.use.allDropdonwsClosed() // Get the allClosed state
 
   useEffect(() => {
     if (!currentSlug || !menuItems.length) return
 
     console.log('Current Slug:', currentSlug)
 
-    // Find the parent dropdown whose child `slug` matches the `params.slug`
     const matchingItem = menuItems.find((parent) =>
       parent.dropdownItems.some((item) => item.url?.slug === currentSlug)
     )
 
     if (matchingItem) {
       console.log('Auto-opening dropdown:', matchingItem.id)
-      setOpenDropdown(matchingItem.id) // Store the parent dropdown ID
+      setOpenDropdown(matchingItem.id)
     }
   }, [currentSlug, menuItems, setOpenDropdown])
 
   const toggleItem = (id: string) => {
-    setOpenDropdown(openDropdown === id ? null : id) // Toggle using Zustand
+    setOpenDropdown(openDropdown === id ? null : id)
   }
 
   return (
-    <DropdownContext.Provider value={{ openItem: openDropdown, toggleItem }}>
+    <DropdownContext.Provider
+      value={{ openItem: openDropdown, toggleItem, allClosed }}
+    >
       {children}
     </DropdownContext.Provider>
   )

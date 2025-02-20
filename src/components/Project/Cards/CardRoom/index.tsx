@@ -24,11 +24,13 @@ const CardRoom = ({ ...props }: CardRoomProps) => {
     href: `/room/${d.slug}`,
     children: t('card_room_more'),
     variant: 'outline',
+    transitionType: 'slide',
     ...button1Props
   }
 
   const _button2Props: ButtonProps = {
     data: d.requestLink,
+    transitionType: 'slide',
     children: t('card_room_request'),
     ...button2Props
   }

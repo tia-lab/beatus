@@ -3,100 +3,61 @@
 
   .nav_dropdown_item {
     display: flex;
-    border-bottom: 2px solid $neutral-600;
-    position: relative;
+
     padding: $space-md 0;
     @include tablet {
       padding-bottom: $space-sm;
     }
   }
 
-  .links,
-  .body {
-    display: grid;
-    grid-template-columns: auto;
-    justify-items: start;
-    row-gap: $space-sm;
-    margin-left: 0.5rem;
-  }
-
-  .body {
-    margin-left: 0;
-  }
-
-  .icon {
-    width: 2.5rem;
-    height: 2.5rem;
-    border: $stroke-icon solid $neutral-600;
-    cursor: pointer;
-    border-radius: 100%;
-    position: relative;
-    top: 0.25rem;
+  .title {
+    width: 50rem;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background-color $duration-base $out-cubic;
-    @include tablet {
-      width: 2rem;
-      height: 2rem;
-      top: -0.44rem;
-    }
-    @include mobile {
-      top: -0.3rem;
-    }
-
-    .icon_inner {
-      width: 1.5rem;
-      position: relative;
-      height: 1.5rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: transform $duration-base $out-cubic;
-      @include tablet {
-        width: 1rem;
-        height: 1rem;
-      }
-
-      .icon_line {
-        position: absolute;
-        width: 1rem;
-        height: $stroke-icon;
-        background-color: $neutral-600;
-        @include tablet {
-          width: 0.75rem;
-        }
-
-        &.is_2 {
-          transform: rotate(90deg);
-        }
-      }
-    }
-
-    &:hover {
-      background-color: $neutral-300;
-
-      .icon_inner {
-        transform: rotate(90deg);
-      }
-    }
+    justify-content: flex-start;
+    @include h3;
+    text-transform: uppercase;
+    color: $primary-400;
+    cursor: pointer;
+    opacity: 0.5;
+    transition:
+      transform $duration-base $out-cubic,
+      opacity $duration-base $out-cubic;
 
     &[data-open='true'] {
-      .icon_inner {
-        transform: rotate(180deg) !important;
-
-        .icon_line {
-          &.is_2 {
-            transform: rotate(180deg);
-          }
-        }
-      }
+      transform: translateX(3rem);
+      opacity: 1;
+      pointer-events: none;
     }
   }
 
-  .dropdown_link {
-    @include tablet {
-      @include text-btn;
+  .body {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30rem;
+    height: calc(100% - 7rem);
+    padding-top: 1.75rem;
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: $space-md;
+      align-items: start;
+
+      .link {
+        @include text-large;
+
+        [data-line] {
+          background-color: $primary-400 !important;
+        }
+      }
+    }
+
+    .image {
+      position: absolute;
+      bottom: 2rem;
+      width: 100%;
+      padding-top: 60%;
     }
   }
 }
