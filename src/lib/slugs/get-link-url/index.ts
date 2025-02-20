@@ -33,7 +33,12 @@ const getLinkUrl = ({ data }: Props) => {
         break
       case 'room':
         if ('slug' in data.url) {
-          return `/rooms/${data.url?.slug}/${params}`
+          return `/room/${data.url?.slug}/${params}`
+        }
+        break
+      case 'retreat':
+        if ('slug' in data.url) {
+          return `/retreat/${data.url?.slug}/${params}`
         }
         break
       default:

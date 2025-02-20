@@ -3,7 +3,7 @@ import BookingModal from './BookingModal'
 import Breadcrumb from './Breadcrumbs'
 import CardBookingModal from './Cards/CardBookingModal'
 import CardListItem from './Cards/CardListItem'
-import CardPackage from './Cards/CardPackage'
+import CardRetreat from './Cards/CardRetreat'
 import CardRoom from './Cards/CardRoom'
 import DetailContent from './Detail/Content'
 import DetailGallery from './Detail/Gallery'
@@ -21,7 +21,7 @@ export {
   Breadcrumb,
   CardBookingModal,
   CardListItem,
-  CardPackage,
+  CardRetreat,
   CardRoom,
   DetailContent,
   DetailGallery,

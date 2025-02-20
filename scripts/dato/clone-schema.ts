@@ -1,13 +1,26 @@
 import { buildClient } from '@datocms/cma-client'
+import boxen from 'boxen'
+import chalk from 'chalk'
 import dotenv from 'dotenv'
 import readlineSync from 'readline-sync'
 
 dotenv.config()
 
+// Styled Header
+const header = boxen(chalk.bold.cyan('📦 Welcome to DatoCMS Schema Cloner!'), {
+  padding: 1,
+  margin: 1,
+  borderStyle: 'round',
+  borderColor: 'cyan'
+})
+
+// Ensure API token is set
 const apiToken = process.env.DATOCMS_CMA_TOKEN
 if (!apiToken) {
   console.error(
-    '❌ Error: DATOCMS_CMA_TOKEN is missing. Add it to your .env file.'
+    chalk.redBright.bold(
+      '\n❌ Error: DATOCMS_CMA_TOKEN is missing. Add it to your .env file.\n'
+    )
   )
   process.exit(1)
 }
@@ -25,24 +38,34 @@ async function cloneSchema(
   targetModelTitle: string
 ) {
   try {
-    console.log(`🔍 Checking if source model '${sourceModelApiKey}' exists...`)
+    console.log(
+      chalk.blueBright.bold(
+        `\n🔍 Checking if source model '${sourceModelApiKey}' exists...`
+      )
+    )
     const sourceModel = await getModelByApiKey(sourceModelApiKey)
     if (!sourceModel) {
       console.error(
-        `❌ Error: Source model '${sourceModelApiKey}' does not exist.`
+        chalk.redBright.bold(
+          `\n❌ Error: Source model '${sourceModelApiKey}' does not exist.\n`
+        )
       )
       return
     }
 
     console.log(
-      `✅ Source model found: '${sourceModelApiKey}' (ID: ${sourceModel.id})`
+      chalk.green.bold(
+        `✅ Source model found: '${sourceModelApiKey}' (ID: ${sourceModel.id})\n`
+      )
     )
 
     let targetModel = await getModelByApiKey(targetModelApiKey)
 
     if (!targetModel) {
       console.log(
-        `🚀 Target model '${targetModelApiKey}' does not exist. Creating...`
+        chalk.yellow.bold(
+          `🚀 Target model '${targetModelApiKey}' does not exist. Creating...\n`
+        )
       )
       targetModel = await client.itemTypes.create({
         name: targetModelTitle,
@@ -53,17 +76,23 @@ async function cloneSchema(
         draft_mode_active: sourceModel.draft_mode_active
       })
       console.log(
-        `✅ Target model '${targetModelApiKey}' created successfully.`
+        chalk.green.bold(
+          `✅ Target model '${targetModelApiKey}' created successfully.\n`
+        )
       )
     } else {
       console.log(
-        `⚠️ Target model '${targetModelApiKey}' already exists. Cloning fields and fieldsets only.`
+        chalk.yellow.bold(
+          `⚠️ Target model '${targetModelApiKey}' already exists. Cloning fields and fieldsets only.\n`
+        )
       )
     }
 
     // 🔄 Step 1: Clone Each Fieldset and Fields Inside It
     console.log(
-      `🔍 Fetching fieldsets from source model '${sourceModelApiKey}'...`
+      chalk.blueBright.bold(
+        `🔍 Fetching fieldsets from source model '${sourceModelApiKey}'...\n`
+      )
     )
     const sourceFieldsets = await client.fieldsets.list(sourceModel.id)
     const fieldsetMap: Record<string, string> = {}
@@ -71,7 +100,11 @@ async function cloneSchema(
     for (const fieldset of sourceFieldsets.sort(
       (a, b) => a.position - b.position
     )) {
-      console.log(`🔄 Cloning fieldset '${fieldset.title || 'Untitled'}'...`)
+      console.log(
+        chalk.blueBright(
+          `🔄 Cloning fieldset '${fieldset.title || 'Untitled'}'...`
+        )
+      )
       const newFieldset = await client.fieldsets.create(targetModel.id, {
         title: fieldset.title || 'Untitled Fieldset',
         hint: fieldset.hint,
@@ -79,10 +112,16 @@ async function cloneSchema(
       })
 
       fieldsetMap[fieldset.id] = newFieldset.id
-      console.log(`✅ Fieldset '${fieldset.title || 'Untitled'}' cloned.`)
+      console.log(
+        chalk.green(`✅ Fieldset '${fieldset.title || 'Untitled'}' cloned.`)
+      )
 
       // 🔄 Now Clone the Fields Inside This Fieldset
-      console.log(`🔍 Fetching fields inside fieldset '${fieldset.title}'...`)
+      console.log(
+        chalk.blueBright(
+          `🔍 Fetching fields inside fieldset '${fieldset.title}'...\n`
+        )
+      )
       const sourceFields = await client.fields.list(sourceModel.id)
       const fieldsInFieldset = sourceFields
         .filter((field) => field.fieldset?.id === fieldset.id)
@@ -92,13 +131,17 @@ async function cloneSchema(
         // 🚨 Skip Slug Fields
         if (field.validators?.slug_title_field) {
           console.log(
-            `⚠️ Skipped slug field '${field.api_key}' inside '${fieldset.title}'.`
+            chalk.yellow(
+              `⚠️ Skipped slug field '${field.api_key}' inside '${fieldset.title}'.`
+            )
           )
           continue
         }
 
         console.log(
-          `🔄 Creating field '${field.api_key}' inside '${fieldset.title}'...`
+          chalk.blueBright(
+            `🔄 Creating field '${field.api_key}' inside '${fieldset.title}'...`
+          )
         )
         await client.fields.create(targetModel.id, {
           label: field.label,
@@ -112,13 +155,19 @@ async function cloneSchema(
           position: field.position // Maintain original order
         })
         console.log(
-          `✅ Field '${field.api_key}' cloned inside '${fieldset.title}'.`
+          chalk.green(
+            `✅ Field '${field.api_key}' cloned inside '${fieldset.title}'.`
+          )
         )
       }
     }
 
     // 🔄 Step 2: Clone Fields Without a Fieldset
-    console.log('🔍 Cloning fields that are NOT inside a fieldset...')
+    console.log(
+      chalk.blueBright.bold(
+        '\n🔍 Cloning fields that are NOT inside a fieldset...\n'
+      )
+    )
     const sourceFields = await client.fields.list(sourceModel.id)
     const ungroupedFields = sourceFields
       .filter((field) => !field.fieldset)
@@ -128,13 +177,17 @@ async function cloneSchema(
       // 🚨 Skip Slug Fields
       if (field.validators?.slug_title_field) {
         console.log(
-          `⚠️ Skipped slug field '${field.api_key}' (not in a fieldset).`
+          chalk.yellow(
+            `⚠️ Skipped slug field '${field.api_key}' (not in a fieldset).`
+          )
         )
         continue
       }
 
       console.log(
-        `🔄 Creating field '${field.api_key}' (Position: ${field.position})...`
+        chalk.blueBright(
+          `🔄 Creating field '${field.api_key}' (Position: ${field.position})...`
+        )
       )
       await client.fields.create(targetModel.id, {
         label: field.label,
@@ -147,32 +200,38 @@ async function cloneSchema(
         fieldset: undefined, // No fieldset assigned
         position: field.position // Maintain original position
       })
-      console.log(`✅ Field '${field.api_key}' cloned.`)
+      console.log(chalk.green(`✅ Field '${field.api_key}' cloned.`))
     }
 
     console.log(
-      `🎉 Success: Model '${sourceModelApiKey}' cloned to '${targetModelApiKey}' with fieldsets and correct field placement!`
+      chalk.green.bold(
+        `\n🎉 Success: Model '${sourceModelApiKey}' cloned to '${targetModelApiKey}' with fieldsets and correct field placement!\n`
+      )
     )
   } catch (error) {
-    console.error('❌ Error cloning schema:', error)
+    console.error(chalk.redBright.bold('\n❌ Error cloning schema:'), error)
   }
 }
 
 async function main() {
-  console.log('📦 Welcome to DatoCMS Schema Cloner!')
+  console.log(header)
 
   const sourceModelApiKey = readlineSync.question(
-    "Enter the API key of the source model (e.g., 'room'): "
+    chalk.green.bold("Enter the API key of the source model (e.g., 'room'): ")
   )
   const targetModelApiKey = readlineSync.question(
-    "Enter the API key for the new cloned model (e.g., 'rooms_cloned'): "
+    chalk.green.bold(
+      "Enter the API key for the new cloned model (e.g., 'rooms_cloned'): "
+    )
   )
   const targetModelTitle = readlineSync.question(
-    'Enter the title for the new model: '
+    chalk.green.bold('Enter the title for the new model: ')
   )
 
   console.log(
-    `🚀 Cloning schema from '${sourceModelApiKey}' to '${targetModelApiKey}'...\n`
+    chalk.yellow.bold(
+      `\n🚀 Cloning schema from '${sourceModelApiKey}' to '${targetModelApiKey}'...\n`
+    )
   )
   await cloneSchema(sourceModelApiKey, targetModelApiKey, targetModelTitle)
 }

@@ -132,7 +132,7 @@ const Button = forwardRef<HTMLAnchorElement, ButtonProps>(
           />
         )}
         {
-          (data?.titleText && title
+          (data?.titleText && title && !children
             ? title
             : data?.text || children) as React.ReactNode
         }

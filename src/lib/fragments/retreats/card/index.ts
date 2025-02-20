@@ -2,9 +2,9 @@ import { ImageFragment } from '@/lib/fragments'
 
 import { graphql } from '@/lib/query'
 
-const PackageCardFragment = graphql(
+const RetreatCardFragment = graphql(
   /* GraphQL */ `
-    fragment PackageCardFragment on PackageRecord @_unmask {
+    fragment RetreatCardFragment on RetreatRecord @_unmask {
       id
       __typename
       _modelApiKey
@@ -21,4 +21,4 @@ const PackageCardFragment = graphql(
   [ImageFragment]
 )
 
-export default PackageCardFragment
+export default RetreatCardFragment

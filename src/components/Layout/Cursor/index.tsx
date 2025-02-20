@@ -22,8 +22,8 @@ const CursorRef = forwardRef((props, ref) => {
   const hoverDefault = useStoreCursor.use.hoverDefault()
   const type = useStoreCursor.use.type()
   const setHoverDefault = useStoreCursor.use.setHoverDefault()
-  const setHoverCardPackage = useStoreCursor.use.setHoverCardPackage()
-  const hoverCardPackage = useStoreCursor.use.hoverCardPackage()
+  const setHoverCardRetreat = useStoreCursor.use.setHoverCardRetreat()
+  const hoverCardRetreat = useStoreCursor.use.hoverCardRetreat()
 
   //const theme = useStore(useStoreTheme, (state) => state.theme)
 
@@ -58,7 +58,7 @@ const CursorRef = forwardRef((props, ref) => {
   /* -------------------------------- Composers ------------------------------- */
   const dataHover = clsx(
     hoverDefault && 'default',
-    hoverCardPackage && 'card-package'
+    hoverCardRetreat && 'card-package'
   )
 
   return (

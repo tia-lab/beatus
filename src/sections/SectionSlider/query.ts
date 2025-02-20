@@ -1,5 +1,5 @@
 import { ImageFragment, LinkFragment } from '@/lib/fragments'
-import PackageCardFragment from '@/lib/fragments/packages/card'
+import RetreatCardFragment from '@/lib/fragments/retreats/card'
 import RoomCardFragment from '@/lib/fragments/rooms/cards'
 import SectionPaddingFragment from '@/lib/fragments/section-padding'
 
@@ -26,7 +26,7 @@ const SectionSliderFragment = graphql(
       }
       allPackages
       packages {
-        ...PackageCardFragment
+        ...RetreatCardFragment
       }
       allRooms
       rooms {
@@ -38,7 +38,7 @@ const SectionSliderFragment = graphql(
     SectionPaddingFragment,
     LinkFragment,
     ImageFragment,
-    PackageCardFragment,
+    RetreatCardFragment,
     RoomCardFragment
   ]
 )

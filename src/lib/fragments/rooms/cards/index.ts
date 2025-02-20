@@ -1,4 +1,4 @@
-import { ImageFragment } from '@/lib/fragments'
+import { ImageFragment, LinkFragment } from '@/lib/fragments'
 
 import { graphql } from '@/lib/query'
 
@@ -12,6 +12,9 @@ const RoomCardFragment = graphql(
       shortDescription
       slug
       people
+      requestLink {
+        ...LinkFragment
+      }
       size
       category {
         title
@@ -29,7 +32,7 @@ const RoomCardFragment = graphql(
       }
     }
   `,
-  [ImageFragment]
+  [ImageFragment, LinkFragment]
 )
 
 export default RoomCardFragment

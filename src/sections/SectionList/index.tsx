@@ -1,6 +1,6 @@
 import { Container, Section } from '@/components/Core'
 import { SectionBuilderProps } from '@/components/Core/SectionBuilder'
-import PackageCardFragment from '@/lib/fragments/packages/card'
+import RetreatCardFragment from '@/lib/fragments/retreats/card'
 import RoomCardFragment from '@/lib/fragments/rooms/cards'
 import {
   executeQuery,
@@ -11,7 +11,7 @@ import { Lib } from '@/types'
 import {} from '@datocms/cda-client'
 import { readFragment } from 'gql.tada'
 import { memo } from 'react'
-import queryAllPackages from '../SectionSlider/Components/SliderCards/queries/packages'
+import queryAllRetreats from '../SectionSlider/Components/SliderCards/queries/retreats'
 import queryAllRooms from '../SectionSlider/Components/SliderCards/queries/rooms'
 import List from './Components/List'
 import Tabs from './Components/Tabs'
@@ -33,7 +33,7 @@ export interface SectionListProps {
 }
 
 export type CardTypes =
-  | Lib.FragmentOf<typeof PackageCardFragment>
+  | Lib.FragmentOf<typeof RetreatCardFragment>
   | Lib.FragmentOf<typeof RoomCardFragment>
 
 export type Variant = 'rooms' | 'packages'
@@ -61,8 +61,8 @@ const SectionList = async ({ data }: SectionListProps) => {
   switch (d.variant as Variant) {
     case 'packages':
       if (d.allPackages) {
-        const data = await executeQueryWithAutoPagination(queryAllPackages)
-        items = data.allPackages
+        const data = await executeQueryWithAutoPagination(queryAllRetreats)
+        items = data.allRetreats
       } else {
         items = d.packages
       }

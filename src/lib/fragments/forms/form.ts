@@ -2,6 +2,7 @@ import { graphql } from '@/lib/query'
 import RedirectLinkFragment from '../redirect-link'
 import CheckboxFieldFragment from './fields/checkbox-field'
 import RadioGroupFragment from './fields/radio-group'
+import ReacpcthaFieldFragment from './fields/recaptcha'
 import SelectFieldFragment from './fields/select-field'
 import FormSepratorFragment from './fields/seprator'
 import SubmitFieldFragment from './fields/submit-field'
@@ -29,6 +30,7 @@ const FormFragment = graphql(
         ...CheckboxFieldFragment
         ...RadioGroupFragment
         ...FormSepratorFragment
+        ...ReacpcthaFieldFragment
       }
     }
   `,
@@ -39,7 +41,8 @@ const FormFragment = graphql(
     SubmitFieldFragment,
     RadioGroupFragment,
     FormSepratorFragment,
-    RedirectLinkFragment
+    RedirectLinkFragment,
+    ReacpcthaFieldFragment
   ]
 )
 

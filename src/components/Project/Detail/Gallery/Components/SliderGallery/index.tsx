@@ -4,16 +4,13 @@ import Arrow from '$/public/icons/arrow/arrow-slider.svg'
 import { Div, Image } from '@/components/Core'
 import { EmblaCarousel } from '@/components/Ui'
 import { usePrevNextButtons } from '@/components/Ui/EmblaCarousel/Components/Button'
-import RoomFragment from '@/lib/fragments/rooms/room'
 import clsx from 'clsx'
 import useEmblaCarousel from 'embla-carousel-react'
-import { readFragment } from 'gql.tada'
 import { memo } from 'react'
 import { DetailGalleryProps } from '../..'
 import $ from './style.module.scss'
 
 const SliderGallery = ({ data }: DetailGalleryProps) => {
-  const d = readFragment(RoomFragment, data)
   const [emblaRef, emblaApi] = useEmblaCarousel({ align: 'start', loop: true })
 
   const {
@@ -32,7 +29,7 @@ const SliderGallery = ({ data }: DetailGalleryProps) => {
           customEmblaRef={emblaRef}
           emblaClassName={$.embla}
           containerClassName={$.embla_container}
-          slides={d.gallery.map((slide, k) => (
+          slides={data.gallery.map((slide, k) => (
             <Image
               key={k}
               fitWrap

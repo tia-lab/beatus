@@ -1,4 +1,4 @@
-import PackageCardFragment from '@/lib/fragments/packages/card'
+import RetreatCardFragment from '@/lib/fragments/retreats/card'
 import RoomCardFragment from '@/lib/fragments/rooms/cards'
 import SectionPaddingFragment from '@/lib/fragments/section-padding'
 
@@ -26,13 +26,13 @@ const SectionListFragment = graphql(
         title
       }
       packages {
-        ...PackageCardFragment
+        ...RetreatCardFragment
       }
       pagination
       paginationAmount
     }
   `,
-  [SectionPaddingFragment, RoomCardFragment, PackageCardFragment]
+  [SectionPaddingFragment, RoomCardFragment, RetreatCardFragment]
 )
 
 export default SectionListFragment

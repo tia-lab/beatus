@@ -1,10 +1,10 @@
 'use client'
 
 import { Div } from '@/components/Core'
-import { CardPackage, CardRoom } from '@/components/Project'
+import { CardRetreat, CardRoom } from '@/components/Project'
 import { EmblaCarousel } from '@/components/Ui'
 import { useDotButton } from '@/components/Ui/EmblaCarousel/Components/Dots'
-import PackageCardFragment from '@/lib/fragments/packages/card'
+import RetreatCardFragment from '@/lib/fragments/retreats/card'
 import RoomCardFragment from '@/lib/fragments/rooms/cards'
 import { useStoreCursor } from '@/store'
 import { Lib } from '@/types'
@@ -36,12 +36,12 @@ const SliderCardsClient = ({ data, elements }: SliderCardsClientProps) => {
     switch (variant) {
       case 'packages':
         return (
-          <CardPackage
+          <CardRetreat
             key={k}
-            data={slide as Lib.FragmentOf<typeof PackageCardFragment>}
+            data={slide as Lib.FragmentOf<typeof RetreatCardFragment>}
             className={$.slide}
             transitionType="slide"
-            href={`/packages/${slide.slug}`}
+            href={`/retreat/${slide.slug}`}
           />
         )
       case 'rooms':
@@ -52,11 +52,11 @@ const SliderCardsClient = ({ data, elements }: SliderCardsClientProps) => {
             className={$.slide}
             button1Props={{
               transitionType: 'slide',
-              href: `/rooms/${slide.slug}`
+              href: `/room/${slide.slug}`
             }}
             button2Props={{
               transitionType: 'slide',
-              href: `/rooms/${slide.slug}`
+              href: `/room/${slide.slug}`
             }}
           />
         )

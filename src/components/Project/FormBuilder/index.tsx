@@ -16,6 +16,7 @@ import { Lib } from '@/types'
 import { useForm } from '@formspree/react'
 import clsx from 'clsx'
 import React, { useMemo } from 'react'
+import ReCaptcha from './Components/ReCaptcha'
 import $ from './style.module.scss'
 interface FormBuilderProps extends React.HTMLAttributes<HTMLFormElement> {
   data: Lib.FragmentOf<typeof FormFragment>
@@ -115,6 +116,14 @@ const FormBuilder = ({ ...props }: FormBuilderProps) => {
             >
               {field.buttonText}
             </Button>
+          )
+        case 'FormFieldRecaptchaRecord':
+          return (
+            <ReCaptcha
+              key={k}
+              data={field}
+              className={clsx($.field, field.halfSize && $.half)}
+            />
           )
 
         default:

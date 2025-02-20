@@ -54,5 +54,9 @@
   {
     "packages": ["section_padding", "packages", "all_packages"],
     "rooms": ["section_padding", "rooms", "all_rooms"]
+  },
+  {
+    "v2": ["site_key", "invisible"],
+    "v3": ["site_key"]
   }
 ]

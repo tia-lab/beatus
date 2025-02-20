@@ -1,22 +1,19 @@
 import SectionBuilderDetailFragment from '@/components/Core/SectionBuilderDetail/query'
 import { graphql } from '@/lib/query'
 import ImageFragment from '../../image'
-import LinkFragment from '../../link'
 import RedirectLinkFragment from '../../redirect-link'
 import DetailContentFragment from '../../structured-text/detail'
 import TagFragment from '../../tag'
 
-const RoomFragment = graphql(
+const RetreatFragment = graphql(
   /* GraphQL */ `
-    fragment RoomFragment on RoomRecord @_unmask {
+    fragment RetreatFragment on RetreatRecord @_unmask {
       _seoMetaTags {
         ...TagFragment
       }
-      requestLink {
-        ...LinkFragment
-      }
       _allSlugLocales {
         locale
+        value
       }
       redirect {
         ...RedirectLinkFragment
@@ -28,8 +25,9 @@ const RoomFragment = graphql(
       overline
       title
       slug
-      size
-      people
+      shortDescription
+      price
+      date
       shortDescription
       image {
         ...ImageFragment
@@ -37,12 +35,7 @@ const RoomFragment = graphql(
       gallery {
         ...ImageFragment
       }
-      category {
-        title
-      }
-      amenities {
-        title
-      }
+
       sectionBuilder {
         ...SectionBuilderDetailFragment
       }
@@ -59,9 +52,8 @@ const RoomFragment = graphql(
     ImageFragment,
     SectionBuilderDetailFragment,
     ImageFragment,
-    DetailContentFragment,
-    LinkFragment
+    DetailContentFragment
   ]
 )
 
-export default RoomFragment
+export default RetreatFragment

@@ -7,12 +7,15 @@ import readlineSync from 'readline-sync'
 dotenv.config()
 
 // Styled Header
-const header = boxen(chalk.bold.cyan('📦 Welcome to DatoCMS Field Cloner!'), {
-  padding: 1,
-  margin: 1,
-  borderStyle: 'round',
-  borderColor: 'cyan'
-})
+const header = boxen(
+  chalk.bold.cyan('📦 Welcome to DatoCMS Field Sync Tool!'),
+  {
+    padding: 1,
+    margin: 1,
+    borderStyle: 'round',
+    borderColor: 'cyan'
+  }
+)
 
 // Ensure API token is set
 const apiToken = process.env.DATOCMS_CMA_TOKEN
@@ -33,11 +36,7 @@ async function getModelIdByName(modelName: string) {
   return model ? model.id : null
 }
 
-async function copyFields(
-  sourceModelId: string,
-  targetModelId: string,
-  fieldApiKeys: string[]
-) {
+async function syncFields(sourceModelId: string, targetModelId: string) {
   try {
     console.log(
       chalk.blueBright.bold(
@@ -46,22 +45,53 @@ async function copyFields(
     )
     const sourceFields = await client.fields.list(sourceModelId)
 
-    const fieldsToCopy = sourceFields.filter((field) =>
-      fieldApiKeys.includes(field.api_key)
+    console.log(
+      chalk.blueBright.bold(
+        `\n🔍 Fetching fields from target model (ID: ${targetModelId})...`
+      )
+    )
+    const targetFields = await client.fields.list(targetModelId)
+
+    const targetFieldKeys = new Set(targetFields.map((field) => field.api_key))
+
+    // Find missing fields in the target model
+    const missingFields = sourceFields.filter(
+      (field) => !targetFieldKeys.has(field.api_key)
     )
 
-    if (fieldsToCopy.length === 0) {
+    if (missingFields.length === 0) {
       console.log(
-        chalk.redBright.bold(
-          '\n❌ No matching fields found in the source model.\n'
+        chalk.green.bold(
+          '\n✅ The target model already has all fields from the source model. No action needed.\n'
         )
       )
       return
     }
 
     console.log(
+      chalk.yellow.bold(`\n⚠️ Found ${missingFields.length} missing fields.\n`)
+    )
+
+    const fieldsToCopy = missingFields.filter((field) => {
+      const userResponse = readlineSync.question(
+        chalk.magenta.bold(
+          `❓ Do you want to import the field '${field.api_key}'? (Y/n): `
+        ),
+        { defaultInput: 'n' }
+      )
+      return userResponse.toLowerCase() === 'y'
+    })
+
+    if (fieldsToCopy.length === 0) {
+      console.log(
+        chalk.yellow.bold('\n🚀 No fields selected for import. Exiting...\n')
+      )
+      return
+    }
+
+    console.log(
       chalk.green.bold(
-        `✅ Found ${fieldsToCopy.length} fields. Copying to target model (ID: ${targetModelId})...\n`
+        `\n✅ Copying ${fieldsToCopy.length} fields to target model...\n`
       )
     )
 
@@ -85,7 +115,10 @@ async function copyFields(
       )
     )
   } catch (error) {
-    console.error(chalk.redBright.bold('\n❌ Error copying fields:'), error)
+    console.error(
+      chalk.redBright.bold('\n❌ Error during field synchronization:'),
+      error
+    )
   }
 }
 
@@ -100,14 +133,6 @@ async function main() {
       "Enter the API key of the target model (e.g., 'package'): "
     )
   )
-  const fieldApiKeysInput = readlineSync.question(
-    chalk.green.bold(
-      "Enter the field API keys to copy, separated by commas (e.g., 'test,description,image'): "
-    )
-  )
-
-  // Convert comma-separated string into an array
-  const fieldApiKeys = fieldApiKeysInput.split(',').map((key) => key.trim())
 
   console.log(chalk.blueBright.bold('\n🔍 Fetching model IDs...\n'))
   const sourceModelId = await getModelIdByName(sourceModelName)
@@ -127,9 +152,9 @@ async function main() {
       `✅ Found models: ${sourceModelName} (ID: ${sourceModelId}), ${targetModelName} (ID: ${targetModelId})\n`
     )
   )
-  console.log(chalk.yellow.bold('🚀 Starting field cloning process...\n'))
+  console.log(chalk.yellow.bold('🚀 Starting field synchronization...\n'))
 
-  await copyFields(sourceModelId, targetModelId, fieldApiKeys)
+  await syncFields(sourceModelId, targetModelId)
 }
 
 main()

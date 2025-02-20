@@ -1,5 +1,5 @@
-import { CardPackage, CardRoom } from '@/components/Project'
-import PackageCardFragment from '@/lib/fragments/packages/card'
+import { CardRetreat, CardRoom } from '@/components/Project'
+import RetreatCardFragment from '@/lib/fragments/retreats/card'
 import RoomCardFragment from '@/lib/fragments/rooms/cards'
 import { Lib } from '@/types'
 import { memo } from 'react'
@@ -16,11 +16,11 @@ const Cards = ({ ...props }: CardsProps) => {
   switch (variant) {
     case 'packages':
       return (
-        <CardPackage
+        <CardRetreat
           key={k}
-          data={item as Lib.FragmentOf<typeof PackageCardFragment>}
+          data={item as Lib.FragmentOf<typeof RetreatCardFragment>}
           transitionType="slide"
-          href={`/packages/${item.slug}`}
+          href={`/retreat/${item.slug}`}
           className="fade-in"
         />
       )

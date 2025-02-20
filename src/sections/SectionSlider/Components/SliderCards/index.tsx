@@ -1,4 +1,4 @@
-import PackageCardFragment from '@/lib/fragments/packages/card'
+import RetreatCardFragment from '@/lib/fragments/retreats/card'
 import RoomCardFragment from '@/lib/fragments/rooms/cards'
 import { executeQueryWithAutoPagination } from '@/lib/query'
 import { Lib } from '@/types'
@@ -7,11 +7,11 @@ import { memo } from 'react'
 import { SectionSliderProps, Variants } from '../..'
 import SectionSliderFragment from '../../query'
 import SliderCardsClient from './Client'
-import queryAllPackages from './queries/packages'
+import queryAllRetreats from './queries/retreats'
 import queryAllRooms from './queries/rooms'
 
 export type CardTypes =
-  | Lib.FragmentOf<typeof PackageCardFragment>
+  | Lib.FragmentOf<typeof RetreatCardFragment>
   | Lib.FragmentOf<typeof RoomCardFragment>
 
 export interface SliderCardsProps {
@@ -29,8 +29,8 @@ const SliderCards = async ({ data }: SliderCardsProps) => {
   switch (variant) {
     case 'packages':
       if (d.allPackages) {
-        const data = await executeQueryWithAutoPagination(queryAllPackages)
-        elements = data.allPackages
+        const data = await executeQueryWithAutoPagination(queryAllRetreats)
+        elements = data.allRetreats
       } else {
         elements = d.packages
       }

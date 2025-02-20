@@ -1,20 +1,20 @@
 import { BaseLink, Image, Parse } from '@/components/Core'
 import { BaseLinkProps } from '@/components/Core/types'
-import PackageCardFragment from '@/lib/fragments/packages/card'
+import RetreatCardFragment from '@/lib/fragments/retreats/card'
 import { Lib } from '@/types'
 import clsx from 'clsx'
 import { readFragment } from 'gql.tada'
 import { memo } from 'react'
 import $ from './style.module.scss'
 
-export interface CardPackageProps extends BaseLinkProps {
-  data: Lib.FragmentOf<typeof PackageCardFragment>
+export interface CardRetreatProps extends BaseLinkProps {
+  data: Lib.FragmentOf<typeof RetreatCardFragment>
 }
 
-const CardPackage = ({ ...props }: CardPackageProps) => {
+const CardRetreat = ({ ...props }: CardRetreatProps) => {
   const { data, className, ...rest } = props
 
-  const d = readFragment(PackageCardFragment, data)
+  const d = readFragment(RetreatCardFragment, data)
 
   return (
     <BaseLink className={clsx($.card, className)} {...rest}>
@@ -35,4 +35,4 @@ const CardPackage = ({ ...props }: CardPackageProps) => {
   )
 }
 
-export default memo(CardPackage)
+export default memo(CardRetreat)

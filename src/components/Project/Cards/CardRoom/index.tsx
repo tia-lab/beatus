@@ -21,14 +21,14 @@ const CardRoom = ({ ...props }: CardRoomProps) => {
   const t = useTranslations()
 
   const _button1Props: ButtonProps = {
-    href: `/rooms/${d.slug}`,
+    href: `/room/${d.slug}`,
     children: t('card_room_more'),
     variant: 'outline',
     ...button1Props
   }
 
   const _button2Props: ButtonProps = {
-    href: `/rooms/${d.slug}`,
+    data: d.requestLink,
     children: t('card_room_request'),
     ...button2Props
   }

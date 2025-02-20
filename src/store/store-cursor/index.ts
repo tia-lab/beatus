@@ -7,14 +7,14 @@ interface State {
   type: cursorTypes
   hasMoved: boolean
   hoverDefault: boolean
-  hoverCardPackage: boolean
+  hoverCardRetreat: boolean
 }
 interface Action {
   /* eslint-disable no-unused-vars */
   setType: (type: State['type']) => void
   setHasMoved: (hasMoved: State['hasMoved']) => void
   setHoverDefault: (hoverDefault: State['hoverDefault']) => void
-  setHoverCardPackage: (hoverCardPackage: State['hoverCardPackage']) => void
+  setHoverCardRetreat: (hoverCardRetreat: State['hoverCardRetreat']) => void
 }
 /* eslint-enable */
 
@@ -22,13 +22,13 @@ const baseStoreCursor = create<State & Action>((set) => ({
   type: 'default',
   hasMoved: false,
   hoverDefault: false,
-  hoverCardPackage: false,
+  hoverCardRetreat: false,
   setType: (type) => set(() => ({ type: type })),
   setHasMoved: (hasMoved) => set(() => ({ hasMoved: hasMoved })),
   setHoverDefault: (hoverDefault) =>
     set(() => ({ hoverDefault: hoverDefault })),
-  setHoverCardPackage: (hoverCardPackage) =>
-    set(() => ({ hoverCardPackage: hoverCardPackage }))
+  setHoverCardRetreat: (hoverCardRetreat) =>
+    set(() => ({ hoverCardRetreat: hoverCardRetreat }))
 }))
 
 const useStoreCursor = createSelectors(baseStoreCursor)

@@ -12,13 +12,13 @@ import { useCallback, useEffect, useRef } from 'react'
 const useHoverCursor = (cursorRef: any) => {
   /* eslint-disable no-undef */
   const tl_default = useRef<gsap.core.Timeline | null>(null)
-  const tl_cardPackage = useRef<gsap.core.Timeline | null>(null)
+  const tl_CardRetreat = useRef<gsap.core.Timeline | null>(null)
 
   /* eslint-enable no-undef */
 
   //Access Stores
   const hoverDefault = useStoreCursor.use.hoverDefault()
-  const hoverCardPackage = useStoreCursor.use.hoverCardPackage()
+  const hoverCardRetreat = useStoreCursor.use.hoverCardRetreat()
   const type = useStoreCursor.use.type()
   //const theme = useStoreTheme.use.theme()
 
@@ -80,11 +80,11 @@ const useHoverCursor = (cursorRef: any) => {
 
   useEffect(() => {
     playOrReverseAnimation(
-      'Cursor Store Hover Timeline CardPackage',
-      tl_cardPackage,
-      hoverCardPackage
+      'Cursor Store Hover Timeline CardRetreat',
+      tl_CardRetreat,
+      hoverCardRetreat
     )
-  }, [hoverCardPackage, playOrReverseAnimation])
+  }, [hoverCardRetreat, playOrReverseAnimation])
 }
 
 export default useHoverCursor

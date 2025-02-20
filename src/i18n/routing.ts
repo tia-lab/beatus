@@ -7,7 +7,19 @@ export const routing = defineRouting({
   locales: I18N.locales,
 
   // Used when no locale matches
-  defaultLocale: I18N.defaultLocale as Locale
+  defaultLocale: I18N.defaultLocale as Locale,
+
+  //Pathnames
+  pathnames: {
+    '/room/[slug]': {
+      en: '/room/[slug]',
+      de: '/zimmer/[slug]'
+    },
+    '/retreat/[slug]': {
+      en: '/retreat/[slug]',
+      de: '/retreat/[slug]'
+    }
+  }
 })
 
 // Lightweight wrappers around Next.js' navigation APIs

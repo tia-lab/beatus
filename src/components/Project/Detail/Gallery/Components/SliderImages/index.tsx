@@ -3,15 +3,12 @@
 import { Div, Image } from '@/components/Core'
 import { EmblaCarousel } from '@/components/Ui'
 import { useDotButton } from '@/components/Ui/EmblaCarousel/Components/Dots'
-import RoomFragment from '@/lib/fragments/rooms/room'
 import useEmblaCarousel from 'embla-carousel-react'
-import { readFragment } from 'gql.tada'
 import { memo } from 'react'
 import { DetailGalleryProps } from '../..'
 import $ from './style.module.scss'
 
 const SliderImages = ({ data }: DetailGalleryProps) => {
-  const d = readFragment(RoomFragment, data)
   const [emblaRef, emblaApi] = useEmblaCarousel({})
 
   const { selectedIndex, scrollSnaps, onDotButtonClick } =
@@ -26,7 +23,7 @@ const SliderImages = ({ data }: DetailGalleryProps) => {
           customEmblaRef={emblaRef}
           emblaClassName={$.embla}
           containerClassName={$.embla_container}
-          slides={d.gallery.map((slide, k) => (
+          slides={data.gallery.map((slide, k) => (
             <Image
               key={k}
               fitWrap
