@@ -21,6 +21,9 @@
     grid-column: span 12;
     color: $primary-300;
     margin-bottom: $padding-vertical-md;
+    gap: $space-md;
+    @include fluid;
+    @include marquee(30s, left, false);
   }
 
   .label {

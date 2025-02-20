@@ -23,3 +23,7 @@
 .anim-fade-in-scroll {
   @include anim-fade-in-scroll;
 }
+
+.marquee {
+  @include marquee;
+}

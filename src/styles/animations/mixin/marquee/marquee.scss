@@ -1,0 +1,39 @@
+@mixin marquee($duration: 10s, $direction: left, $pauseOnHover: true) {
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  & > * {
+    display: inline-block;
+    animation: marquee-#{$direction} $duration linear infinite;
+    min-width: 100%;
+  }
+
+  @if $pauseOnHover {
+    &:hover > * {
+      animation-play-state: paused;
+    }
+  }
+
+  @keyframes marquee-left {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes marquee-right {
+    from {
+      transform: translateX(-100%);
+    }
+
+    to {
+      transform: translateX(0);
+    }
+  }
+}

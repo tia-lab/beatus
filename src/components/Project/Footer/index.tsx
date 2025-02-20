@@ -23,6 +23,7 @@ const Footer = async ({ data, ...props }: FooterProps) => {
           <Container anim="fade-in">
             <div className={$.logo}>
               <Logo />
+              <Logo />
             </div>
           </Container>
           <Container anim="fade-in">
