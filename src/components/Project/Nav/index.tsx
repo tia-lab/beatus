@@ -84,7 +84,10 @@ const Nav = ({ data, ...props }: NavModalProps) => {
                   key={index}
                   className={$.menu_item}
                   data-item
-                  href={'/test'}
+                  href={{
+                    pathname: '/[...slug]',
+                    params: { slug: ['test'] }
+                  }}
                   onClick={closeModal}
                 >
                   Nav Item {index + 1}

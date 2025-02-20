@@ -11,6 +11,10 @@ export const routing = defineRouting({
 
   //Pathnames
   pathnames: {
+    '/': {
+      en: '/',
+      de: '/'
+    },
     '/room/[slug]': {
       en: '/room/[slug]',
       de: '/zimmer/[slug]'
@@ -18,6 +22,10 @@ export const routing = defineRouting({
     '/retreat/[slug]': {
       en: '/retreat/[slug]',
       de: '/retreat/[slug]'
+    },
+    '/[...slug]': {
+      en: '/[...slug]',
+      de: '/[...slug]'
     }
   }
 })
