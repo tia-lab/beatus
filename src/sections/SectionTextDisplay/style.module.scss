@@ -10,14 +10,26 @@
     text-align: center;
     gap: $space-lg;
 
+    @include tablet {
+      grid-column: 1 / span 12;
+    }
+
     .col {
       width: 30rem;
+
+      @include tablet {
+        width: 100%;
+      }
     }
 
     .cols {
       display: grid;
       grid-template-columns: repeat(2, 25rem);
       gap: $container-gutter;
+
+      @include tablet {
+        grid-template-columns: 1fr;
+      }
     }
   }
 }

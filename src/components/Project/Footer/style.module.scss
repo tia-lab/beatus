@@ -35,6 +35,15 @@
   .copy,
   .socials {
     grid-column: span 6;
+    @include tablet {
+      grid-column: span 12;
+    }
+  }
+
+  @include tablet {
+    .contact {
+      margin-bottom: $space-2xl;
+    }
   }
 
   .links {
@@ -66,21 +75,41 @@
 
     .copy {
       color: $primary-200;
+
+      @include tablet {
+        grid-row: 2;
+        margin-top: $space-lg;
+      }
     }
 
-    .socials_list {
-      @include flex(row, flex-start, center);
-      gap: $space-md;
+    .socials {
+      display: grid;
+      align-items: center;
+      grid-template-columns: 1fr 1fr;
+      @include mobile {
+        grid-template-columns: 1fr;
+        gap: $space-lg;
+      }
 
-      .social {
-        @include animation;
+      .socials_list {
+        @include flex(row, flex-start, center);
+        gap: $space-md;
+
+        .social {
+          @include animation;
+        }
+      }
+
+      .button_top {
+        padding-left: 0;
+        justify-self: start;
       }
     }
   }
 }
 
 .partners {
-  padding: $padding-global;
+  padding: $padding-global 0;
 
   .label {
     @include label;
@@ -93,6 +122,9 @@
     grid-column: span 12;
     align-items: center;
     gap: $space-2xl;
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
 
     .partner_highlight {
       width: 9.75rem;
@@ -105,6 +137,10 @@
       @include flex(row, center, center);
       gap: $space-2xl;
       justify-self: end;
+      @include mobile {
+        justify-self: start;
+        justify-content: flex-start;
+      }
 
       .partner {
         max-width: 4rem;

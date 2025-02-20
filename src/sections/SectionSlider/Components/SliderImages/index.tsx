@@ -33,6 +33,7 @@ const SliderImages = ({ data }: Omit<SectionSliderProps, 'params'>) => {
               ar="16x9"
               data={slide}
               wrap={{ className: $.slide }}
+              sizes="75rem"
             />
           ))}
         />

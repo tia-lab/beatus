@@ -31,7 +31,6 @@
   }
 
   .image {
-    @include grid-span-cols(6);
     @include object-fit-wrap;
     position: absolute;
 
@@ -40,6 +39,10 @@
       height: 18.66669rem;
       top: 0;
       right: $padding-global;
+      @include tablet {
+        width: 14rem;
+        height: 9.33331rem;
+      }
     }
 
     &.image_2 {
@@ -47,6 +50,9 @@
       height: 25.78125rem;
       bottom: 2rem;
       right: 4rem;
+      @include tablet {
+        display: none;
+      }
     }
 
     &.image_3 {
@@ -54,6 +60,12 @@
       height: 13.75rem;
       left: 8.87rem;
       bottom: 1.5rem;
+      @include tablet {
+        width: 14.8125rem;
+        height: 9.875rem;
+        left: auto;
+        right: $padding-global;
+      }
     }
 
     &.image_4 {
@@ -61,6 +73,11 @@
       height: 22.5rem;
       bottom: 9.75rem;
       left: $padding-global;
+      @include tablet {
+        width: 11.1875rem;
+        height: 13.98438rem;
+        bottom: 2.7rem;
+      }
     }
 
     &.image_5 {
@@ -68,12 +85,18 @@
       height: 13.75rem;
       top: 2.25rem;
       left: 16.25rem;
+      @include tablet {
+        top: 8rem;
+        left: $padding-global;
+        width: 11.25rem;
+        height: 7.5rem;
+      }
     }
   }
 
   .content {
-    position: absolute;
-    @include grid-span-cols(6);
+    position: relative;
+    @include grid-span-cols(12);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -86,6 +109,9 @@
       @include rich-text;
       margin-bottom: $space-lg;
       max-width: 20rem;
+      @include tablet {
+        max-width: 100%;
+      }
     }
   }
 }

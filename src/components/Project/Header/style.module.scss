@@ -41,6 +41,10 @@
       @include tablet {
         @include text-btn;
       }
+      @include mobile {
+        grid-column: span 12;
+        justify-self: center;
+      }
     }
 
     .logo {
@@ -48,6 +52,11 @@
       width: 8.3125rem;
       pointer-events: all;
       justify-self: center;
+      @include mobile {
+        width: 6.8125rem;
+        grid-column: span 12;
+        margin-top: $container-gutter;
+      }
 
       &.disabled {
         pointer-events: none;

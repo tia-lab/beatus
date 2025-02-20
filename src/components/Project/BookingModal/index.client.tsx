@@ -2,10 +2,11 @@
 import { animateBookingModal } from '@/animations/components'
 import { Parse } from '@/components/Core'
 import { EmblaCarousel, IconButton } from '@/components/Ui'
-import { useGSAPContext, useKeyPress } from '@/hooks'
+import { useGSAPContext, useKeyPress, useMedia } from '@/hooks'
 import { getLinkUrl } from '@/lib/slugs'
 import { useStoreNavigation } from '@/store'
 import { Lib } from '@/types'
+import { MEDIA } from '@config'
 import { X } from 'lucide-react'
 import { memo, useEffect, useRef } from 'react'
 import { Tab, TabList, TabPanel, Tabs } from 'react-aria-components'
@@ -32,6 +33,8 @@ const Client = ({ ...props }: Props) => {
   const setBookingKey = useStoreNavigation.use.setBookingKey()
 
   //hooks
+  const isTablet = useMedia(MEDIA.mobileUp)
+  const isDekstop = useMedia(MEDIA.desktop)
   useGSAPContext({
     type: 'isomorphic',
     scope: comp,
@@ -51,6 +54,16 @@ const Client = ({ ...props }: Props) => {
   useKeyPress('Escape', () => {
     setOpen(false)
   })
+
+  const active = (cardLenght: number): boolean => {
+    if (isTablet && cardLenght > 2) {
+      return true
+    }
+    if (isDekstop && cardLenght > 3) {
+      return true
+    }
+    return false
+  }
 
   return (
     <aside className={$.modal} ref={comp}>
@@ -86,11 +99,11 @@ const Client = ({ ...props }: Props) => {
                 key={k}
                 className="fade-in relative"
                 data-item
-                data-cacca={String(k)}
               >
                 <EmblaCarousel
+                  emblaClassName={$.embla}
                   containerClassName={$.embla_container}
-                  options={{ loop: true }}
+                  options={{ active: active(tab.cards.length) }}
                   slides={tab.cards.map((card) => (
                     <CardBookingModal
                       key={card.id}
@@ -101,7 +114,7 @@ const Client = ({ ...props }: Props) => {
                     />
                   ))}
                 />
-                <div className={$.overlay} />
+                {tab.cards.length > 3 && <div className={$.overlay} />}
               </TabPanel>
             ))}
           </div>

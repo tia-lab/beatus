@@ -33,6 +33,9 @@
 
     .text {
       width: 28.2rem;
+      @include tablet {
+        width: 100%;
+      }
     }
   }
 }

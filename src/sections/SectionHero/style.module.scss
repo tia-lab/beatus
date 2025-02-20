@@ -9,17 +9,26 @@
       grid-column: 2 / span 8;
       margin-bottom: $space-md;
       color: $neutral-400;
+      @include tablet {
+        grid-column: 1 / -1;
+      }
     }
 
     .title {
       grid-column: 2 / span 8;
       text-transform: uppercase;
+      @include tablet {
+        grid-column: 1 / -1;
+      }
     }
 
     .text {
       @include rich-text;
       margin-top: $space-md;
       grid-column: 2 / span 5;
+      @include tablet {
+        grid-column: 1 / -1;
+      }
     }
   }
 }

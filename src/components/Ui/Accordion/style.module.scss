@@ -6,7 +6,6 @@
   display: flex;
   flex-direction: column;
   padding: $space-md $space-sm;
-
   border-bottom: 2px solid $neutral-600;
 
   .head {
@@ -61,6 +60,9 @@
     padding-bottom: $space-sm;
     border-bottom: 1px solid $neutral-600;
     border-radius: 0;
+    @include tablet {
+      padding-left: 0;
+    }
 
     &:first-child {
       border-top: 1px solid $neutral-600;
@@ -94,10 +96,6 @@
           width: 1.5rem;
           height: 1px;
           background-color: $neutral-600;
-          @include tablet {
-            width: 0.75rem;
-            height: 3px;
-          }
 
           &.is_2 {
             transition: transform $duration-base $out-cubic;

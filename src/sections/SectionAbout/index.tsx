@@ -35,6 +35,7 @@ const SectionAbout = ({ data }: SectionAboutProps) => {
               wrap={{ className: $.image }}
               fitWrap
               ar="1x1"
+              sizes="28rem"
             />
           </div>
           <div className={$.row}>
@@ -43,6 +44,7 @@ const SectionAbout = ({ data }: SectionAboutProps) => {
               wrap={{ className: clsx($.image, $.is_bottom) }}
               fitWrap
               ar="1x1"
+              sizes="28rem"
             />
             <div className={$.text}>
               <div className="rich-text">

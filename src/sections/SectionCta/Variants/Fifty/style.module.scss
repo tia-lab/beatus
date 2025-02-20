@@ -6,6 +6,17 @@
     @include object-fit-wrap;
     height: 58rem;
     max-height: 100vh;
+
+    @include tablet {
+      height: auto;
+      max-height: 100%;
+      padding-top: 100%;
+      @include grid-span-cols(12);
+    }
+
+    @include mobile {
+      height: 21.5rem;
+    }
   }
 
   .content {
@@ -23,6 +34,15 @@
       margin-bottom: $space-lg;
       max-width: 20rem;
     }
+
+    @include tablet {
+      @include grid-span-cols(12);
+      margin-top: $space-3xl;
+
+      .text {
+        max-width: 100%;
+      }
+    }
   }
 
   &.image_right {
@@ -34,6 +54,20 @@
     .content {
       grid-column: 1 / 7;
       grid-row: 1;
+    }
+
+    @include tablet {
+      .image {
+        grid-column: 1 / -1;
+        grid-row: 2;
+      }
+
+      .content {
+        grid-column: 1 / -1;
+        grid-row: 1;
+        margin-top: 0;
+        margin-bottom: $space-3xl;
+      }
     }
   }
 }

@@ -71,6 +71,14 @@
     .embla_container {
       grid-auto-columns: calc(33.3333% - $padding-global);
       gap: $padding-global;
+
+      @include tablet {
+        grid-auto-columns: 80%;
+      }
+      @include mobile {
+        grid-template-columns: 1fr;
+        grid-auto-flow: row;
+      }
     }
 
     .overlay {

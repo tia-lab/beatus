@@ -39,5 +39,8 @@
     height: 4rem;
     cursor: pointer;
     @include move-up-down(1rem, 4s, ease-in-out);
+    @include tablet {
+      display: none;
+    }
   }
 }

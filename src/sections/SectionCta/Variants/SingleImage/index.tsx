@@ -20,6 +20,7 @@ const SingleImage = ({ ...props }: Props) => {
         wrap={{ className: $.image }}
         fitWrap
         ar="16x9"
+        sizes="100vw"
       />
       <div className={$.overlay} />
       <div className="main-wrapper">

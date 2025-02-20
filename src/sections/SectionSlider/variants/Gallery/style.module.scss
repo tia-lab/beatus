@@ -5,6 +5,9 @@
     @include grid-span-cols(12);
     display: grid;
     grid-template-columns: 2fr 1fr;
+    @include tablet {
+      grid-template-columns: 1fr;
+    }
 
     .content_title {
       display: flex;

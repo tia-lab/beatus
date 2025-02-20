@@ -7,6 +7,9 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: $space-2xl;
+    @include tablet {
+      grid-column: span 12;
+    }
 
     .line {
       width: 5.875rem;
@@ -28,6 +31,10 @@
       gap: $space-lg;
       width: 21rem;
       justify-self: center;
+
+      @include tablet {
+        width: 100%;
+      }
     }
   }
 }

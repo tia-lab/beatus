@@ -4,6 +4,8 @@ import Arrow from '$/public/icons/arrow/arrow-slider.svg'
 import { Div, Image } from '@/components/Core'
 import { EmblaCarousel } from '@/components/Ui'
 import { usePrevNextButtons } from '@/components/Ui/EmblaCarousel/Components/Button'
+import { useMedia } from '@/hooks'
+import { MEDIA } from '@config'
 import clsx from 'clsx'
 import useEmblaCarousel from 'embla-carousel-react'
 import { readFragment } from 'gql.tada'
@@ -16,6 +18,8 @@ const SliderGallery = ({ data }: Omit<SectionSliderProps, 'params'>) => {
   const d = readFragment(SectionSliderFragment, data)
   const [emblaRef, emblaApi] = useEmblaCarousel({ align: 'start', loop: true })
 
+  const isDesktop = useMedia(MEDIA.desktop, true)
+
   const {
     prevBtnDisabled,
     nextBtnDisabled,
@@ -27,7 +31,7 @@ const SliderGallery = ({ data }: Omit<SectionSliderProps, 'params'>) => {
     <Div className={$.slider} anim="section-fade-in">
       <div className={$.slider_container}>
         <EmblaCarousel
-          options={{ align: 'start', loop: true }}
+          options={{ align: 'start', loop: isDesktop }}
           customEmblaApi={emblaApi}
           customEmblaRef={emblaRef}
           emblaClassName={$.embla}
@@ -39,6 +43,7 @@ const SliderGallery = ({ data }: Omit<SectionSliderProps, 'params'>) => {
               ar="16x9"
               data={slide}
               wrap={{ className: $.slide }}
+              sizes="60rem"
             />
           ))}
         />

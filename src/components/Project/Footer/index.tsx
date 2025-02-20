@@ -1,4 +1,5 @@
 import Logo from '$/public/beatus/logo/footerlogo.svg'
+import { DUR } from '@/animations/vars'
 import { LayoutFragment } from '@/app/[locale]/query'
 import { BaseLink, Container, Image, Parse, Section } from '@/components/Core'
 import { SectionProps } from '@/components/Core/Section'
@@ -79,13 +80,26 @@ const Footer = async ({ data, ...props }: FooterProps) => {
                   />
                 ))}
               </div>
+              <Button
+                isNext={false}
+                className={$.button_top}
+                variant="ghost"
+                icon="lucide:arrow-up"
+                iconAnimation="move-right"
+                lenisScroll={{
+                  target: 'top',
+                  options: { duration: DUR.goldenRatio * 2 }
+                }}
+              >
+                {t('page_top')}
+              </Button>
             </div>
           </Container>
         </div>
       </Section>
       <Section className={$.partners} anim="fade-in">
         <Container>
-          <p className={$.label}>Ebenfalls in Familienbesitz</p>
+          <p className={$.label}>{t('footer_main_partner')}</p>
           <div className={$.partner_wrap}>
             <div className={$.partner_highlight}>
               <BaseLink

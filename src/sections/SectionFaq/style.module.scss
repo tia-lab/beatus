@@ -3,10 +3,17 @@
 
   .title {
     grid-column: 2 / span 5;
+    @include tablet {
+      grid-column: 1 / span 12;
+      margin-bottom: $space-md;
+    }
   }
 
   .accordion {
     grid-column: 7 / span 5;
+    @include tablet {
+      grid-column: 1 / span 12;
+    }
 
     .accordion_title {
       @include h4;

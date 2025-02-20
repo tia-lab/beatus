@@ -35,4 +35,39 @@
       width: 28.2rem;
     }
   }
+
+  @include tablet {
+    .row {
+      grid-template-columns: 1fr;
+
+      .title {
+        text-align: left;
+        align-self: left;
+        grid-row: 2;
+        margin-top: $padding-vertical-md;
+      }
+
+      .text {
+        margin-bottom: $padding-vertical-md;
+        width: 100%;
+      }
+
+      .image {
+        width: 22rem;
+        height: 22rem;
+        justify-self: end;
+        bottom: 0;
+
+        &.is_bottom {
+          top: 0;
+          grid-row: 3;
+          justify-self: start;
+        }
+      }
+    }
+
+    .container {
+      row-gap: 0;
+    }
+  }
 }

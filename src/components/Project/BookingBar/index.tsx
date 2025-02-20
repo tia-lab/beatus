@@ -7,7 +7,9 @@ import { Formik } from 'formik'
 import React, { useRef } from 'react'
 
 import { Room } from '@/components/Ui/RoomPeopleField/RoomPeopleField'
+import { useMedia } from '@/hooks'
 import { useStoreNavigation } from '@/store'
+import { MEDIA } from '@config'
 import { useLocale, useTranslations } from 'next-intl'
 import $ from './style.module.scss'
 
@@ -21,10 +23,11 @@ const BookingBar = ({ ...props }: BookingBarProps) => {
   const locale = useLocale()
   const t = useTranslations()
   const comp = useRef<any>(null)
+  const isDesktop = useMedia(MEDIA.desktop, true)
 
   const headerHidden = useStoreNavigation.use.headerHidden()
 
-  if (!active) return null
+  if (!active || !isDesktop) return null
 
   const parseRoom = (rooms: Room[]) => {
     return rooms

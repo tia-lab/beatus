@@ -13,9 +13,20 @@
       column-gap: $container-gutter;
       padding-left: $padding-global;
 
+      @include tablet {
+        grid-auto-columns: 80%;
+      }
+
+      @include mobile {
+        grid-auto-columns: 90%;
+      }
+
       .slide {
         &:last-child {
           margin-right: 9rem;
+          @include tablet {
+            margin-right: $padding-global;
+          }
         }
       }
     }
@@ -33,6 +44,10 @@
       rgb(246 240 236 / 0%) 0%,
       var(--neutral-100) 79.72%
     );
+
+    @include tablet {
+      display: none;
+    }
   }
 
   .navigation {

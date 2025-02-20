@@ -3,6 +3,7 @@ import { Container, Image, Parse, Section } from '@/components/Core'
 import { routing } from '@/i18n/routing'
 import { Lib } from '@/types'
 import { memo } from 'react'
+import Buttons from './Components/Buttons'
 import SectionHeroFragment from './query'
 import $ from './style.module.scss'
 export interface SectionHeroProps {
@@ -45,6 +46,7 @@ const SectionHero = ({ data }: SectionHeroProps) => {
       <div className={$.arrow}>
         <Arrow />
       </div>
+      <Buttons />
     </Section>
   )
 }

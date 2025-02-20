@@ -13,7 +13,13 @@ const CardBookingModal = ({ ...props }: CardBookingModalProps) => {
   const { data, className, ...rest } = props
   return (
     <BaseLink className={clsx($.card, className)} {...rest}>
-      <Image data={data.image} fitWrap wrap={{ className: $.image }} ar="3x4" />
+      <Image
+        data={data.image}
+        fitWrap
+        wrap={{ className: $.image }}
+        ar="3x4"
+        sizes="30rem"
+      />
       <div className={$.overlay} />
       <div className={$.bottom}>
         <div className="title-h5 text-style-uppercase">

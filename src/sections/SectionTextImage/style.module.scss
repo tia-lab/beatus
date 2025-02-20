@@ -7,6 +7,13 @@
     @include object-fit-wrap;
     min-height: 28rem;
     height: 100%;
+
+    @include tablet {
+      grid-column: 1 / span 12;
+      grid-row: 1;
+      height: auto;
+      padding-top: 66%;
+    }
   }
 
   .content {
@@ -23,12 +30,24 @@
       @include rich-text;
       max-width: 28rem;
     }
+
+    @include tablet {
+      margin-top: $space-xl;
+      grid-column: 1 / span 12;
+      grid-row: 2;
+      align-items: center;
+      text-align: center;
+    }
   }
 
   &.image_right {
     .image {
       grid-column: 8 / span 4;
       grid-row: 1;
+      @include tablet {
+        grid-column: 1 / span 12;
+        grid-row: 1;
+      }
     }
 
     .content {
@@ -36,6 +55,12 @@
       text-align: start;
       grid-column: 2 / span 6;
       grid-row: 1;
+      @include tablet {
+        align-items: center;
+        text-align: center;
+        grid-column: 1 / span 12;
+        grid-row: 2;
+      }
     }
   }
 }

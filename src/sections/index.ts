@@ -7,7 +7,6 @@ import SectionList from './SectionList'
 import SectionListing from './SectionListing'
 import SectionPartners from './SectionPartners'
 import SectionSlider from './SectionSlider'
-import SectionText from './SectionText'
 import SectionTextDisplay from './SectionTextDisplay'
 import SectionTextImage from './SectionTextImage'
 export {
@@ -20,7 +19,6 @@ export {
   SectionListing,
   SectionPartners,
   SectionSlider,
-  SectionText,
   SectionTextDisplay,
   SectionTextImage
 }

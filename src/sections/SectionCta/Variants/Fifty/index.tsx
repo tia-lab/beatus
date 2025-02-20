@@ -23,6 +23,7 @@ const Fifty = ({ ...props }: Props) => {
           wrap={{ className: $.image }}
           fitWrap
           ar="3x4"
+          sizes="45rem"
         />
         <div className={$.content}>
           {data.overline && (

@@ -6,6 +6,9 @@
     @include flex(column, flex-start, center);
     text-align: center;
     gap: $space-md;
+    @include tablet {
+      grid-column: 1 / span 12;
+    }
 
     .content_title {
       display: flex;
@@ -19,6 +22,9 @@
       gap: $space-lg;
       align-items: flex-start;
       max-width: 35rem;
+      @include tablet {
+        max-width: 100%;
+      }
     }
   }
 }

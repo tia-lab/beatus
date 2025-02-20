@@ -9,6 +9,10 @@
   .main_wrapper {
     padding: $padding-vertical-lg;
     @include flex(column, center, center);
+
+    @include tablet {
+      padding: $padding-global;
+    }
   }
 
   .container {

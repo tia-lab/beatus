@@ -12,7 +12,7 @@
   z-index: 750;
   @include opacity-transition;
 
-  @include mobile {
+  @include tablet {
     display: none;
   }
 

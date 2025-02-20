@@ -12,6 +12,10 @@
     transform: translateY(100%);
   }
 
+  @include tablet {
+    display: none;
+  }
+
   .form {
     display: grid;
     grid-auto-columns: auto;

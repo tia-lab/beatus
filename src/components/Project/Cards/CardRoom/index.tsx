@@ -35,7 +35,13 @@ const CardRoom = ({ ...props }: CardRoomProps) => {
 
   return (
     <div className={clsx($.card, className)} {...rest}>
-      <Image data={d.image} fitWrap wrap={{ className: $.image }} ar="16x9" />
+      <Image
+        data={d.image}
+        fitWrap
+        wrap={{ className: $.image }}
+        ar="16x9"
+        sizes="40rem"
+      />
       <div className={$.content}>
         <div className={$.title}>
           <Parse html={d.title} excludeTags={['p']} />
