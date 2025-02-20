@@ -8,3 +8,8 @@ body {
   color: $neutral-600;
   background-color: $neutral-100;
 }
+
+::selection {
+  background-color: $primary-300; /* Custom highlight color */
+  color: $neutral-100; /* Text color when highlighted */
+}

@@ -100,6 +100,7 @@ const Header = ({ data }: HeaderProps) => {
             <div className={$.buttons}>
               <div className={$.buttons_overlay} data-color={headerColor} />
               <Button
+                as="div"
                 isNext={false}
                 className={$.button_1}
                 data-light={headerColor === 'light'}
@@ -112,6 +113,7 @@ const Header = ({ data }: HeaderProps) => {
                 {t('header_btn_dayguest')}
               </Button>
               <Button
+                as="div"
                 isNext={false}
                 className={$.button_2}
                 data-light={headerColor === 'light'}

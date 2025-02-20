@@ -16,6 +16,7 @@ const Buttons = () => {
       <Button
         isNext={false}
         className={$.button_1}
+        as="div"
         variant="outline"
         onClick={() => {
           setOpenBookingModal(true)
@@ -25,6 +26,7 @@ const Buttons = () => {
         {t('header_btn_dayguest')}
       </Button>
       <Button
+        as="div"
         isNext={false}
         className={$.button_2}
         onClick={() => {

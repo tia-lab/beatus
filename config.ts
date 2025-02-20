@@ -42,7 +42,13 @@ const config = {
 
   animations: {
     lenis: {
-      lerp: 0.25
+      duration: 1.5, // Adjusts smoothness; higher values slow down scrolling
+      easing: (t) => 1 - Math.pow(1 - t, 3), // Custom easing for better flow
+      smooth: true, // Enables smooth scrolling
+      smoothTouch: false, // Avoids too much smoothness on touch devices
+      wheelMultiplier: 0.8, // Reduces how much the scroll responds to the mouse wheel
+      touchMultiplier: 1, // Keeps touch smooth but not too slow
+      normalizeWheel: true // Normalizes scrolling across different devices
     } as LenisOptions
   },
   colors:
