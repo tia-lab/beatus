@@ -20,7 +20,7 @@ export interface Room {
 
 interface RoomPeopleFieldProps {
   value: Room[]
-  onChange: (rooms: Room[]) => void
+  onChange: (_rooms: Room[]) => void
 }
 
 const RoomPeopleField = ({ value, onChange }: RoomPeopleFieldProps) => {

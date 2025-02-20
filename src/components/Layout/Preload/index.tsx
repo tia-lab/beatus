@@ -14,7 +14,7 @@ export interface PreloadProps {
   data: Lib.FragmentOf<typeof LayoutFragment> | null
 }
 
-const Preload = ({ children, data }: PreloadProps) => {
+const Preload = ({ children }: PreloadProps) => {
   //refs
   const comp = useRef(null)
   const tl = useRef<GSAPTimeline | null>(null)

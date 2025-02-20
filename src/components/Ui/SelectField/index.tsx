@@ -36,7 +36,7 @@ export interface SelectFieldProps<T extends object>
   uncontrolled?: boolean // ✅ Controlled by default
   value?: string // ✅ Used when controlled
   defaultValue?: string // ✅ Used for initial value in uncontrolled mode
-  onChange?: (value: string) => void // ✅ Controlled change handler
+  onChange?: (_value: string) => void // ✅ Controlled change handler
 }
 
 export function SelectField<T extends object>({

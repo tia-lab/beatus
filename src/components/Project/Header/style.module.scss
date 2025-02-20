@@ -31,6 +31,7 @@
     align-items: start;
     @include tablet {
       padding: 1rem 0;
+      align-items: center;
     }
 
     .open {
@@ -40,6 +41,9 @@
       cursor: pointer;
       @include tablet {
         @include text-btn;
+        grid-column: 7 / span 6;
+        place-self: center end;
+        grid-row: 1;
       }
       @include mobile {
         grid-column: span 12;
@@ -52,9 +56,15 @@
       width: 8.3125rem;
       pointer-events: all;
       justify-self: center;
+      @include tablet {
+        width: 4rem;
+        grid-column: 1 / span 6;
+        justify-self: start;
+      }
       @include mobile {
         width: 6.8125rem;
         grid-column: span 12;
+        justify-self: center;
         margin-top: $container-gutter;
       }
 

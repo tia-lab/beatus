@@ -55,6 +55,15 @@ const Nav = ({ data, ...props }: NavModalProps) => {
 
   useKeyPress('Escape', closeModal)
 
+  const navArray =
+    data?.navigation.map((item) => ({
+      id: item.id, // Parent dropdown ID
+      dropdownItems: item.dropdownItems.map((navItem) => ({
+        //@ts-expect-error
+        url: navItem.url ? { slug: navItem.url.slug } : undefined // Extract slug
+      }))
+    })) || []
+
   return (
     <nav ref={comp} className={clsx($.modal)} data-active={navOpen} {...props}>
       <div className={clsx('main-wrapper', $.wrapper)}>
@@ -79,21 +88,7 @@ const Nav = ({ data, ...props }: NavModalProps) => {
           <div className={$.line} data-line />
           <div className={$.modal_content} data-lenis-prevent>
             <div className={$.menu}>
-              {Array.from({ length: 4 }).map((_, index) => (
-                <Link
-                  key={index}
-                  className={$.menu_item}
-                  data-item
-                  href={{
-                    pathname: '/[...slug]',
-                    params: { slug: ['test'] }
-                  }}
-                  onClick={closeModal}
-                >
-                  Nav Item {index + 1}
-                </Link>
-              ))}
-              <NavDropdown>
+              <NavDropdown menuItems={navArray}>
                 {data?.navigation.map((item, i) => (
                   <NavDropdownItem key={i} id={item.id} data={item} />
                 ))}

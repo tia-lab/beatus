@@ -20,36 +20,46 @@ const MultiImage = ({ ...props }: Props) => {
     >
       <div className={clsx('main-wrapper', $.mainWrapper)}>
         <div className={$.imageGallery}>
-          <Image
-            data={image1}
-            wrap={{ className: clsx($.image, $.image_1) }}
-            fitWrap
-            ar="16x9"
-          />
-          <Image
-            data={image2}
-            wrap={{ className: clsx($.image, $.image_2) }}
-            fitWrap
-            ar="3x4"
-          />
-          <Image
-            data={image3}
-            wrap={{ className: clsx($.image, $.image_3) }}
-            fitWrap
-            ar="16x9"
-          />
-          <Image
-            data={image4}
-            wrap={{ className: clsx($.image, $.image_4) }}
-            fitWrap
-            ar="3x4"
-          />
-          <Image
-            data={image5}
-            wrap={{ className: clsx($.image, $.image_5) }}
-            fitWrap
-            ar="16x9"
-          />
+          <Div parallax={-1} className={clsx($.image, $.image_1)}>
+            <Image
+              data={image1}
+              wrap={{ className: $.image_inner }}
+              fitWrap
+              ar="16x9"
+            />
+          </Div>
+          <Div parallax={2} className={clsx($.image, $.image_2)}>
+            <Image
+              data={image2}
+              wrap={{ className: $.image_inner }}
+              fitWrap
+              ar="3x4"
+            />
+          </Div>
+          <Div parallax={-2} className={clsx($.image, $.image_3)}>
+            <Image
+              data={image3}
+              wrap={{ className: $.image_inner }}
+              fitWrap
+              ar="16x9"
+            />
+          </Div>
+          <Div parallax={1} className={clsx($.image, $.image_4)}>
+            <Image
+              data={image4}
+              wrap={{ className: $.image_inner }}
+              fitWrap
+              ar="3x4"
+            />
+          </Div>
+          <Div parallax={-1} className={clsx($.image, $.image_5)}>
+            <Image
+              data={image5}
+              wrap={{ className: $.image_inner }}
+              fitWrap
+              ar="16x9"
+            />
+          </Div>
         </div>
 
         <Container className={$.container}>

@@ -34,6 +34,11 @@
     @include object-fit-wrap;
     position: absolute;
 
+    .image_inner {
+      width: 100%;
+      height: 100%;
+    }
+
     &.image_1 {
       width: 28rem;
       height: 18.66669rem;

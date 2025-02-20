@@ -48,6 +48,7 @@
   padding: $space-md 0;
   z-index: 500;
   transition: transform $duration-base $out-cubic;
+  border-top: 1px solid $neutral-300;
 
   &[data-hidden='true'] {
     transform: translateY(100%);

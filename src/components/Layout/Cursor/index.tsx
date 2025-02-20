@@ -21,8 +21,6 @@ const CursorRef = forwardRef((props, ref) => {
   const hasMOved = useStoreCursor.use.hasMoved()
   const hoverDefault = useStoreCursor.use.hoverDefault()
   const type = useStoreCursor.use.type()
-  const setHoverDefault = useStoreCursor.use.setHoverDefault()
-  const setHoverCardRetreat = useStoreCursor.use.setHoverCardRetreat()
   const hoverCardRetreat = useStoreCursor.use.hoverCardRetreat()
 
   //const theme = useStore(useStoreTheme, (state) => state.theme)

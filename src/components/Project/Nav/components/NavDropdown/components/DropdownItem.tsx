@@ -54,10 +54,7 @@ const NavDropdownItem = ({
       {...props}
     >
       <div className={$.icon} onClick={() => toggleItem(id)} data-open={isOpen}>
-        <div className={$.icon_inner}>
-          <div className={$.icon_line} />
-          <div className={clsx($.icon_line, $.is_2)} />
-        </div>
+        <div className="title-h3">{data.dropdownTitle}</div>
       </div>
       <div className={$.links}>
         <div className={$.title}>

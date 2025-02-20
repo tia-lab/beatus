@@ -17,7 +17,7 @@ import $ from './style.module.scss'
 export interface RadioGroupProps
   extends Omit<AriaRadioGroupProps, 'value' | 'onChange'> {
   value?: string // Controlled value
-  onChange?: (value: string) => void // Controlled state update
+  onChange?: (_value: string) => void // Controlled state update
   label?: string
 }
 

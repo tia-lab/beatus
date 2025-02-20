@@ -7,6 +7,7 @@ import { getLinkUrl } from '@/lib/slugs'
 import { useStoreNavigation } from '@/store'
 import { Lib } from '@/types'
 import { MEDIA } from '@config'
+import clsx from 'clsx'
 import { X } from 'lucide-react'
 import { memo, useEffect, useRef } from 'react'
 import { Tab, TabList, TabPanel, Tabs } from 'react-aria-components'
@@ -75,7 +76,7 @@ const Client = ({ ...props }: Props) => {
 
   return (
     <aside className={$.modal} ref={comp}>
-      <div className={$.main_wrapper}>
+      <div className={clsx('main-wrapper', $.main_wrapper)}>
         <h2 className="text-style-uppercase" data-item>
           <Parse html={d?.title} excludeTags={['p']} />
         </h2>

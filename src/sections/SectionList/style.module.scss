@@ -7,14 +7,28 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: $padding-vertical-md $container-gutter;
+    @include tablet {
+      grid-column: 1 / -1;
+      grid-template-columns: 1fr;
+    }
   }
 
   .tabs {
     grid-column: 2 / -2;
+    @include tablet {
+      grid-column: 1 / -1;
+    }
 
     .tab_list {
       @include flex(row, flex-start, center);
       gap: $space-lg;
+      overflow-x: scroll;
+      scrollbar-width: none; // Hides scrollbar in Firefox
+      scroll-snap-type: x mandatory;
+
+      &::-webkit-scrollbar {
+        display: none; // Hides scrollbar in Chrome/Safari
+      }
 
       .tab {
         width: 100%;
@@ -34,6 +48,9 @@
           left: 0;
           opacity: 0;
           transition: opacity $duration-fast $out-cubic;
+          @include tablet {
+            bottom: -1px;
+          }
         }
 
         &[data-selected='true'] {

@@ -39,7 +39,7 @@ if (!project) {
 
 // Define paths for the source (project env file) and destination (.env.local)
 const envFilePath = path.join(projectRoot, `env/.env.${project}`)
-const destEnvFile = path.join(projectRoot, '.env.local')
+const destEnvFile = path.join(projectRoot, '.env')
 
 try {
   // Check if the project-specific env file exists
@@ -52,7 +52,7 @@ try {
   await fs.writeFile(destEnvFile, envFileContent, 'utf-8')
 
   logBox(chalk.bold(`🤟 Successfully loaded ${project}`))
-  logBox(chalk.bold(chalk.green(`/env.${project} -> .env.local`)))
+  logBox(chalk.bold(chalk.green(`/env.${project} -> .env`)))
   displayFinalLog(false)
 } catch (err) {
   logBox(chalk.red(`Error: ${err.message}`))

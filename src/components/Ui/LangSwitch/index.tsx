@@ -7,7 +7,7 @@ import { memo, useEffect } from 'react'
 import $ from './style.module.scss'
 const LangSwitch = () => {
   const { locale, langSwitchSlugs } = useStoreI18()
-  const t = useTranslations()
+  const _t = useTranslations()
 
   useEffect(() => {
     console

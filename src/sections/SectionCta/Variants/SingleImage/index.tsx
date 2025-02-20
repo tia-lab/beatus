@@ -1,4 +1,4 @@
-import { Container, Image, Section } from '@/components/Core'
+import { Container, Div, Image, Section } from '@/components/Core'
 import { Button } from '@/components/Ui'
 import { memo } from 'react'
 import { SectionCtaProps } from '../..'
@@ -27,11 +27,17 @@ const SingleImage = ({ ...props }: Props) => {
         <Container anim="fade-in" className={$.container}>
           <div className={$.content}>
             {data.overline && (
-              <p className="text-small text-white">{data.overline}</p>
+              <Div as="p" className="text-small text-white">
+                {data.overline}
+              </Div>
             )}
-            <h2 className={$.title}>{data.title}</h2>
-            <p className={$.sub_title}>{data.subtitle}</p>
-            <Button data={data.button} onImage transitionType="slide" />
+            <Div as="h2" className={$.title}>
+              {data.title}
+            </Div>
+            <Div parallax={2}>
+              <p className={$.sub_title}>{data.subtitle}</p>
+              <Button data={data.button} onImage transitionType="slide" />
+            </Div>
           </div>
         </Container>
       </div>

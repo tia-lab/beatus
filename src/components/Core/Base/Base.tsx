@@ -1,6 +1,6 @@
 'use client'
 
-import { animBaseTypes } from '@/animations'
+import { animBaseTypes, animParallax } from '@/animations'
 import { useGSAPMedia } from '@/hooks'
 import { Animations } from '@/types'
 import { MEDIA } from '@config'
@@ -13,6 +13,7 @@ export interface BaseProps extends React.HTMLAttributes<HTMLDivElement> {
   animVars?: GSAPTweenVars
   animScrollVars?: ScrollTrigger.Vars
   animHookType?: 'effect' | 'isomorphic' | 'layout'
+  parallax?: number | boolean
 }
 
 const Base = forwardRef<HTMLElement, BaseProps>(
@@ -24,6 +25,7 @@ const Base = forwardRef<HTMLElement, BaseProps>(
       animVars,
       animScrollVars,
       animHookType = 'effect',
+      parallax,
       ...props
     },
     ref
@@ -46,6 +48,24 @@ const Base = forwardRef<HTMLElement, BaseProps>(
           ctx: _c,
           animVars: animVars,
           animScrollVars: animScrollVars
+        })
+      }
+    })
+
+    useGSAPMedia({
+      media: MEDIA,
+      scope: comp.current,
+      type: animHookType,
+
+      callback: (_c) => {
+        if (!parallax) return
+        animParallax({
+          tl: tl.current,
+          ref: comp,
+          ctx: _c,
+          animVars: animVars,
+          animScrollVars: animScrollVars,
+          parallax
         })
       }
     })

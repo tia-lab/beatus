@@ -13,7 +13,7 @@
     "css": "tsx ./scripts/scss/index.mjs && bun ./scripts/scss/lint/index.mjs",
     "dev": "bun run css && next dev -p 9852",
     "build": "bun run css && next build",
-    "postbuild": "next-sitemap --config ./scripts/sitemap/index.js",
+    "postbuild": "next-sitemap --config ./scripts/sitemap/index.cjs",
     "build-commit": "next build",
     "start": "next start -p 9852",
     "schema": "dotenv -c -- bash -c 'gql.tada generate schema https://graphql.datocms.com --header \"X-Exclude-Invalid: true\" --header \"Authorization: $DATOCMS_PUBLISHED_CONTENT_CDA_TOKEN\"'",

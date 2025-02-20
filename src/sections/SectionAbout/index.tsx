@@ -1,4 +1,4 @@
-import { Container, Image, Parse, Section } from '@/components/Core'
+import { Container, Div, Image, Parse, Section } from '@/components/Core'
 import { Button } from '@/components/Ui'
 import { routing } from '@/i18n/routing'
 import { Lib } from '@/types'
@@ -24,29 +24,33 @@ const SectionAbout = ({ data }: SectionAboutProps) => {
       <div className="main-wrapper">
         <Container className={$.container} anim="section-fade-in">
           <div className={$.row}>
-            <div className={$.title}>
+            <Div className={$.title} parallax={3}>
               <h2 className="title-h2 text-style-uppercase mb-space-md">
                 <Parse html={data.title} excludeTags={['p']} />
               </h2>
               <p className="title-h4 text-style-uppercase">{data?.subtitle}</p>
-            </div>
-            <Image
-              data={data.imageTop}
-              wrap={{ className: $.image }}
-              fitWrap
-              ar="1x1"
-              sizes="28rem"
-            />
+            </Div>
+            <Div parallax={2}>
+              <Image
+                data={data.imageTop}
+                wrap={{ className: $.image }}
+                fitWrap
+                ar="1x1"
+                sizes="28rem"
+              />
+            </Div>
           </div>
           <div className={$.row}>
-            <Image
-              data={data.imageBottom}
-              wrap={{ className: clsx($.image, $.is_bottom) }}
-              fitWrap
-              ar="1x1"
-              sizes="28rem"
-            />
-            <div className={$.text}>
+            <Div parallax={5}>
+              <Image
+                data={data.imageBottom}
+                wrap={{ className: clsx($.image, $.is_bottom) }}
+                fitWrap
+                ar="1x1"
+                sizes="28rem"
+              />
+            </Div>
+            <Div className={$.text} parallax={4}>
               <div className="rich-text">
                 <Parse html={data.text} />
               </div>
@@ -56,7 +60,7 @@ const SectionAbout = ({ data }: SectionAboutProps) => {
                 variant="text"
                 className="text-neutral-600"
               />
-            </div>
+            </Div>
           </div>
         </Container>
       </div>
