@@ -35,6 +35,8 @@ const Client = ({ ...props }: Props) => {
   //hooks
   const isTablet = useMedia(MEDIA.mobileUp)
   const isDekstop = useMedia(MEDIA.desktop)
+  const isMobile = useMedia(MEDIA.mobile)
+
   useGSAPContext({
     type: 'isomorphic',
     scope: comp,
@@ -62,8 +64,14 @@ const Client = ({ ...props }: Props) => {
     if (isDekstop && cardLenght > 3) {
       return true
     }
+
+    if (isMobile && cardLenght > 1) {
+      return true
+    }
     return false
   }
+
+  const axis = isTablet ? 'x' : 'y'
 
   return (
     <aside className={$.modal} ref={comp}>
@@ -101,11 +109,11 @@ const Client = ({ ...props }: Props) => {
                 data-item
               >
                 <EmblaCarousel
-                  emblaClassName={$.embla}
                   containerClassName={$.embla_container}
-                  options={{ active: active(tab.cards.length) }}
+                  options={{ active: active(tab.cards.length), axis }}
                   slides={tab.cards.map((card) => (
                     <CardBookingModal
+                      className={$.slide}
                       key={card.id}
                       data={card}
                       href={getLinkUrl({ data: card.link }) || undefined}

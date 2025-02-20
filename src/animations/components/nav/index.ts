@@ -10,7 +10,7 @@ const animateNav = (comp: any, tl: any) => {
     }
   })
   const body = document.querySelector('body')
-  const mainWrap = document.querySelector('[data-main]')
+  const _mainWrap = document.querySelector('[data-main]')
   const line = '[data-line]'
   const item = '[data-item]'
   gsap.set(line, { width: 0 })
@@ -20,7 +20,7 @@ const animateNav = (comp: any, tl: any) => {
     .to(body, { overflow: 'hidden', duration: 0 })
     .to(comp.current, { display: 'flex', duration: 0 }, '<')
     .to(comp.current, { xPercent: 0 })
-    .to(mainWrap, { xPercent: 100 }, '<')
+    //.to(mainWrap, { xPercent: 100 }, '<')
     .to(line, { width: '100%' }, '<+=0.25')
     .to(item, { y: 0, autoAlpha: 1, stagger: 0.1 }, '<')
 }

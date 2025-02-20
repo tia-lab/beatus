@@ -19,6 +19,12 @@
       display: flex;
     }
 
+    @include tablet {
+      left: 0;
+      background-color: $neutral-200;
+      border: 1px solid $primary-400;
+    }
+
     .rooms {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -52,6 +58,9 @@
           padding: 0.1rem;
           border: 1px solid $neutral-200;
           cursor: pointer;
+          @include tablet {
+            border: 1px solid $primary-400;
+          }
         }
 
         .input {
@@ -60,6 +69,9 @@
           text-align: center;
           width: 3rem;
           height: 1.5rem;
+          @include tablet {
+            border-color: $primary-400;
+          }
         }
       }
     }

@@ -1,3 +1,44 @@
+.open {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 502;
+  box-shadow: 0 8px 0 rgb(0 0 0 / 10%);
+  padding: $padding-global;
+  background-color: $neutral-100;
+  @include flex(row, space-between, center);
+  transition:
+    opacity $duration-base $out-cubic,
+    transform $duration-base $out-cubic;
+
+  .open_icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform $duration-base $out-cubic;
+  }
+
+  &[data-hidden='true'] {
+    transform: translateY(100%);
+  }
+
+  &[data-open='true'] {
+    opacity: 0;
+    pointer-events: none;
+
+    .open_icon {
+      transform: rotate(180deg);
+    }
+  }
+
+  @include desktop {
+    display: none;
+  }
+}
+
 .booking_bar {
   position: fixed;
   bottom: 0;
@@ -11,9 +52,30 @@
   &[data-hidden='true'] {
     transform: translateY(100%);
   }
-
   @include tablet {
-    display: none;
+    transform: translateY(100%);
+    display: grid;
+    grid-template-columns: 1fr;
+
+    &[data-active='true'] {
+      transform: translateY(0);
+    }
+
+    .close {
+      top: 0;
+      right: 0;
+      justify-self: end;
+      margin: $space-md;
+      margin-top: 0;
+
+      .close_icon {
+        width: 1.5rem;
+        height: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
   }
 
   .form {
@@ -21,7 +83,12 @@
     grid-auto-columns: auto;
     grid-auto-flow: column;
     grid-column: 2 / -2;
-    column-gap: $space-lg;
+    gap: $space-lg;
     align-items: center;
+    @include tablet {
+      grid-auto-flow: row;
+      grid-template-columns: 1fr;
+      grid-column: 1 / -1;
+    }
   }
 }
